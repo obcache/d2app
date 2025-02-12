@@ -297,25 +297,25 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 	sleep(50)
 	send("{f}")
 	this.color:=array()
-	sleep(20)
+	;sleep(20)
 	result.locked:=false
-	loop 5 {
-				this.color:=pixelGetColor(x+(setting.tileSize/2)-(thisCol-7),y)
-				if subStr(this.color,3,1) != subStr(this.color,5,1) {
-					result.locked:=true
-					break
-				}
-			}
+	; loop 10 {
+				; this.color:=pixelGetColor(x+(setting.tileSize/2)-(thisCol-7),y)
+				; if subStr(this.color,3,1) != subStr(this.color,5,1) {
+					; result.locked:=true
+					; break
+				; }
+			; }
 		
 	switch { 
-		case thisCol > 5: ;10-7=3 9-7=2 8-7=1 7-7=0 6-7=- 5-3=2 4-1=3 3+1=4 2+3=5 1+5=6
-			loop 5 {
-				this.color:=pixelGetColor(x+(setting.tileSize/2)-4,y)
-				if subStr(this.color,3,1) != subStr(this.color,5,1) {
-					result.locked:=true
-					break
+		case thisCol >= 6: ;10-7=3 9-7=2 8-7=1 7-7=0 6-7=- 5-3=2 4-1=3 3+1=4 2+3=5 1+5=6
+				loop 5 {
+					this.color:=pixelGetColor(x+(setting.tileSize/2)-2,y)
+					if subStr(this.color,3,1) != subStr(this.color,5,1) {
+						result.locked:=true
+						break
+					}
 				}
-			}
 		
 		; case (thisCol >= 4) && (thiscol <= 7): ;6-5=1
 			; loop 5 {
@@ -326,9 +326,9 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 				; }
 			; }
 
-		case thisCol < 6: ;1+3=4
-			loop 5 {
-				this.color:=pixelGetColor(x-(setting.tileSize/2)+4,y)
+		case thisCol <= 5: ;1+3=4
+			loop 10 {
+				this.color:=pixelGetColor(x-(setting.tileSize/2)+1,y)
 				if subStr(this.color,3,1) != subStr(this.color,5,1) {
 					result.locked:=true
 					break
@@ -339,11 +339,11 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 	sleep(150)
 	if !result.locked {
 		sendEvent("{f down}")
-		sleep(1800)
+		sleep(1400)
 		if this.restartQueued {
 			exit()
 		}
-		loop 30 {
+		loop 50 {
 			if pixelSearch(&returnX,&returnY,(thisCol>=5) ? x+50 : x-150,300,100,720,"0x830303",1) {
 				this.exotic:=true
 				sleep(3600)

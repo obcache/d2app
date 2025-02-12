@@ -99,7 +99,7 @@ cfgLoad(&cfg, &ui) {
 	ui.clearClockAlert			:= false
 	ui.themeEditorVisible		:= false
 	cfg.forcedTooltipControls	:= "Win1,Win2,Win3"
-	cfg.gameModuleList			:= strSplit(iniRead(cfg.file,"Game","GameModuleList","Gameplay,Vault Cleaner,Links"),",")
+	cfg.gameModuleList			:= strSplit(iniRead(cfg.file,"Game","GameModuleList","Gameplay,  Vault Cleaner  ,Links"),",")
 	cfg.gameList				:= StrSplit(IniRead(cfg.file,"Game","GameList","Roblox,Rocket League"),",")
 	cfg.mainTabList				:= strSplit(IniRead(cfg.file,"Interface","MainTabList","1_GAME,2_SETUP"),",")
 	cfg.mainGui					:= IniRead(cfg.file,"System","MainGui","MainGui")

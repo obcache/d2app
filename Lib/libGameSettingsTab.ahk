@@ -844,7 +844,7 @@ GuiGameTab() {
 	ui.gameSettingsGui.MarginX := 5
 	ui.gameSettingsGui.Opt("-Caption -Border +AlwaysOnTop +ToolWindow +Owner" ui.MainGui.Hwnd)
 	ui.gameSettingsGui.SetFont("s14 c" cfg.ThemeFont1Color,"Calibri")
-	ui.gameTabs := ui.gameSettingsGui.addTab3("x-1 y-5 w497 h181 0x400 bottom c" cfg.themeFont1Color " choose" cfg.activeGameTab,cfg.gameModuleList)
+	ui.gameTabs := ui.gameSettingsGui.addTab3("x-1 y-5 w497 h181 0x400 bottom buttons c" cfg.themeFont1Color " choose" cfg.activeGameTab,cfg.gameModuleList)
 	ui.gameTabs.choose(cfg.gameModuleList[cfg.activeGameTab])
 	ui.gameTabs.setFont("s10")
 	ui.gameTabs.onEvent("Change",gameTabChanged)
@@ -876,20 +876,20 @@ drawGameTabs(tabNum := 1) {
 	ui.gameTabGui.opt("-caption toolWindow alwaysOnTop +E0x20 owner" ui.gameSettingsGui.hwnd)
 	ui.gameTabGui.backColor := ui.transparentColor
 	ui.gameTabGui.color := ui.transparentColor
-	drawOutlineNamed("gameTabOutline",ui.gameTabGui,0,0,227,29
+	drawOutlineNamed("gameTabOutline",ui.gameTabGui,0,0,237,29
 		,cfg.themeBright1Color,cfg.themeBright1Color,1)
 	
 	winSetTransColor(ui.transparentColor,ui.gameTabGui)
 			drawOutlineNamed("gameTabs",ui.gameTabGui,ui.gameTabWidth-0,0,498-ui.gameTabWidth,32,cfg.themeBright1Color,cfg.themeDark1Color,1)
 	ui.gameTabGui.addText("x1 y0 w0 h27 section background" cfg.themeBright1Color,"")
 	((tabNum == 1)
-		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w110 h26 background" cfg.themeBright1Color,"" )
-		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w110 h26 background" cfg.themeDark2Color,""))
+		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w100 h26 background" cfg.themeBright1Color,"" )
+		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w100 h26 background" cfg.themeDark2Color,""))
 	ui.gameTab1Skin := ui.gameTabGui.addText(
 		((tabNum == 1) 
 			? "ys+0 h28" 
 			: "ys+1 h27")
-				" x+-110 w110 section center background" 
+				" x+-100 w100 section center background" 
 		((tabNum == 1) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color) 
@@ -902,29 +902,29 @@ drawGameTabs(tabNum := 1) {
 		: "s12"),"Impact")
 	ui.gameTab1Label := ui.gameTabGui.addText(
 		((tabNum == 1) 
-			? "ys+0 h25" 
-			: "ys+1 h24")
-				" x+-110 w110 section center backgroundTrans c" 
+			? "ys+0 h28" 
+			: "ys+1 h26")
+				" x+-100 w100 section center backgroundTrans c" 
 		((tabNum == 1) 
 			? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
-				,"Destiny 2")
+				,"Gameplay")
 	ui.gameTab1Label.setFont((tabNum == 1 
 		? "s14" 
 		: "s12")
 			,"Impact")
-	ui.gameTabWidth += 113
-	((tabNum == 1)
-		? ui.gameTabGui.addText("ys x+-2 w2 h29 section background" cfg.themeBright1Color,"")
+	ui.gameTabWidth += 100
+	((tabNum == 3)
+		? ui.gameTabGui.addText("ys x+-2 w2 h29 section background" cfg.themeDark2Color,"")
 		: ui.gameTabGui.addText("ys-1 x+-2 w2 h29 section background" cfg.themeBright1Color,""))
 	((tabNum == 2)
-		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w115 h28 background" cfg.themeBright1Color,"" )
-		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w115 h28 background" cfg.themeDark2Color,""))
+		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h28 background" cfg.themeBright1Color,"" )
+		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h28 background" cfg.themeDark2Color,""))
 	ui.gameTab2Skin := ui.gameTabGui.addText(
 		((tabNum == 2) 
 			? "ys-1 h28" 
-			: "ys+2 h26")
-				" x+-115 w115 section center background" 
+			: "ys+2 h28")
+				" x+-130 w130 section center background" 
 		((tabNum == 2) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color)
@@ -941,20 +941,58 @@ drawGameTabs(tabNum := 1) {
 		((tabNum == 2) 
 			? "ys+0 h24" 
 			: "ys+0 h26")
-		" x+-112 w112 section center backgroundTrans c" 
+		" x+-130 w130 section center backgroundTrans c" 
 		((tabNum == 2)
 		? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
-		,"World//Zero")
+		,"Vault Cleaner")
 	ui.gameTab2Label.setFont(
 		((tabNum == 2)
 			? "s14" 
 			: "s12")
 		,"Impact")
-	ui.gameTabWidth += 113
+	ui.gameTabWidth += 130	
 	((tabNum == 1)
-		? ui.gameTabGui.addText("ys-1 x+-1 w2 h30 section background" cfg.themeDark2Color,"")
-		: ui.gameTabGui.addText("ys+1 x+-1 w2 h30 section background" cfg.themeBright1Color,""))
+		? ui.gameTabGui.addText("ys+0 x+-2 w2 h30 section background" cfg.themeDark2Color,"")
+		: ui.gameTabGui.addText("ys+0 x+-2 w2 h30 section background" cfg.themeBright1Color,""))
+	((tabNum == 3)
+		? ui.gameTab3SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h30 background" cfg.themeBright1Color,"" )
+		: ui.gameTab3SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h30 background" cfg.themeDark2Color,""))
+	ui.gameTab3Skin := ui.gameTabGui.addText(
+		((tabNum == 3) 
+			? "ys-4 h28" 
+			: "ys+0 h27")
+				" x+-130 w130 section center background" 
+		((tabNum == 3) 
+			? cfg.themeBackgroundColor 
+			: cfg.themePanel4Color)
+				" c" ((tabNum == 3)
+			? cfg.themeFont1Color 
+			: cfg.themeFont4Color)
+				,"")
+	ui.gameTab3Skin.setFont(
+		((tabNum == 3)
+			? "s14" 
+			: "s12")
+			,"Impact")
+	ui.gameTab3Label := ui.gameTabGui.addText(
+		((tabNum == 3) 
+			? "ys+0 h24" 
+			: "ys+0 h26")
+		" x+-130 w130 section center backgroundTrans c" 
+		((tabNum == 3)
+		? cfg.themeFont1Color 
+			: cfg.themeFont4Color)
+		,"Vault Cleaner")
+	ui.gameTab3Label.setFont(
+		((tabNum == 3)
+			? "s14" 
+			: "s12")
+		,"Impact")
+	ui.gameTabWidth += 130
+	((tabNum == 3)
+		? ui.gameTabGui.addText("ys-1 x+-1 w2 h30 section background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("ys+1 x+-1 w2 h30 section background" cfg.themeDark2Color,""))
 	guiVis(ui.gameTabGui,false)
 	if (winGetTransparent(ui.gameTabGui)) == 0 {
 		ui.gameTabGui.addText("ys+1 x+0 w" 498-(ui.gameTabWidth+3) " h26 background" cfg.themePanel1Color)
