@@ -30,18 +30,11 @@ initGui(&cfg, &ui) {
 	;ui.topHandlebar := ui.mainGui.addPicture("x-5 y2 w528 h28 backgroundTrans","./img/handlebar_horz.png")
 	ui.1_GameButtonBg := ui.mainGui.addPicture("x32 y2 section w80 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==1) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
 	ui.1_GameButton := ui.mainGui.addText("x+-80 ys+5 w80 h22 center backgroundTrans","Game")
-	ui.2_SysButtonBg := ui.mainGui.addPicture("ys+0 w70 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==2) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
-	ui.2_SysButton := ui.mainGui.addText("ys+5 x+-70 w70 h22 center backgroundTrans","Sys")
-	ui.3_AfkButtonBg := ui.mainGui.addPicture("ys+0 w70 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==3) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
-	ui.3_AfkButton := ui.mainGui.addText("ys+5 x+-70 w70 h22 center backgroundTrans","Afk")
-	ui.4_AppDockButtonBg := ui.mainGui.addPicture("ys+0 w100 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==4) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
-	ui.4_AppDockButton := ui.mainGui.addText("ys+5 x+-100 w100 h22 center backgroundTrans"," App Dock ")
-	ui.5_ListsButtonBg := ui.mainGui.addPicture("ys+0 w70 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==5) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
-	ui.5_ListsButton := ui.mainGui.addText("ys+5 x+-70 w70 h22 center backgroundTrans","Lists")
-	ui.6_SetupButtonBg := ui.mainGui.addPicture("ys+0 w80 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==6) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
-	ui.6_SetupButton := ui.mainGui.addText("ys+5 x+-80 w80 h22 center backgroundTrans","Setup")
+	ui.2_SetupButtonBg := ui.mainGui.addPicture("ys+0 w80 h30 center background" cfg.themeBackgroundColor,(cfg.activeMainTab==6) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
+	ui.2_SetupButton := ui.mainGui.addText("ys+5 x+-80 w80 h22 center backgroundTrans","Setup")
 	;msgBox(cfg.mainTabList[1])
-	ui.mainGuiTabs := ui.MainGui.AddTab3("x32 y2 w495 h213  Buttons -redraw Background" cfg.ThemeBackgroundColor " -E0x200", cfg.mainTabList)
+	ui.3_FillBg:=ui.mainGui.addPicture("ys+0 w310 h30 center background" cfg.themeBackgroundColor,"./img/tab_unselected.png")
+	ui.mainGuiTabs := ui.MainGui.AddTab3("x32 y2 w495 h213  Buttons -redraw Background" cfg.ThemeBackgroundColor " -E0x200",["1_Game","2_Setup"])
 	ui.mainGuiTabs.setFont("s13")
 	ui.MainGuiTabs.OnEvent("Change",TabsChanged)
 	;ui.mainGuiTabs.useTab("1_GAME")
@@ -49,8 +42,8 @@ initGui(&cfg, &ui) {
 	ui.activeTab := ui.mainGuiTabs.Text
 	ui.previousTab := ui.activeTab
 	ui.MainGui.SetFont("s12 c" cfg.ThemeFont1Color,"Calibri")
-	ui.handleBarBorder := ui.mainGui.addText("x0 y34 w32 h184 background" cfg.themeBright1Color,"")
-	ui.handleBarImage := ui.MainGui.AddPicture("x1 y28 w32 h157 backgroundTrans","./img/handlebar_vertical.png")
+	ui.handleBarBorder := ui.mainGui.addText("x0 y0 w32 h210 background" cfg.themeBright1Color,"")
+	ui.handleBarImage := ui.MainGui.AddPicture("x1 y1 w32 h220 backgroundTrans","./img/handlebar_vertical.png")
 	ui.ButtonHandlebarDebug := ui.MainGui.AddPicture( 
 	(cfg.consoleVisible) 
 		? "x2 y185 w30 h27 section Background" cfg.ThemeButtonOnColor 
@@ -67,11 +60,11 @@ initGui(&cfg, &ui) {
 	ui.rightHandleBarImage2.OnEvent("DoubleClick",ToggleGuiCollapse)
 	ui.handleBarImage.OnEvent("Click",WM_LBUTTONDOWN_callback)
 	ui.rightHandleBarImage2.OnEvent("Click",WM_LBUTTONDOWN_callback)
-	ui.gameTabTopDockButtonOutline := ui.mainGui.addText("x0 y0 w33 h33 background" cfg.themeBright1Color)
+	;ui.gameTabTopDockButtonOutline := ui.mainGui.addText("x0 y0 w33 h33 background" cfg.themeBright1Color)
 	;ui.gameTabTopDockButtonOutline2 := ui.mainGui.addText("x1 y1 w33 h31 background" cfg.themeDark1Color)
-	ui.gameTabTopDockButton := ui.mainGui.addPicture("x0 y0 w34 h33 background" cfg.themeButtonOnColor,"./img/button_dock_up.png")
-	ui.gameTabTopDockButton.onEvent("click",topDockOn)
-	ui.gameTabTopDockButton.toolTip := "Dock to top of screen"
+	;ui.gameTabTopDockButton := ui.mainGui.addPicture("x0 y0 w34 h33 background" cfg.themeButtonOnColor,"./img/button_dock_up.png")
+	;ui.gameTabTopDockButton.onEvent("click",topDockOn)
+	;ui.gameTabTopDockButton.toolTip := "Dock to top of screen"
 	ui.exitButtonBg := ui.mainGui.addText("x502 y2 w58 h30 background" cfg.themeBright1Color,"")
 	ui.DownButton := ui.mainGui.AddPicture("x502 y0 w26 h30 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
 	ui.DownButton.OnEvent("Click",HideGui)
@@ -100,14 +93,14 @@ initGui(&cfg, &ui) {
 	ui.gvConsole.Color := cfg.ThemeBright1Color	
 	afk 						:= Object()	
 	ui.loadingProgress.value += 5
-	GuiAFKTab(&ui,&afk)
+	;GuiAFKTab(&ui,&afk)
 	ui.loadingProgress.value += 5
-	GuiOperationsTab(&ui,&cfg,&afk)	
+	;GuiOperationsTab(&ui,&cfg,&afk)	
 	ui.loadingProgress.value += 5
-	GuiDockTab(&ui)
+	;GuiDockTab(&ui)
 
 	GuiSetupTab(&ui,&cfg)
-	GuiListsTab(&ui,&cfg)
+	;GuiListsTab(&ui,&cfg)
 	
 	ui.loadingProgress.value += 5
 	GuiGameTab()
@@ -139,10 +132,10 @@ initGui(&cfg, &ui) {
 	InitOSDGui()
 	
 	ui.loadingProgress.value += 5
-	if (cfg.consoleVisible) {
-		(cfg.consoleVisible := !cfg.consoleVisible)
-		toggleConsole()
-	}
+	; if (cfg.consoleVisible) {
+		; (cfg.consoleVisible := !cfg.consoleVisible)
+		; toggleConsole()
+	; }
 	
 
 	debugLog("Interface Initialized")
@@ -829,18 +822,18 @@ initConsole(&ui) {
 } ;End Draw Outline Functions
 
 { ;BEGIN = outline parameters
-	drawAfkOutlines() {	
-	ui.mainGuiTabs.UseTab("3_AFK")
-		drawOutlineNamed("afkToolbarOutline",ui.afkGui,5,0,132,35,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
-		drawOutlineNamed("afkPopoutButtonOutline",ui.afkGui,216,0,34,35,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
-		 drawOutlineNamed("win1statusRow",ui.afkGui,4,40,246,26,cfg.themeBright1Color,cfg.themeBright1Color,2)
-		 drawOutlineNamed("win2statusRow",ui.afkGui,4,74,246,26,cfg.themeBright1Color,cfg.themeBright1Color,2)
-		drawOutlineNamed("afkTimeStatusOutline",ui.afkGui,4,106,246,28,cfg.themeBright1Color,cfg.themeBright1Color,2)
+	; drawAfkOutlines() {	
+	; ui.mainGuiTabs.UseTab("3_AFK")
+		; drawOutlineNamed("afkToolbarOutline",ui.afkGui,5,0,132,35,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
+		; drawOutlineNamed("afkPopoutButtonOutline",ui.afkGui,216,0,34,35,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
+		 ; drawOutlineNamed("win1statusRow",ui.afkGui,4,40,246,26,cfg.themeBright1Color,cfg.themeBright1Color,2)
+		 ; drawOutlineNamed("win2statusRow",ui.afkGui,4,74,246,26,cfg.themeBright1Color,cfg.themeBright1Color,2)
+	; drawOutlineNamed("afkTimeStatusOutline",ui.afkGui,4,106,246,28,cfg.themeBright1Color,cfg.themeBright1Color,2)
 	
-		drawOutlineNamed("afkRoutine1Outline",ui.mainGui,322,34,205,84,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
-		drawOutlineNamed("afkRoutine2Outline",ui.mainGui,322,122,205,84,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
+		; drawOutlineNamed("afkRoutine1Outline",ui.mainGui,322,34,205,84,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
+		; drawOutlineNamed("afkRoutine2Outline",ui.mainGui,322,122,205,84,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)
 
-}
+; }
 
 	drawMainOutlines() {
 	ui.mainGuiTabs.useTab("")
@@ -851,27 +844,27 @@ initConsole(&ui) {
 	drawOpsOutlines() {
 		ui.mainGuiTabs.useTab("")
 
-		ui.mainGuiTabs.useTab("2_SYS")
-		drawGridlines()
-		drawOutlineNamed("bottomLine",ui.mainGui,34,211,495,2,cfg.themeBright2Color,cfg.themeBright2Color,2)
-		drawOutlineNamed("bottomLine2",ui.mainGui,34,211,495,1,cfg.themeBright1Color,cfg.themeBright1Color,1)
-		drawOutlineNamed("tabsUnderline",ui.MainGui,33,29,502,3,cfg.ThemeBackgroundColor,cfg.ThemeBackgroundColor,2)
-		drawOutlineNamed("opsClock",ui.mainGui,101,33,139,28,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)		;Ops Clock
-		drawOutlineNamed("opsClassDDL",ui.mainGui,323,33,138,28,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,1)		;Ops Clock
-		drawOutlineNamed("opsToolbarOutline2",ui.mainGui,34,33,494,30,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)	;Ops Toolbar Outline
-		drawOutlineNamed("opsToolbarCenter",ui.mainGui,267,34,29,30,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)	;Ops Toolbar Outline
+		; ui.mainGuiTabs.useTab("2_SYS")
+		; drawGridlines()
+		; drawOutlineNamed("bottomLine",ui.mainGui,34,211,495,2,cfg.themeBright2Color,cfg.themeBright2Color,2)
+		; drawOutlineNamed("bottomLine2",ui.mainGui,34,211,495,1,cfg.themeBright1Color,cfg.themeBright1Color,1)
+		; drawOutlineNamed("tabsUnderline",ui.MainGui,33,29,502,3,cfg.ThemeBackgroundColor,cfg.ThemeBackgroundColor,2)
+		; drawOutlineNamed("opsClock",ui.mainGui,101,33,139,28,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)		;Ops Clock
+		; drawOutlineNamed("opsClassDDL",ui.mainGui,323,33,138,28,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,1)		;Ops Clock
+		; drawOutlineNamed("opsToolbarOutline2",ui.mainGui,34,33,494,30,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)	;Ops Toolbar Outline
+		; drawOutlineNamed("opsToolbarCenter",ui.mainGui,267,34,29,30,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)	;Ops Toolbar Outline
 
-		drawOutlineNamed("opsMiddleColumnOutlineDark",ui.mainGui,256,62,54,138,cfg.themeBright1Color,cfg.themeBright1Color,3)	;Ops Toolbar Outline
-		drawOutlineNamed("opsMiddleColumnOutlineLight",ui.mainGui,258,63,50,135,cfg.themeDark1Color,cfg.themeDark1Color,1)		;Ops Toolbar
-		drawOutlineNamed("opsMiddleColumnOutlineDark",ui.mainGui,259,64,48,133,cfg.themeBright2Color,cfg.themeBright2Color,1)	;Ops Toolbar Outline
-		drawOutlineNamed("opsAfkStatusLeft",ui.mainGui,34,104,67,25,cfg.themeBright1Color,cfg.themeBright1Color,1)
-		drawOutlineNamed("opsAfkStatusRight",ui.mainGui,462,104,66,25,cfg.themeBright1Color,cfg.themeBright1Color,1)	
-		drawOutlineNamed("opsAfkStatusLeft",ui.mainGui,34,130,67,32,cfg.themeBright1Color,cfg.themeBright1Color,1)
-		drawOutlineNamed("opsAfkStatusRight",ui.mainGui,462,130,66,32,cfg.themeBright1Color,cfg.themeBright1Color,1)
+		; drawOutlineNamed("opsMiddleColumnOutlineDark",ui.mainGui,256,62,54,138,cfg.themeBright1Color,cfg.themeBright1Color,3)	;Ops Toolbar Outline
+		; drawOutlineNamed("opsMiddleColumnOutlineLight",ui.mainGui,258,63,50,135,cfg.themeDark1Color,cfg.themeDark1Color,1)		;Ops Toolbar
+		; drawOutlineNamed("opsMiddleColumnOutlineDark",ui.mainGui,259,64,48,133,cfg.themeBright2Color,cfg.themeBright2Color,1)	;Ops Toolbar Outline
+		; drawOutlineNamed("opsAfkStatusLeft",ui.mainGui,34,104,67,25,cfg.themeBright1Color,cfg.themeBright1Color,1)
+		; drawOutlineNamed("opsAfkStatusRight",ui.mainGui,462,104,66,25,cfg.themeBright1Color,cfg.themeBright1Color,1)	
+		; drawOutlineNamed("opsAfkStatusLeft",ui.mainGui,34,130,67,32,cfg.themeBright1Color,cfg.themeBright1Color,1)
+		; drawOutlineNamed("opsAfkStatusRight",ui.mainGui,462,130,66,32,cfg.themeBright1Color,cfg.themeBright1Color,1)
 	}
 
 	drawGridLines() {
-	ui.MainGuiTabs.UseTab("2_SYS")
+	ui.MainGuiTabs.UseTab("2_SETUP")
 		drawOutline(ui.MainGui,101,62,157,100,cfg.ThemeBright2Color,cfg.ThemeBright2Color,2) 	;Win1 Info Frame
 		drawOutline(ui.MainGui,102,62,156,100,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1) 	;Win1 Info Frame
 		drawOutline(ui.MainGui,101,76,157,16,cfg.ThemeBright2Color,cfg.ThemeBright2Color,2)		;Win1 Info Gridlines  
@@ -1094,7 +1087,7 @@ createDockBar() {
 	ui.dockGameDDL := ui.dockBarGui.AddDropDownList("x+0 ys+2 w185 Background" cfg.ThemeEditboxColor " -E0x200 Choose" cfg.game,cfg.GameList)
 	ui.dockBarWidth += 185
 	ui.dockGameDDL.ToolTip := "Select the Game You Are Playing"
-	ui.dockGameDDL.OnEvent("Change",changeDockGameDDL)
+	;ui.dockGameDDL.OnEvent("Change",changeDockGameDDL)
 	; postMessage("0x153", -1, 35,, "AHK_ID " ui.gameDDL.Hwnd ) ; CB_SETITEMHEIGHT = 0x153
 	; postMessage("0x153", 0, 35,, "AHK_ID " ui.gameDDL.Hwnd ) ; CB_SETITEMHEIGHT = 0x153
 	ui.dockbarWin2Icon		:= ui.dockBarGui.addPicture("x+0 ys w32 h33 background" cfg.themePanel1Color,"./img/sleep_icon.png")

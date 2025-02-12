@@ -593,7 +593,7 @@ d2drawTopPanel(*) {
 }
 
 d2DrawUi(*) { 
-	ui.gameTabs.useTab("Destiny2") 
+	ui.gameTabs.useTab("Gameplay") 
 	ui.d2Sliding := false
 	ui.d2HoldingRun := false         
 	ui.d2cleanupNeeded := false

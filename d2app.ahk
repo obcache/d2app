@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.0.4"
+A_FileVersion := "1.4.0.5"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -99,13 +99,12 @@ ui.loadingProgress.value += 10
 #include <libWinMgr>
 #include <libGlobal>
 #include <libInstall>
-#include <libGuiOperationsTab>
-#include <libGuiAFKTab>
+;#include <libGuiOperationsTab>
 #include <libAfkFunctions>
 #include <libGuiSetupTab>
 #include <libGuiAppDockTab>
 #include <libGameSettingsTab>
-#include <libEditorTab>
+;#include <libEditorTab>
 ui.loadingProgress.value += 15
 #include <libGuiSystemTab>
 #include <libGuiSystemTab>
@@ -125,11 +124,7 @@ ui.loadingProgress.value += 5
 createDockBar()
 ui.loadingProgress.value += 5
 	
-changeGameDDL()
-ui.loadingProgress.value += 5
 
-drawAfkOutlines()
-ui.loadingProgress.value += 5
 
 try
 	guiVis("all",false)
@@ -191,7 +186,7 @@ if cfg.topDockEnabled
 	
 cfg.consoleVisible := !cfg.consoleVisible	
 
-toggleConsole()
+;toggleConsole()
 ;statusBar()
 ;listhotkeys()
 d2AutoGameConfigOverride()

@@ -409,7 +409,7 @@ pbNotify(NotifyMsg,Duration := 10,YN := "",confirmCustomScript:="notifyConfirm",
 	drawOutline(ui.notifyGui,5,5,w-10,h-10,"BBBBBB","DDDDDD",2)
 	canProceed:=""
 	timeout:=0
-	if (YN) {
+	if (YN !="") {
 		while timeout < 90 && ui.waitingForPrompt {
 				timeout+=1
 				sleep(500)
@@ -425,13 +425,13 @@ pbNotify(NotifyMsg,Duration := 10,YN := "",confirmCustomScript:="notifyConfirm",
 				
 				exit
 			} else {
-				setTimer () => (sleep(duration),fadeOSD()),-1
+				setTimer () => (sleep(duration),fadeOSD()),-duration
 			}
 				
 		} 
 		timeout:=0
-	} else
-			setTimer () => (sleep(duration),fadeOSD()),duration
+	} 
+	sleep(duration)
 } 
 
 pbWaitOSD() {
@@ -509,29 +509,36 @@ CheckForUpdates(msg,*) {
 		}
 	}
 
-	if (ui.installedVersion < ui.latestVersion) {
-		try {
-			winSetAlwaysOnTop(0,"ahk_id ui.mainGui.hwnd")
-		} 
-		try {
-			winSetAlwaysOnTop(0,"ahk_id ui.titleBarButtonGui.hwnd")
-		} 
-		try {
-			winSetAlwaysOnTop(0,"ahk_id ui.afkGui.hwnd")
-		} 
-		try {
-			winSetAlwaysOnTop(0,"ahk_id ui.gameSettingsGui.hwnd")
-		} 
-		try {
-			winSetAlwaysOnTop(0,"ahk_id ui.gameTabGui.hwnd")
-		} 
-		sleep(1500)
-		runWait("./d2app_updater.exe")
-	} else {
-		if(msg != 0) {
-			ui.latestVersionText.text := "Available:`t" substr(ui.latestVersion,1,1) "." substr(ui.latestVersion,2,1) "." substr(ui.latestVersion,3,1) "." substr(ui.latestVersion,4,1)
-			notifyOSD("No upgraded needed.`nInstalled: " substr(ui.installedVersion,1,1) "." substr(ui.installedVersion,2,1) "." substr(ui.installedVersion,3,1) "." substr(ui.installedVersion,4,1) "`nAvailable: " substr(ui.latestVersion,1,1) "." substr(ui.latestVersion,2,1) "." substr(ui.latestVersion,3,1) "." substr(ui.latestVersion,4,1),2500)
+	try {
+		if !inStr(ui.latestVersion,"404:") {
+			;msgBox(ui.latestVersion)
+			if (ui.installedVersion < ui.latestVersion) {
+				try {
+					winSetAlwaysOnTop(0,"ahk_id ui.mainGui.hwnd")
+				} 
+				try {
+					winSetAlwaysOnTop(0,"ahk_id ui.titleBarButtonGui.hwnd")
+				} 
+				try {
+					winSetAlwaysOnTop(0,"ahk_id ui.afkGui.hwnd")
+				} 
+				try {
+					winSetAlwaysOnTop(0,"ahk_id ui.gameSettingsGui.hwnd")
+				} 
+				try {
+					winSetAlwaysOnTop(0,"ahk_id ui.gameTabGui.hwnd")
+				} 
+				sleep(1500)
+				runWait("./d2app_updater.exe")
+			} else {
+				if(msg != 0) {
+					ui.latestVersionText.text := "Available:`t" substr(ui.latestVersion,1,1) "." substr(ui.latestVersion,2,1) "." substr(ui.latestVersion,3,1) "." substr(ui.latestVersion,4,1)
+					notifyOSD("No upgraded needed.`nInstalled: " substr(ui.installedVersion,1,1) "." substr(ui.installedVersion,2,1) "." substr(ui.installedVersion,3,1) "." substr(ui.installedVersion,4,1) "`nAvailable: " substr(ui.latestVersion,1,1) "." substr(ui.latestVersion,2,1) "." substr(ui.latestVersion,3,1) "." substr(ui.latestVersion,4,1),2500)
+				}
+			}
+		} else {
+			ui.latestVersionText.text:="Latest:`t           ERROR"
+			pbNotify("Cannot reach update site.`nCheck network.",5000)
 		}
 	}
-	
 }

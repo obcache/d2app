@@ -25,8 +25,8 @@ initTrayMenu(*) {
 	A_TrayMenu.Add("Reset Window Position", ResetWindowPosition)
 	; A_TrayMenu.Add("Toggle Dock", DockApps)
 	A_TrayMenu.Add()
-	A_TrayMenu.Add("Toggle Log Window", toggleConsole)
-	A_TrayMenu.Add()
+	;A_TrayMenu.Add("Toggle Log Window", toggleConsole)
+	;A_TrayMenu.Add()
 	A_TrayMenu.Add("Exit App", KillMe)
 	A_TrayMenu.Default := "Show Window"
 	Try
@@ -99,9 +99,9 @@ cfgLoad(&cfg, &ui) {
 	ui.clearClockAlert			:= false
 	ui.themeEditorVisible		:= false
 	cfg.forcedTooltipControls	:= "Win1,Win2,Win3"
-	cfg.gameModuleList			:= strSplit(iniRead(cfg.file,"Game","GameModuleList","Destiny2,World//Zero"),",")
+	cfg.gameModuleList			:= strSplit(iniRead(cfg.file,"Game","GameModuleList","Gameplay,Vault Cleaner,Links"),",")
 	cfg.gameList				:= StrSplit(IniRead(cfg.file,"Game","GameList","Roblox,Rocket League"),",")
-	cfg.mainTabList				:= strSplit(IniRead(cfg.file,"Interface","MainTabList"," 1_GAME , 2_SYS , 3_AFK , 4 App Dock 4 , 5 Setup 5 "),",")
+	cfg.mainTabList				:= strSplit(IniRead(cfg.file,"Interface","MainTabList","1_GAME,2_SETUP"),",")
 	cfg.mainGui					:= IniRead(cfg.file,"System","MainGui","MainGui")
 	cfg.autoStartEnabled 		:= iniRead(cfg.file,"System","AutoStartEnabled",false)
 	cfg.confirmExitEnabled		:= iniRead(cfg.file,"System","ConfirmExit",false)
@@ -246,7 +246,7 @@ WriteConfig() {
 	IniWrite(ui.monitorResDDL.value,cfg.file,"System","MonitorResolution")
 	IniWrite(arr2str(cfg.gameModuleList),cfg.file,"Game","GameModuleList")
 	IniWrite(arr2str(cfg.gameList),cfg.file,"Game","GameList")
-	IniWrite(ui.gameDDL.value,cfg.file,"Game","Game")
+	;IniWrite(ui.gameDDL.value,cfg.file,"Game","Game")
 	IniWrite(ui.win1enabled,cfg.file,"Game","Win1Enabled")
 	IniWrite(ui.win2enabled,cfg.file,"Game","Win2Enabled")	
 	IniWrite(cfg.win1disabled,cfg.file,"Game","win1disabled")
@@ -383,14 +383,14 @@ WriteConfig() {
 	iniWrite(cfg.towerInterval,cfg.file,"AFK","TowerInterval")
 	iniWrite(cfg.CelestialTowerEnabled,cfg.file,"AFK","CelestialTowerEnabled")
 	IniWrite(ui.AutoClickerSpeedSlider.Value,cfg.file,"AFK","AutoClickerSpeed")
-	IniWrite(ui.win1classDDL.value,cfg.file,"AFK","Win1Class")
+	;IniWrite(ui.win1classDDL.value,cfg.file,"AFK","Win1Class")
 
-	if (ui.win2ClassDDL.Text != "N/A")
-		IniWrite(ui.win2classDDL.value,cfg.file,"AFK","Win2Class")
-	if !(DirExist("./Logs"))
-	{
-		DirCreate("./Logs")
-	}
+	;if (ui.win2ClassDDL.Text != "N/A")
+	;IniWrite(ui.win2classDDL.value,cfg.file,"AFK","Win2Class")
+	;if !(DirExist("./Logs"))
+	;{
+	;	DirCreate("./Logs")
+	;}
 	
 	; if (cfg.ConsoleVisible)
 	; {
