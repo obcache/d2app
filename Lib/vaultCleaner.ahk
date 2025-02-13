@@ -112,7 +112,8 @@ libVaultInit(*) {
 			(this.state:=!this.state)
 				? cleanVaultStart()
 				: vault_exitFunc()
-		}
+		}		
+		
 		;help2:=thisGui.addText("xs+0 w600 h60 y+0 backgroundTrans c00FFFF","")
 		thisGui.setFont("s12")
 		drawOutlineNamed("vaultStats",thisGui,998,this.yOffset+8,270,55,"c00FFFF","c00FFFF",1)
@@ -124,6 +125,9 @@ libVaultInit(*) {
 		this.elapsedTime:=thisGui.addText("x1080 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
 		this.remaining:=thisGui.addText("x1000 y" 40+this.yOffset " right w80 h25 c00FFFF backgroundTrans","Remaining: ")
 		this.remainingtime:=thisGui.addText("x1080 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+			
+
+
 		
 		
 		;this.dismantledUnderline:=thisGui.addText("x1160 y" 18+this.yOffset " w110 center h1 c00FFFF background00FFFF")
@@ -134,6 +138,7 @@ libVaultInit(*) {
 		this.dismantledExotics:=thisGui.addText("x1240 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
 		this.dismantledTotalLabel:=thisGui.addText("x1160 y" 40+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Total: ")
 		this.dismantledTotal:=thisGui.addText("x1240 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		
 		
 
 
@@ -150,8 +155,44 @@ libVaultInit(*) {
 		this.vaultProgress := thisGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
 		this.completeMsg := thisGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
 
+		useTab("
+		this.status2Text:=ui.gameSettingsGui.addText("x10 y" 38+this.yOffset " w640 h30 backgroundTrans c00FFFF","Please Wait....")
+		this.status2Text.setFont("s16")
+		this.mainButton2Bg:=ui.gameSettingsGui.addText("x5 y" 5+this.yOffset " w80 h30 background353535")
+		this.mainButton2:=ui.gameSettingsGui.addText("section center x7 y" 7+this.yOffset " w76 h26 background454545 c00FFFF","")
+		this.mainButton2Text:=ui.gameSettingsGui.addText("section center x7 y" 2+this.yOffset " w76 h30 backgroundTrans c353535","Start")
+		this.mainButton2Text.setFont("s20")
+		this.mainButton2Hotkey:=ui.gameSettingsGui.addText("left ys backgroundTrans c454545 h30 w130","[ Shift ]+[ \ ]")
+		this.mainButton2Hotkey.setFont("s20")
+		;this.mainButton.onEvent("click",toggleButton)
+		toggleButton(*) {
+			(this.state:=!this.state)
+				? cleanVaultStart()
+				: vault_exitFunc()
+		}
+		drawOutlineNamed("vaultStats2",ui.gameSettingsGui,998,this.yOffset+8,270,55,"c00FFFF","c00FFFF",1)
+		this.pageLabel2:=ui.gameSettingsGui.addText("right x1000 y" 10+this.yOffset " w80 h25 backgroundTrans c00FFFF","Page: ")
+		this.pageCount2:=ui.gameSettingsGui.addText("x1080 y" 10+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}",this.page))
+		;this.statusUnderline:=ui.gameSettingsGui.addText("x1000 y" 8+this.yOffset " w270 center h1 c00FFFF background00FFFF")
+		this.statusHeaderLabel2:=ui.gameSettingsGui.addText("x1000 y" this.yOffset " w140 left h25 c00FFFF backgroundTrans","")
+		this.elapsed2:=ui.gameSettingsGui.addText("x1000 y" 25+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Elapsed: ")
+		this.elapsedTime2:=ui.gameSettingsGui.addText("x1080 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+		this.remaining2:=ui.gameSettingsGui.addText("x1000 y" 40+this.yOffset " right w80 h25 c00FFFF backgroundTrans","Remaining: ")
+		this.remainingtime2:=ui.gameSettingsGui.addText("x1080 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+		this.vaultProgress2LabelBg:=ui.gameSettingsGui.addText("x0 y" 70+this.yOffset " w100 h30 background505060 c151515","")
+		this.vaultProgress2Label:=ui.gameSettingsGui.addText("x5 y" 70+this.yOffset " w85 h30 backgroundTrans c302535","Progress")
+		this.vaultProgress2Label.setFont("s14","Helvetica")
+		this.vaultProgress2 := ui.gameSettingsGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
+		this.completeMsg2 := ui.gameSettingsGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
+		this.dismantled2HeaderLabel:=ui.gameSettingsGui.addText("x1160 y" this.yOffset " w110 right h25 c00FFFF backgroundTrans","")
+		this.dismantled2LegendaryLabel:=ui.gameSettingsGui.addText("x1160 y" 10+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Legendary: ")
+		this.dismantled2Legendary:=ui.gameSettingsGui.addText("x1240 y" 10+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this.dismantled2ExoticLabel:=ui.gameSettingsGui.addText("x1160 y" 25+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Exotic: ")
+		this.dismantled2Exotics:=ui.gameSettingsGui.addText("x1240 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this.dismantled2TotalLabel:=ui.gameSettingsGui.addText("x1160 y" 40+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Total: ")
+		this.dismantled2Total:=ui.gameSettingsGui.addText("x1240 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
 
-
+		
 
 
 		if this.gameWin {

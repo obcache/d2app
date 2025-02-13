@@ -608,6 +608,7 @@ d2DrawUi(*) {
 }
 
 d2drawPanel3(*) {
+	ui.gameTabs.useTab("Links")
 	ui.gameSettingsGui.addText("x7 y78 w481 h69 background" cfg.themePanel1Color,"")
 	ui.gameSettingsGui.addText("x12 y81 w470 h58 c" cfg.themePanel1Color " background" cfg.themePanel2Color)
 	drawOutlineNamed("d2linkPanel",ui.gameSettingsGui,13,82,470,57,cfg.themeDark1Color,cfg.themeBright2Color,1)
@@ -844,9 +845,9 @@ GuiGameTab() {
 	ui.gameSettingsGui.MarginX := 5
 	ui.gameSettingsGui.Opt("-Caption -Border +AlwaysOnTop +ToolWindow +Owner" ui.MainGui.Hwnd)
 	ui.gameSettingsGui.SetFont("s14 c" cfg.ThemeFont1Color,"Calibri")
-	ui.gameTabs := ui.gameSettingsGui.addTab3("x-1 y-5 w497 h181 0x400 bottom buttons c" cfg.themeFont1Color " choose" cfg.activeGameTab,cfg.gameModuleList)
+	ui.gameTabs := ui.gameSettingsGui.addTab3("x-1 y-5 h191 0x400 bottom c" cfg.themeFont1Color " choose" cfg.activeGameTab,cfg.gameModuleList)
 	ui.gameTabs.choose(cfg.gameModuleList[cfg.activeGameTab])
-	ui.gameTabs.setFont("s10")
+	ui.gameTabs.setFont("s16")
 	ui.gameTabs.onEvent("Change",gameTabChanged)
 	ui.MainGui.GetPos(&winX,&winY,,)
 
@@ -876,20 +877,20 @@ drawGameTabs(tabNum := 1) {
 	ui.gameTabGui.opt("-caption toolWindow alwaysOnTop +E0x20 owner" ui.gameSettingsGui.hwnd)
 	ui.gameTabGui.backColor := ui.transparentColor
 	ui.gameTabGui.color := ui.transparentColor
-	drawOutlineNamed("gameTabOutline",ui.gameTabGui,0,0,237,29
-		,cfg.themeBright1Color,cfg.themeBright1Color,1)
+	drawOutlineNamed("gameTabOutline",ui.gameTabGui,0,0,495,29
+		,cfg.themeBright1Color,cfg.themeBright1Color,2)
 	
 	winSetTransColor(ui.transparentColor,ui.gameTabGui)
-			drawOutlineNamed("gameTabs",ui.gameTabGui,ui.gameTabWidth-0,0,498-ui.gameTabWidth,32,cfg.themeBright1Color,cfg.themeDark1Color,1)
+			;drawOutlineNamed("gameTabs",ui.gameTabGui,ui.gameTabWidth-0,0,498-ui.gameTabWidth,32,cfg.themeBright1Color,cfg.themeDark1Color,1)
 	ui.gameTabGui.addText("x1 y0 w0 h27 section background" cfg.themeBright1Color,"")
 	((tabNum == 1)
-		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w100 h26 background" cfg.themeBright1Color,"" )
-		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w100 h26 background" cfg.themeDark2Color,""))
+		? ui.gameTab1SkinOutline := ui.gameTabGui.addText("section x0 y0 w104 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab1SkinOutline := ui.gameTabGui.addText("section x0 y2 w104 h30 background" cfg.themeDark2Color,""))
 	ui.gameTab1Skin := ui.gameTabGui.addText(
 		((tabNum == 1) 
-			? "ys+0 h28" 
-			: "ys+1 h27")
-				" x+-100 w100 section center background" 
+			? "y0 h30" 
+			: "y2 h28")
+				" x2 w100  background" 
 		((tabNum == 1) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color) 
@@ -902,9 +903,9 @@ drawGameTabs(tabNum := 1) {
 		: "s12"),"Impact")
 	ui.gameTab1Label := ui.gameTabGui.addText(
 		((tabNum == 1) 
-			? "ys+0 h28" 
-			: "ys+1 h26")
-				" x+-100 w100 section center backgroundTrans c" 
+			? "ys2 h28" 
+			: "ys2 h28")
+				" x+-100 w100 center backgroundTrans c" 
 		((tabNum == 1) 
 			? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
@@ -913,18 +914,18 @@ drawGameTabs(tabNum := 1) {
 		? "s14" 
 		: "s12")
 			,"Impact")
-	ui.gameTabWidth += 100
-	((tabNum == 3)
-		? ui.gameTabGui.addText("ys x+-2 w2 h29 section background" cfg.themeDark2Color,"")
-		: ui.gameTabGui.addText("ys-1 x+-2 w2 h29 section background" cfg.themeBright1Color,""))
+	ui.gameTabWidth += 102
+	((tabNum == 1 || tabNum == 2)
+		? ui.gameTabGui.addText("y0 x100 w2 h34 background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y1 x100 w2 h30 background" cfg.themeDark2Color,""))
 	((tabNum == 2)
-		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h28 background" cfg.themeBright1Color,"" )
-		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h28 background" cfg.themeDark2Color,""))
+		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x102 y0 w132 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x102 y2 w132 h30 background" cfg.themeDark2Color,""))
 	ui.gameTab2Skin := ui.gameTabGui.addText(
 		((tabNum == 2) 
-			? "ys-1 h28" 
-			: "ys+2 h28")
-				" x+-130 w130 section center background" 
+			? "y0 h30" 
+			: "y2 h28")
+				" x102 w130 center background" 
 		((tabNum == 2) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color)
@@ -939,9 +940,9 @@ drawGameTabs(tabNum := 1) {
 			,"Impact")
 	ui.gameTab2Label := ui.gameTabGui.addText(
 		((tabNum == 2) 
-			? "ys+0 h24" 
-			: "ys+0 h26")
-		" x+-130 w130 section center backgroundTrans c" 
+			? "y2 h26" 
+			: "y5 h32")
+		" x102 w130 center backgroundTrans c" 
 		((tabNum == 2)
 		? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
@@ -951,18 +952,18 @@ drawGameTabs(tabNum := 1) {
 			? "s14" 
 			: "s12")
 		,"Impact")
-	ui.gameTabWidth += 130	
-	((tabNum == 1)
-		? ui.gameTabGui.addText("ys+0 x+-2 w2 h30 section background" cfg.themeDark2Color,"")
-		: ui.gameTabGui.addText("ys+0 x+-2 w2 h30 section background" cfg.themeBright1Color,""))
+	ui.gameTabWidth += 132	
+	((tabNum == 2 || tabNum == 3)
+		? ui.gameTabGui.addText("y0 x232 w2 h34 background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y2 x232 w2 h30 background" cfg.themeDark2Color,""))
 	((tabNum == 3)
-		? ui.gameTab3SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h30 background" cfg.themeBright1Color,"" )
-		: ui.gameTab3SkinOutline := ui.gameTabGui.addText("x+0 y+-1 w130 h30 background" cfg.themeDark2Color,""))
+		? ui.gameTab3SkinOutline := ui.gameTabGui.addText("x234 y0 w70 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab3SkinOutline := ui.gameTabGui.addText("x234 y2 w70 h32 background" cfg.themeDark2Color,""))
 	ui.gameTab3Skin := ui.gameTabGui.addText(
 		((tabNum == 3) 
-			? "ys-4 h28" 
-			: "ys+0 h27")
-				" x+-130 w130 section center background" 
+			? "y0 h30" 
+			: "y2 h28")
+				" x234 w70 center background" 
 		((tabNum == 3) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color)
@@ -977,31 +978,31 @@ drawGameTabs(tabNum := 1) {
 			,"Impact")
 	ui.gameTab3Label := ui.gameTabGui.addText(
 		((tabNum == 3) 
-			? "ys+0 h24" 
-			: "ys+0 h26")
-		" x+-130 w130 section center backgroundTrans c" 
+			? "y2 h28" 
+			: "y5 h32")
+		" x234 w70 center backgroundTrans c" 
 		((tabNum == 3)
 		? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
-		,"Vault Cleaner")
+		,"Links")
 	ui.gameTab3Label.setFont(
 		((tabNum == 3)
 			? "s14" 
 			: "s12")
 		,"Impact")
-	ui.gameTabWidth += 130
+	ui.gameTabWidth += 60
 	((tabNum == 3)
-		? ui.gameTabGui.addText("ys-1 x+-1 w2 h30 section background" cfg.themeBright1Color,"")
-		: ui.gameTabGui.addText("ys+1 x+-1 w2 h30 section background" cfg.themeDark2Color,""))
+		? ui.gameTabGui.addText("y0 x304 w2 h34 section background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y2 x304 w2 h30 section background" cfg.themeDark2Color,""))
 	guiVis(ui.gameTabGui,false)
 	if (winGetTransparent(ui.gameTabGui)) == 0 {
-		ui.gameTabGui.addText("ys+1 x+0 w" 498-(ui.gameTabWidth+3) " h26 background" cfg.themePanel1Color)
+		ui.gameTabGui.addText("y2 x306 w" 498-(ui.gameTabWidth+3) " h28 background" cfg.themePanel1Color)
 
 		winGetPos(&mainGuiX,&mainGuiY,,,ui.mainGui.hwnd)
-		ui.gameTabGui.show("w495 h30 x" mainGuiX+33 " y" mainGuiY+184 " noActivate")
+		ui.gameTabGui.show("w495 h32 x" mainGuiX+33 " y" mainGuiY+182 " noActivate")
 	} else {
 		winGetPos(&mainGuiX,&mainGuiY,,,ui.mainGui.hwnd)
-		ui.gameTabGui.show("w228 h30 x" mainGuiX+35 " y" mainGuiY+185 " noActivate") 
+		ui.gameTabGui.show("w228 h32 x" mainGuiX+35 " y" mainGuiY+184 " noActivate") 
 	}
 }
 			
@@ -1761,6 +1762,7 @@ d2ToggleAutoGameConfigOff() {
 ui.d2Log								:= ui.gameSettingsGui.addText("x405 y10 w68 h80 hidden background" cfg.themePanel3color " c" cfg.themeFont3color," Destiny 2`n Log Started`n Waiting for Input")
 ui.d2Log.setFont("s7","ariel")
 
+
 ui.d2ToggleAppFunctions.ToolTip 		:= "Toggles holdToCrouch"
 ui.d2LaunchDIMbutton.ToolTip			:= "Launch DIM in Browser"
 ui.d2LaunchVaultCleanerButton.toolTip 		:= "Launch Vault Cleaner"
@@ -2191,7 +2193,7 @@ d2GameHoldToCrouchKeyClicked(*) {
 		d2RedrawUI()
 	}
 
-	; ui.gameTabs.useTab("World//Zero")
+; ui.gameTabs.useTab("World//Zero")
 	; ui.gameSettingsGui.addText("x10 y7 w475 h65 background" cfg.themePanel1Color,"")
 	; drawOutlineNamed("w0AutoTowerOutline",ui.gameSettingsGui,10,6,475,67,cfg.themeBright2Color,cfg.themeDark2Color,1)
 	; drawOutlineNamed("w0AutoTowerHorizLine",ui.gameSettingsGui,20,6,70,1,cfg.themeBackgroundColor,cfg.themeBackgroundColor,2)
@@ -2373,3 +2375,67 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 		guiName.addText("x" labelX+1 " y" labelY+1 " w" labelW-2 " h" labelH-2 " background" backColor " center c" fontColor) 
 		guiName.addText("x" labelX+1 " y" labelY+1 " w" labelW-2 " h" labelH " backgroundTrans center c" fontColor, labelText) 
 }
+
+	this2:=object()
+	this2.page:=0
+	this2.row:=1
+	this2.col:=1
+	this2.x:=0
+	this2.y:=1
+	this2.locked:=true
+	this2.exotic:=false
+	this2.wasMax:=false
+	this2.maxRange:=100
+	this2.state:=false
+	this2.itemNum:=1
+	this2.YOffset:=748
+	this2.restartQueued:=false
+	this2.elapsedSec:=1
+		
+		ui.gametabs.useTab(" Vault Cleaner")
+		this2.statusText:=ui.gameSettingsGui.addText("x10 y" 38+this2.yOffset " w640 h30 backgroundTrans c00FFFF","Please Wait....")
+		this2.statusText.setFont("s16")
+		this2.mainButtonBg:=ui.gameSettingsGui.addText("x5 y" 5+this2.yOffset " w80 h30 background353535")
+		this2.mainButton:=ui.gameSettingsGui.addText("section center x7 y" 7+this2.yOffset " w76 h26 background454545 c00FFFF","")
+		this2.mainButtonText:=ui.gameSettingsGui.addText("section center x7 y" 2+this2.yOffset " w76 h30 backgroundTrans c353535","Start")
+		this2.mainButtonText.setFont("s20")
+		this2.mainButtonHotkey:=ui.gameSettingsGui.addText("left ys backgroundTrans c454545 h30 w130","[ Shift ]+[ \ ]")
+		this2.mainButtonHotkey.setFont("s20")
+		this2.mainButton.onEvent("click",cleanVaultStart)
+		this2.mainButtonText.onEvent("click",cleanVaultStart)
+		;this2.mainButton.onEvent("click",toggleButton)
+		toggleButton2(*) {
+			(this2.state:=!this2.state)
+				? cleanVaultStart()
+				: vault_exitFunc()
+		}
+		;help2:=ui.gameSettingsGui.addText("xs+0 w600 h60 y+0 backgroundTrans c00FFFF","")
+		ui.gameSettingsGui.setFont("s12")
+		drawOutlineNamed("vaultStats",ui.gameSettingsGui,998,this2.yOffset+8,270,55,"c00FFFF","c00FFFF",1)
+		this2.pageLabel:=ui.gameSettingsGui.addText("right x1000 y" 10+this2.yOffset " w80 h25 backgroundTrans c00FFFF","Page: ")
+		this2.pageCount:=ui.gameSettingsGui.addText("x1080 y" 10+this2.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}",this2.page))
+		;this2.statusUnderline:=ui.gameSettingsGui.addText("x1000 y" 8+this2.yOffset " w270 center h1 c00FFFF background00FFFF")
+		this2.statusHeaderLabel:=ui.gameSettingsGui.addText("x1000 y" this2.yOffset " w140 left h25 c00FFFF backgroundTrans","")
+		this2.elapsed:=ui.gameSettingsGui.addText("x1000 y" 25+this2.yOffset " w80 right h25 c00FFFF backgroundTrans","Elapsed: ")
+		this2.elapsedTime:=ui.gameSettingsGui.addText("x1080 y" 25+this2.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+		this2.remaining:=ui.gameSettingsGui.addText("x1000 y" 40+this2.yOffset " right w80 h25 c00FFFF backgroundTrans","Remaining: ")
+		this2.remainingtime:=ui.gameSettingsGui.addText("x1080 y" 40+this2.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+		;this2.dismantledUnderline:=ui.gameSettingsGui.addText("x1160 y" 18+this2.yOffset " w110 center h1 c00FFFF background00FFFF")
+		this2.dismantledHeaderLabel:=ui.gameSettingsGui.addText("x1160 y" this2.yOffset " w110 right h25 c00FFFF backgroundTrans","")
+		this2.dismantledLegendaryLabel:=ui.gameSettingsGui.addText("x1160 y" 10+this2.yOffset " w80 right h25 c00FFFF backgroundTrans","Legendary: ")
+		this2.dismantledLegendary:=ui.gameSettingsGui.addText("x1240 y" 10+this2.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this2.dismantledExoticLabel:=ui.gameSettingsGui.addText("x1160 y" 25+this2.yOffset " w80 right h25 c00FFFF backgroundTrans","Exotic: ")
+		this2.dismantledExotics:=ui.gameSettingsGui.addText("x1240 y" 25+this2.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this2.dismantledTotalLabel:=ui.gameSettingsGui.addText("x1160 y" 40+this2.yOffset " w80 right h25 c00FFFF backgroundTrans","Total: ")
+		this2.dismantledTotal:=ui.gameSettingsGui.addText("x1240 y" 40+this2.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this2.remainHour:=""
+		this2.remainMin:=""
+		this2.remainSec:=""
+		this2.elapsedHour:=""
+		this2.elapsedMin:=""
+		this2.elapsedSeconds:=""
+		this2.vaultProgressLabelBg:=ui.gameSettingsGui.addText("x0 y" 70+this2.yOffset " w100 h30 background505060 c151515","")
+		this2.vaultProgressLabel:=ui.gameSettingsGui.addText("x5 y" 70+this2.yOffset " w85 h30 backgroundTrans c302535","Progress")
+		this2.vaultProgressLabel.setFont("s14","Helvetica")
+		this2.vaultProgress := ui.gameSettingsGui.addProgress("x90 y" 70+this2.yOffset " w1289 h30 c440000 background151515 range1-500")
+		this2.completeMsg := ui.gameSettingsGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")

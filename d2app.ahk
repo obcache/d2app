@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.0.6"
+A_FileVersion := "1.4.0.8"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -193,3 +193,4 @@ d2AutoGameConfigOverride()
 loadScreen(0)
 ui.isActiveWindow:=""
 setTimer () => (ui.isActiveWindow:=(winActive("ahk_exe destiny2.exe")) ? (ui.isActiveWindow) ? 1 : (setCapsLockState(cfg.d2AlwaysRunEnabled),1) : (ui.isActiveWindow) ? (0,setCapsLockState(0)) : 0),500
+winSetTransparent(150,ui.mainGui)

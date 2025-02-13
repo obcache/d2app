@@ -153,11 +153,7 @@ libVaultInit(*) {
 		this.vaultProgressLabel.setFont("s14","Helvetica")
 		this.vaultProgress := thisGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
 		this.completeMsg := thisGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
-
-
-
-
-
+		
 		if this.gameWin {
 			winGetPos(&gameWinX,&gameWinY,&gameWinW,&gameWinH,this.gameWin)
 			this.origGameWinX:=gameWinX

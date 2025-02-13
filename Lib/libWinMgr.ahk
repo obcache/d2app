@@ -24,7 +24,7 @@ collateGuis(hwnd := ui.mainGui.hwnd) {
 					ui.AfkGui.Move((mainGuiX+45),(mainGuiY+50),270,)
 					;ui.titleBarButtonGui.Move((mainGuiX+456)*(A_ScreenDPI/96),(mainGuiY-3)*(a_screenDpi/96))
 					ui.gameSettingsGui.move((mainGuiX+33)*(A_ScreenDPI/96),(mainGuiY+32)*(A_ScreenDPI/96))
-					ui.gameTabGui.move((mainGuiX+33)*(A_ScreenDPI/96),(mainGuiY+184)*(A_ScreenDPI/96))
+					ui.gameTabGui.move((mainGuiX+33)*(A_ScreenDPI/96),(mainGuiY+182)*(A_ScreenDPI/96))
 					ui.gameSettingsLinkGui.move((mainGuiX+35+12)*(A_ScreenDPI/96),(mainGuiY+32+79)*(A_ScreenDPI/96))
 				}
 			case ui.infoGui.hwnd:
