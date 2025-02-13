@@ -1354,16 +1354,29 @@ MouseRemap(*) {
 ^+v:: {
 	vaultCleaner()
 }
-#hotIf
 
+*XButton1:: {
+	send("{RControl down}")
+	keywait("XButton1")
+	send("{RControl up}")
+}
+
+*XButton2:: {
+	send("{RAlt down}")
+	keywait("XButton2")
+	send("{RAlt up}")
+}
+
+#hotIf
 hotIfWinActive("ahk_exe destiny2.exe")
 	hotKey(cfg.d2AppToggleSprintKey,d2ToggleAlwaysSprint)
 	hotKey(cfg.d2AppPauseKey,d2ToggleAppFunctions)
-	;hotkey("Ins",toggleGlyphWindow)
-	;hotkey("Del",toggleCodeWindow)
-	;hotkey("Home",startD2PhAfk)
-	;hotkey("End",stopD2PhAfk)
-	;hotkey("PgDn",toggleJoinShuroChi)
+	hotkey("Ins",toggleGlyphWindow)
+	hotkey("Del",toggleCodeWindow)
+	hotkey("Home",startD2PhAfk)
+	hotkey("End",stopD2PhAfk)
+
+hotkey("PgDn",toggleJoinShuroChi)
 hotIf()
 
 
@@ -1385,7 +1398,6 @@ macroJoinShuroChi(*) {
 		sleep(1000)
 	}
 }
-
 hotIf(d2RemapCrouchEnabled)
 	hotkey("~*$" cfg.d2AppHoldToCrouchKey,d2HoldToCrouch)
 hotIf()
@@ -1505,7 +1517,6 @@ d2HoldToCrouch(*) {
 	}
 	send("{" cfg.d2gameHoldToCrouchKey " down}")
 	keywait(cfg.d2AppHoldToCrouchKey)
-	sleep(200)
 	ui.d2AppHoldToCrouchKeyData.opt("c" cfg.themeButtonAlertColor)
 	if (cfg.topDockEnabled) {
 		ui.dockBarD2HoldToCrouch.opt("background" cfg.themeButtonOnColor)
@@ -1522,7 +1533,6 @@ d2FireButtonClicked(*) {
 	if ui.d2IsSprinting
 		send("{" cfg.d2GameToggleSprintKey "}")
 }
-
 d2ReadyToSwordFly(*) {
 	if winActive("ahk_exe destiny2.exe") && !cfg.d2AppPaused && ui.d2FlyEnabled
 		return 1
@@ -1538,24 +1548,23 @@ d2ReadyToReload(*) {
 }
 
 d2ReadyToSprint(*) {
-	return (!winActive("ahk_exe destiny2.exe")) 
-		? 0
-			: (!cfg.d2AlwaysRunEnabled)
-		? 0
-			: (cfg.d2AppPaused)
-		? 0
-			: (getKeyState("LButton"))
-		? 0
-			: (getKeyState("RButton"))
-		? 0
-			: (getKeyState("z"))
-		? 0
-			: (getKeyState(cfg.d2AppHoldToCrouchKey))
-		? 0
-			: 1
-								
+	return (winActive("ahk_exe destiny2.exe")) 
+		? (cfg.d2AlwaysRunEnabled)
+			? (!cfg.d2AppPaused)
+				? (!getKeyState("RButton")) 
+					? (!getKeyState("z"))
+						? (!getKeyState("LButton")) 
+							? (!getKeyState(cfg.d2AppHoldToCrouchKey)) 
+								? 1
+								: 0
+							: 0
+						: 0
+					: 0
+				: 0
+			: 0
+		: 0
 }
-
+	
 d2startSprinting(*) {
 	;msgBox('.')
 	ui.d2IsSprinting := true
@@ -1563,10 +1572,9 @@ d2startSprinting(*) {
 	if (cfg.d2AlwaysRunEnabled) {
 		send("{" strLower(cfg.d2GameToggleSprintKey) "}")
 	}
-	;setCapsLockState("Off")
+	setCapsLockState("Off")
 	keyWait("w","L")
 	send("{w up}")
-	ui.d2IsSprinting := false
 }
 
 d2CreateLoadoutKeys(*) {
@@ -1632,8 +1640,6 @@ d2controllerLoadoutChange(*) {
 		default:return
 	}
 }
-
-
 
 d2LoadoutModifier(hotKeyName,isController := false) {
 	d2LoadoutCoordsStr := ""
@@ -1706,7 +1712,7 @@ d2ToggleAlwaysSprint(*) {
 			,ui.d2AppToggleSprintKeyData.redraw()
 			,ui.d2GameToggleSprintKeyData.opt("c" cfg.themeButtonOnColor)
 			,ui.d2GameToggleSprintKeyData.redraw()
-			,SetCapsLockState("On"))
+			,SetCapsLockState("Off"))
 		: (ui.d2IsSprinting := false
 			,SetCapsLockState("Off")
 			,ui.d2AppToggleSprintKeyData.opt("c" cfg.themeButtonAlertColor)
