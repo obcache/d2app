@@ -1,8 +1,8 @@
-A_FileVersion := "1.1.2.2"
-A_AppName := "cacheApp_updater"
+A_FileVersion := "1.1.1.2"
+A_AppName := "d2app_updater"
 ;@Ahk2Exe-Let FileVersion=%A_PriorLine~U)^(.+"){1}(.+)".*$~$2% 
 
-;@Ahk2Exe-SetName cacheApp
+;@Ahk2Exe-SetName d2app
 ;@Ahk2Exe-SetVersion %U_FileVersion%
 ;@Ahk2Exe-SetFileVersion %U_FileVersion%
 
@@ -31,7 +31,7 @@ cfg				:= Object()
 ui 				:= Object()
 
 if (A_Args.length > 0) && FileExist("./versions/" A_Args[1]) {
-	winWaitClose("ahk_exe cacheApp.exe")
+	winWaitClose("ahk_exe d2app.exe")
 	run("./versions/" A_Args[1])
 	exitApp
 } else {
@@ -40,17 +40,17 @@ if (A_Args.length > 0) && FileExist("./versions/" A_Args[1]) {
 	currentVersion := "0000"
 	
 	whr := ComObject("WinHttp.WinHttpRequest.5.1")
-	whr.Open("GET", "https://raw.githubusercontent.com/obcache/cacheApp/main/cacheApp_currentBuild.dat", true)
+	whr.Open("GET", "https://raw.githubusercontent.com/obcache/d2app/main/d2app_currentBuild.dat", true)
 	whr.Send()
 	whr.WaitForResponse()
 	latestVersion := whr.ResponseText
 	
-	; if fileExist("./cacheApp_latestBuild.dat")
-		; fileDelete("./cacheApp_latestBuild.dat")
-	; download("http://sorryneedboost.com/cacheApp/cacheApp_currentBuild.dat","./cacheApp_latestBuild.dat")
-	; latestVersion := fileRead("./cacheApp_latestBuild.dat")
+	; if fileExist("./d2app_latestBuild.dat")
+		; fileDelete("./d2app_latestBuild.dat")
+	; download("http://sorryneedboost.com/d2app/d2app_currentBuild.dat","./d2app_latestBuild.dat")
+	; latestVersion := fileRead("./d2app_latestBuild.dat")
 	
-	currentVersion := fileRead("./cacheApp_currentBuild.dat")
+	currentVersion := fileRead("./d2app_currentBuild.dat")
 	if !(DirExist("./versions"))
 		DirCreate("./versions")
 					
@@ -60,21 +60,21 @@ if (A_Args.length > 0) && FileExist("./versions/" A_Args[1]) {
 
 		if (msgBoxAnswer == "Yes")
 		{ 	
-			if winExist("ahk_exe cacheApp.exe")	{
-				winClose("ahk_exe cacheApp.exe")
+			if winExist("ahk_exe d2app.exe")	{
+				winClose("ahk_exe d2app.exe")
 			}			
-			pbNotify("Upgrading cacheApp to version " latestVersion)
+			pbNotify("Upgrading d2app to version " latestVersion)
 	
-			;download("http://sorryneedboost.com/cacheApp/bin/cacheApp_" latestVersion ".exe",A_ScriptDir "/versions/cacheApp_" latestVersion ".exe")
-			runWait("cmd /C start /b /wait curl.exe https://raw.githubusercontent.com/obcache/cacheApp/main/bin/cacheApp_" latestVersion ".exe -o " A_ScriptDir  "/versions/cacheApp_" latestVersion ".exe")
+			;download("http://sorryneedboost.com/d2app/bin/d2app_" latestVersion ".exe",A_ScriptDir "/versions/d2app_" latestVersion ".exe")
+			runWait("cmd /C start /b /wait curl.exe https://raw.githubusercontent.com/obcache/d2app/main/bin/d2app_" latestVersion ".exe -o " A_ScriptDir  "/versions/d2app_" latestVersion ".exe")
 			sleep(3000)
-			if winExist("ahk_exe cacheApp.exe")
+			if winExist("ahk_exe d2app.exe")
 			{
-				processClose("cacheApp.exe") 
+				processClose("d2app.exe") 
 				sleep(2000)
 			}			
-			if fileExist("./versions/cacheApp_" latestVersion ".exe")
-				run("./versions/cacheApp_" latestVersion ".exe")
+			if fileExist("./versions/d2app_" latestVersion ".exe")
+				run("./versions/d2app_" latestVersion ".exe")
 			else 
 				pbNotify("Problem downloading or running the updated version. `nCheck your antivirus to ensure that it is not being blocked.")
 		} else {
