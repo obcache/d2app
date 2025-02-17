@@ -608,7 +608,7 @@ d2DrawUi(*) {
 }
 
 d2drawPanel3(*) {
-	ui.gameTabs.useTab("Links")
+	ui.gameTabs.useTab("Gameplay")
 	ui.gameSettingsGui.addText("x7 y78 w481 h69 background" cfg.themePanel1Color,"")
 	ui.gameSettingsGui.addText("x12 y81 w470 h58 c" cfg.themePanel1Color " background" cfg.themePanel2Color)
 	drawOutlineNamed("d2linkPanel",ui.gameSettingsGui,13,82,470,57,cfg.themeDark1Color,cfg.themeBright2Color,1)
@@ -884,13 +884,13 @@ drawGameTabs(tabNum := 1) {
 			;drawOutlineNamed("gameTabs",ui.gameTabGui,ui.gameTabWidth-0,0,498-ui.gameTabWidth,32,cfg.themeBright1Color,cfg.themeDark1Color,1)
 	ui.gameTabGui.addText("x1 y0 w0 h27 section background" cfg.themeBright1Color,"")
 	((tabNum == 1)
-		? ui.gameTab1SkinOutline := ui.gameTabGui.addText("section x0 y0 w104 h32 background" cfg.themeBright1Color,"" )
-		: ui.gameTab1SkinOutline := ui.gameTabGui.addText("section x0 y2 w104 h30 background" cfg.themeDark2Color,""))
+		? ui.gameTab1SkinOutline := ui.gameTabGui.addText("section x0 y0 w94 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab1SkinOutline := ui.gameTabGui.addText("section x0 y2 w94 h30 background" cfg.themeDark2Color,""))
 	ui.gameTab1Skin := ui.gameTabGui.addText(
 		((tabNum == 1) 
 			? "y0 h30" 
 			: "y2 h28")
-				" x2 w100  background" 
+				" x2 w88  background" 
 		((tabNum == 1) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color) 
@@ -905,7 +905,7 @@ drawGameTabs(tabNum := 1) {
 		((tabNum == 1) 
 			? "ys2 h28" 
 			: "ys2 h28")
-				" x+-100 w100 center backgroundTrans c" 
+				" x+-90 w90 center backgroundTrans c" 
 		((tabNum == 1) 
 			? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
@@ -914,18 +914,18 @@ drawGameTabs(tabNum := 1) {
 		? "s14" 
 		: "s12")
 			,"Impact")
-	ui.gameTabWidth += 102
+	ui.gameTabWidth += 92
 	((tabNum == 1 || tabNum == 2)
-		? ui.gameTabGui.addText("y0 x100 w2 h34 background" cfg.themeBright1Color,"")
-		: ui.gameTabGui.addText("y1 x100 w2 h30 background" cfg.themeDark2Color,""))
+		? ui.gameTabGui.addText("y0 x90 w2 h34 background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y2 x90 w2 h30 background" cfg.themeDark2Color,""))
 	((tabNum == 2)
-		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x102 y0 w132 h32 background" cfg.themeBright1Color,"" )
-		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x102 y2 w132 h30 background" cfg.themeDark2Color,""))
+		? ui.gameTab2SkinOutline := ui.gameTabGui.addText("x92 y0 w122 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab2SkinOutline := ui.gameTabGui.addText("x92 y2 w122 h30 background" cfg.themeDark2Color,""))
 	ui.gameTab2Skin := ui.gameTabGui.addText(
 		((tabNum == 2) 
 			? "y0 h30" 
 			: "y2 h28")
-				" x102 w130 center background" 
+				" x92 w120 center background" 
 		((tabNum == 2) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color)
@@ -942,7 +942,7 @@ drawGameTabs(tabNum := 1) {
 		((tabNum == 2) 
 			? "y2 h26" 
 			: "y5 h32")
-		" x102 w130 center backgroundTrans c" 
+		" x92 w120 center backgroundTrans c" 
 		((tabNum == 2)
 		? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
@@ -952,18 +952,18 @@ drawGameTabs(tabNum := 1) {
 			? "s14" 
 			: "s12")
 		,"Impact")
-	ui.gameTabWidth += 132	
+	ui.gameTabWidth += 102	
 	((tabNum == 2 || tabNum == 3)
-		? ui.gameTabGui.addText("y0 x232 w2 h34 background" cfg.themeBright1Color,"")
-		: ui.gameTabGui.addText("y2 x232 w2 h30 background" cfg.themeDark2Color,""))
+		? ui.gameTabGui.addText("y0 x212 w2 h34 background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y2 x212 w2 h30 background" cfg.themeDark2Color,""))
 	((tabNum == 3)
-		? ui.gameTab3SkinOutline := ui.gameTabGui.addText("x234 y0 w70 h32 background" cfg.themeBright1Color,"" )
-		: ui.gameTab3SkinOutline := ui.gameTabGui.addText("x234 y2 w70 h32 background" cfg.themeDark2Color,""))
+		? ui.gameTab3SkinOutline := ui.gameTabGui.addText("x214 y0 w86 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab3SkinOutline := ui.gameTabGui.addText("x214 y2 w86 h32 background" cfg.themeDark2Color,""))
 	ui.gameTab3Skin := ui.gameTabGui.addText(
 		((tabNum == 3) 
 			? "y0 h30" 
 			: "y2 h28")
-				" x234 w70 center background" 
+				" x214 w84 center background" 
 		((tabNum == 3) 
 			? cfg.themeBackgroundColor 
 			: cfg.themePanel4Color)
@@ -980,352 +980,71 @@ drawGameTabs(tabNum := 1) {
 		((tabNum == 3) 
 			? "y2 h28" 
 			: "y5 h32")
-		" x234 w70 center backgroundTrans c" 
+		" x214 w84 center backgroundTrans c" 
 		((tabNum == 3)
 		? cfg.themeFont1Color 
 			: cfg.themeFont4Color)
-		,"Links")
+		,"Mouse")
 	ui.gameTab3Label.setFont(
 		((tabNum == 3)
 			? "s14" 
 			: "s12")
 		,"Impact")
+	ui.gameTabWidth += 86
+	((tabNum == 3 || tabNum == 4)
+		? ui.gameTabGui.addText("y0 x298 w2 h34 section background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y2 x298 w2 h30 section background" cfg.themeDark2Color,""))
+	((tabNum == 4)
+		? ui.gameTab4SkinOutline := ui.gameTabGui.addText("x300 y0 w60 h32 background" cfg.themeBright1Color,"" )
+		: ui.gameTab4SkinOutline := ui.gameTabGui.addText("x300 y2 w60 h32 background" cfg.themeDark2Color,""))
+	ui.gameTab4Skin := ui.gameTabGui.addText(
+		((tabNum == 4) 
+			? "y0 h30" 
+			: "y2 h28")
+				" x300 w60 center background" 
+		((tabNum == 4) 
+			? cfg.themeBackgroundColor 
+			: cfg.themePanel4Color)
+				" c" ((tabNum == 4)
+			? cfg.themeFont1Color 
+			: cfg.themeFont4Color)
+				,"")
+	ui.gameTab4Skin.setFont(
+		((tabNum == 4)
+			? "s14" 
+			: "s12")
+			,"Impact")
+	ui.gameTab4Label := ui.gameTabGui.addText(
+		((tabNum == 4) 
+			? "y2 h28" 
+			: "y5 h32")
+		" x300 w58 center backgroundTrans c" 
+		((tabNum == 4)
+		? cfg.themeFont1Color 
+			: cfg.themeFont4Color)
+		,"Links")
+	ui.gameTab4Label.setFont(
+		((tabNum == 4)
+			? "s14" 
+			: "s12")
+		,"Impact")
 	ui.gameTabWidth += 60
-	((tabNum == 3)
-		? ui.gameTabGui.addText("y0 x304 w2 h34 section background" cfg.themeBright1Color,"")
-		: ui.gameTabGui.addText("y2 x304 w2 h30 section background" cfg.themeDark2Color,""))
+	((tabNum == 4)
+		? ui.gameTabGui.addText("y0 x360 w2 h34 section background" cfg.themeBright1Color,"")
+		: ui.gameTabGui.addText("y2 x360 w2 h30 section background" cfg.themeDark2Color,""))
 	guiVis(ui.gameTabGui,false)
 	if (winGetTransparent(ui.gameTabGui)) == 0 {
-		ui.gameTabGui.addText("y2 x306 w" 498-(ui.gameTabWidth+3) " h28 background" cfg.themePanel1Color)
+		ui.gameTabGui.addText("y2 x362 w" 498-(ui.gameTabWidth+3) " h30 background" cfg.themePanel1Color)
 
 		winGetPos(&mainGuiX,&mainGuiY,,,ui.mainGui.hwnd)
-		ui.gameTabGui.show("w495 h32 x" mainGuiX+33 " y" mainGuiY+182 " noActivate")
+		ui.gameTabGui.show("w495 h32 x" mainGuiX+33 " y" mainGuiY+183 " noActivate")
 	} else {
 		winGetPos(&mainGuiX,&mainGuiY,,,ui.mainGui.hwnd)
-		ui.gameTabGui.show("w228 h32 x" mainGuiX+35 " y" mainGuiY+184 " noActivate") 
+		ui.gameTabGui.show("w228 h32 x" mainGuiX+135 " y" mainGuiY+183 " noActivate") 
 	}
 }
 			
-cfg.d2LoadoutCoords1920x1080 := strSplit(iniRead(cfg.file,"Game"
-,"d2LoadoutCoords1920x1080"
-,"145:3e	80,240:380,145:480,240:480,145:580,240:580,145:680,240:680,145:790,240:790,145:910,240:910"),",")
-	
-cfg.d2LoadoutCoords1920x1200 := strSplit(iniRead(cfg.file,"Game"
-,"d2LoadoutCoords1920x1200"
-,"145:380,240:380,145:480,240:480,145:580,240:580,145:680,240:680,145:790,240:790,145:890,240:890"),",")
-	
-cfg.d2LoadoutCoords2560x1440 := strSplit(iniRead(cfg.file,"Game"
-,"d2LoadoutCoords2560x1440"
-,"190:460,320:460,190:590,320:590,190:720,320:720,190:850,320:850,190:980,320:980,190:1100,320:1100"),",")	
 
-cfg.d2LoadoutCoords3440x1440 := strSplit(iniRead(cfg.file,"Game"
-,"d2LoadoutCoords3440x1440"
-,"636:460,760:460,636:590,760:590,636:720,760:720,636:850,760:850,636:980,760:980,636:1100,760:1100"),",")	
-				
-cfg.d2LoadoutCoordsCustom := strSplit(iniRead(cfg.file,"Game"
-,"d2LoadoutCoordsCustom"
-,"145:380,240:380,145:480,240:480,145:580,240:580,145:680,240:680,145:790,240:790,145:910,240:910"),",")
-
-ui.d2IsReloading := false
-ui.d2IsSprinting := false
-ui.d2PhAfkActive := false
-
-toggleD2PhAfk(*) {
-	(ui.d2PhAfkActive := !ui.d2PhAfkActive)
-		? startD2PhAfk()
-		: stopD2PhAfk()
-}
-
-startD2PhAfk(*) {
-	ui.d2PhAfkActive := true
-	debugLog("Starting: Pale Heart AFK")
-	setTimer(timerD2PhAfk,60000)
-	timerD2PhAfk()
-}
-
-stopD2PhAfk(*) {
-	ui.d2PhAfkActive := false
-		debugLog("Stopping: Pale Heart AFK")
-		setTimer(timerD2PhAfk,0)
-	}
-loopTimerD2PhAfk(*) {
-	setTimer(timerD2PhAfk,60000)
-}
-
-timerD2PhAfk(*) {
-	if !ui.d2PhAfkActive
-		return
-	winActivate("ahk_exe destiny2.exe")
-	if !ui.d2PhAfkActive
-		return	sleep(500)
-	debugLog("Pale Heart AFK: Open Menu")
-	send("{3}")
-	if !ui.d2PhAfkActive
-		return	
-	sleep(1000)
-	debugLog('Pale Heart AFK: Selecting "The Landing"')
-	if !ui.d2PhAfkActive
-		return	
-	mouseMove(-(a_screenwidth/2)+200,0,50,"R")
-	if !ui.d2PhAfkActive
-		return	
-	sleep(2000)
-	mouseMove((a_screenwidth/2)-355,((a_screenHeight-40)/2)-7,50,)
-	if !ui.d2PhAfkActive
-		return	
-	sleep(500)
-	send("{LButton Down}")
-	if !ui.d2PhAfkActive
-		return	
-	sleep(1800)
-	send("{LButton Up}")
-	debugLog("Pale Heart AFK: Waiting to Spawn")
-	loop 8 {
-		if !ui.d2PhAfkActive
-			return
-		sleep(1000)
-	}
-	debugLog("Pale Heart AFK: Walking Forward")
-	send("{w down}")
-	loop 9 {
-		if !ui.d2PhAfkActive
-			return	
-		sleep(1000)
-	}
-	sleep(500)
-	send("{w up}")
-	sleep(250)
-	debugLog("Pale Heart AFK: Turning Left")
-	dllCall("mouse_event","UInt","0x01","Int",-1600,"Int",0,"UInt",0,"UInt",0)
-	if !ui.d2PhAfkActive
-		return	
-	sleep(250)
-	debugLog("Pale Heart AFK: Walking Forward")
-	send("{w down}")
-	loop 6 {
-		if !ui.d2PhAfkActive
-			return	
-		sleep(1000)
-	}
-	send("{w up}")
-	debugLog("Pale Heart AFK: Turning Around")
-	dllCall("mouse_event","UInt","0x01","Int",-3600,"Int",0,"UInt",0,"UInt",0)	
-	debugLog("Pale Heart AFK: Waiting for Chest to Spawn")
-	loop 30 {
-		if !ui.d2PhAfkActive
-			return	
-		sleep(1000)
-	}
-	debugLog("Pale Heart AFK: Walking Forward")
-	send("{w down}")
-	loop 6 {
-		if !ui.d2PhAfkActive
-			return	
-		sleep(1000)
-	}
-	sleep(500)
-	debugLog("Pale Heart AFK: Strafing Right")
-	send("{d down}")
-	if !ui.d2PhAfkActive
-		return	
-	sleep(1600)
-	send("{d up}")
-	debugLog("Pale Heart AFK: Walking Forward")
-	loop 6 {
-		if !ui.d2PhAfkActive
-			return	
-		sleep(1000)
-	}
-	sleep(100)
-	send("{w up}")
-	dllCall("mouse_event","UInt","0x01","Int",-1600,"Int",0,"UInt",0,"UInt",0)
-	debugLog("Pale Heart AFK: Collecting Chest")
-	send("{e down}")
-	if !ui.d2PhAfkActive
-		return	
-	sleep(1800)
-	send("{e up}")
-	if !ui.d2PhAfkActive
-		return	
-	sleep(1500)
-	debugLog("Pale Heart AFK: Waiting to Restart")
-}
-; timerD2PhAfk(*) {
-		; ui.d2PhAfkActive := true
-		;toolTip("Starting Pale Heart AFK")
-		; Loop {
-			; Loop 40 {
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{3}")
-				; sleep(2000)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break				
-				; mouseMove(a_screenwidth/2,(a_screenheight-40)/2,0)
-				; sleep(1500)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; dllCall("mouse_event","UInt","0x01","Int",-600,"Int",0,"UInt",0,"UInt",0)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(1225)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; dllCall("mouse_event","UInt","0x01","Int",175,"Int",0,"UInt",0,"UInt",0)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(500)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{LButton down}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(1200)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{LButton up}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(10000)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{shift down}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{w down}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(8000)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{shift up}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{w up}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; dllCall("mouse_event","UInt","0x01","Int",1360,"Int",0,"UInt",0,"UInt",0)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; loop 30 {
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(1000)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break		
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{shift down}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send ("{w down}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; loop 6 {
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(1000)
-					; if !ui.d2PhAfkActive
-						; break
-				; }
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(400)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; dllCall("mouse_event","UInt","0x01","Int",-330,"Int",0,"UInt",0,"UInt",0)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; loop 3 {
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-					; sleep(1000)
-					; if !ui.d2PhAfkActive
-						; break
-				; }
-				; sleep(200)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{shift up}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{w up}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; dllCall("mouse_event","UInt","0x01","Int",-91000,"Int",0,"UInt",0,"UInt",0)
-				; if !ui.d2PhAfkActive
-					; break
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(500)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{e down}")
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; sleep(1200)
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-				; send("{e up}")	
-				; sleep(500)
-				; if !ui.d2PhAfkActive
-					; break
-			; }
-			; if !ui.d2PhAfkActive
-				; break
-				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-					; break
-			; send("{Tab}")
-			; sleep(1000)
-			; if !ui.d2PhAfkActive
-				; break
-			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-			; send("{o down}")
-			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-			; loop 40 {
-				; sleep(1000)
-				; if !ui.d2PhAfkActive
-					; break
-			; }	
-			; send("{o up}")
-			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-			; loop 10 {
-				; sleep(1000)
-				; if !ui.d2PhAfkActive
-					; break
-			; }
-			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-			; send("{3}")
-			; sleep(1000)
-			; if !ui.d2PhAfkActive
-				; break
-			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-			; mouseMove(a_screenwidth/1.2,(a_screenheight-40)/1.15,0)
-			; sleep(500)
-			; if !ui.d2PhAfkActive
-				; break
-			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
-				; send("{LButton}")
-			; loop 30 {
-				; sleep(1000)
-				; if !ui.d2PhAfkActive
-					; break
-			; }
-		; }
-	; }
-; }
-	
-	; stopD2PhAfk(*) {
-		; ui.d2PhAfkActive := false
-	;toolTip("Stopping Pale Heart AFK")
-		; send("{w up}")
-		; send("{shift up}")
-		; send("{LButton up}")
-		; reload()
 MouseRemap(*) {
 	 return (winActive("ahk_exe destiny2.exe"))
 				?  (cfg.mouseRemapEnabled)
@@ -1349,425 +1068,26 @@ MouseRemap(*) {
  ; XButton2::LAlt
 ; #hotIf
 
+cfg.xButton1Bind:=iniRead(cfg.file,"Game","xButton1Bind","XButton1")
 #hotIf winActive("ahk_exe destiny2.exe")
-	
-^+v:: {
-	vaultCleaner()
-}
-
-*XButton1:: {
-	send("{RControl down}")
+hotkey("XButton1",xButton1Down)
+xButton1Down(*) {
+	send("{" cfg.xButton1Bind " down}")
 	keywait("XButton1")
-	send("{RControl up}")
+	send("{" cfg.xButton1Bind " up")
 }
 
-*XButton2:: {
-	send("{RAlt down}")
+cfg.xButton2Bind:=iniRead(cfg.file,"Game","xButton2Bind","XButton2")
+hotkey("XButton2",xButton2Down)
+xButton2Down(*) {
+	send("{" cfg.xButton2Bind " down}")
 	keywait("XButton2")
-	send("{RAlt up}")
+	send("{" cfg.xButton2Bind " up}")
 }
-
 #hotIf
-hotIfWinActive("ahk_exe destiny2.exe")
-	hotKey(cfg.d2AppToggleSprintKey,d2ToggleAlwaysSprint)
-	hotKey(cfg.d2AppPauseKey,d2ToggleAppFunctions)
-	hotkey("Ins",toggleGlyphWindow)
-	hotkey("Del",toggleCodeWindow)
-	hotkey("Home",startD2PhAfk)
-	hotkey("End",stopD2PhAfk)
 
-hotkey("PgDn",toggleJoinShuroChi)
-hotIf()
-
-
-toggleJoinShuroChi(*) {
-	static joinShuroChiActive := false
-	(joinShuroChiActive := !joinShuroChiActive)
-		? (trayTip("Starting JoinShuroChi"),setTimer(macroJoinShuroChi,3500))
-		: (trayTip("Stopping JoinShuroChi"),setTimer(macroJoinShuroChi,0))
-}
-
-macroJoinShuroChi(*) {
-	if winActive("ahk_exe destiny2.exe") {
-		send("{Enter}")
-		sleep(500)
-		sendText("/join checkpointbot#0422")
-		send("{Enter}")
-		sleep(1500)
-		send("{Enter}")
-		sleep(1000)
-	}
-}
-hotIf(d2RemapCrouchEnabled)
-	hotkey("~*$" cfg.d2AppHoldToCrouchKey,d2HoldToCrouch)
-hotIf()
-
-hotIf(d2ReadyToReload)
-	hotKey("~*" cfg.d2AppReloadKey,d2reload)
-hotIf()
-
-hotIf(d2ReadyToSprint)
-	hotKey("~*w",d2StartSprinting)
-hotIf()
-
-hotIf()
-
-togglePrismatic(*) {
-	send("{F1}")
-	sleep(550)
-	mouseGetPos(&mouseX,&mouseY)
-	click(1300,315,0)
-	sleep(250)
-	send("{LButton}")
-	click(mouseX,mouseY,0)
-	sleep(300)
-	send("{F1}")
-}
-
-d2AppPause(*) {
-	(cfg.d2AppPaused := !cfg.d2AppPaused)
-	
-}
-	
-d2RemapCrouchEnabled(*) {
-	return ((winActive("ahk_exe destiny2.exe") && !cfg.d2AppPaused)
-		? cfg.d2AlwaysRunEnabled
-			? 1
-			: 0
-		: 0)
-}	
-
-d2SwordFly(*) {
-	while getKeyState(cfg.d2AppSwordFlyKey) {
-		send("{LButton Down}")
-		sleep(100)
-		send("{LButton Up}")
-		sleep(800)
-		send("{space down}")
-		sleep(80)
-		send("{space up}")
-		sleep(80)
-		send("{space down}")
-		sleep(80)
-		send("{space up}")
-		sleep(700)
-	}
-}
-
-d2MorgethWarlock(*) {
-	while getKeyState(cfg.d2AppSwordFlyKey) && getKeyState("w") {
-		send("{" cfg.d2GameGrenadeKey " down}")
-		sleep(1700)
-		send("{" cfg.d2GameGrenadeKey " up}")
-		send("{" strLower(cfg.d2GameToggleSprintKey) "}")
-		sleep(800)
-		send("{space down}{space up}")
-		sleep(80)
-		send("{space down}{space up}")
-		sleep(11000)
-		send("{" cfg.d2GameSuperKey " down}")
-		sleep(300)
-		send("{" cfg.d2GameSuperKey " up}")
-		sleep(300)
-		send("{" cfg.d2GameSuperKey " down}")
-		sleep(300)
-		send("{" cfg.d2GameSuperKey " up}")
-		sleep(7000)
-		loop 110 {
-			sleep(100)
-			send("{space}")
-			sleep(200)
-			send("{space}")
-		}
-	}
-}
-
-d2reload(*) {
-	startReload()
-	stopReload()
-	
-	startReload() {
-		ui.d2GameReloadKeyData.opt("c" cfg.themeButtonOnColor)
-		ui.d2GameReloadKeyData.redraw()
-		ui.d2AppReloadKeyData.opt("c" cfg.themeButtonOnColor)
-		ui.d2AppReloadKeyData.redraw()
-		ui.d2IsReloading := true
-		d2ToggleAppFunctionsOff()
-	}
-	
-	stopReload() {
-		; ui.d2IsReloading := false
-		; d2ToggleAppFunctionsOn()
-		; ui.d2AppReloadKeyData.opt("c" cfg.themeButtonAlertcolor)
-		; ui.d2GameReloadKeyData.opt("c" cfg.themeButtonAlertColor)
-		; ui.d2GameReloadKeyData.redraw()
-		setTimer () => (ui.d2IsReloading := false
-			,d2ToggleAppFunctionsOn()
-			,ui.d2AppReloadKeyData.opt("c" cfg.themeButtonAlertcolor)
-			,ui.d2GameReloadKeyData.opt("c" cfg.themeButtonAlertColor)
-			,ui.d2GameReloadKeyData.redraw()),-2600
-	}
-}	
-
-d2HoldToCrouch(*) {
-	ui.d2AppHoldToCrouchKeyData.opt("c" cfg.themeButtonOnColor)
-	if (cfg.topDockEnabled) {
-		ui.dockBarD2HoldToCrouch.opt("background" cfg.themeButtonAlertColor)
-		ui.dockBarD2HoldToCrouch.redraw()
-	}
-	send("{" cfg.d2gameHoldToCrouchKey " down}")
-	keywait(cfg.d2AppHoldToCrouchKey)
-	ui.d2AppHoldToCrouchKeyData.opt("c" cfg.themeButtonAlertColor)
-	if (cfg.topDockEnabled) {
-		ui.dockBarD2HoldToCrouch.opt("background" cfg.themeButtonOnColor)
-		ui.dockBarD2HoldToCrouch.redraw()
-	}
-	send("{" cfg.d2gameHoldToCrouchKey " Up}")
-}
-
-d2FireButtonClicked(*) {
-	send("{LButton Down}")
-	keyWait("LButton")
-
-	send("{LButton Up}")
-	if ui.d2IsSprinting
-		send("{" cfg.d2GameToggleSprintKey "}")
-}
-d2ReadyToSwordFly(*) {
-	if winActive("ahk_exe destiny2.exe") && !cfg.d2AppPaused && ui.d2FlyEnabled
-		return 1
-	else
-		return 0
-}
-
-d2ReadyToReload(*) {
-	if winActive("ahk_exe destiny2.exe") && !ui.d2IsReloading && !cfg.d2AppPaused
-		return 1
-	else
-		return 0	
-}
-
-d2ReadyToSprint(*) {
-	return (winActive("ahk_exe destiny2.exe")) 
-		? (cfg.d2AlwaysRunEnabled)
-			? (!cfg.d2AppPaused)
-				? (!getKeyState("RButton")) 
-					? (!getKeyState("z"))
-						? (!getKeyState("LButton")) 
-							? (!getKeyState(cfg.d2AppHoldToCrouchKey)) 
-								? 1
-								: 0
-							: 0
-						: 0
-					: 0
-				: 0
-			: 0
-		: 0
-}
-	
-d2startSprinting(*) {
-	;msgBox('.')
-	ui.d2IsSprinting := true
-	;send("{w down}")
-	if (cfg.d2AlwaysRunEnabled) {
-		send("{" strLower(cfg.d2GameToggleSprintKey) "}")
-	}
-	setCapsLockState("Off")
-	keyWait("w","L")
-	send("{w up}")
-}
-
-d2CreateLoadoutKeys(*) {
-	try {
-		if (ui.monitorAuto == true) {
-			cfg.d2LoadoutCoords := cfg.d2LoadoutCoords%a_screenWidth%x%a_screenHeight%
-		} else {
-			cfg.d2Loadoutcoords := cfg.d2LoadoutCoords%ui.monitorResDDL.text%
-		}
-		} catch {
-		cfg.d2LoadoutCoords := cfg.d2LoadoutCoords1920x1080
-	}
-	loop cfg.d2LoadoutCoords.length {
-		d2LoadOutCoordsStr .= cfg.d2LoadoutCoords[a_index] ","
-	}	
-
-	hotIf(d2AppEnabled)
-	hotkey("Joy12",d2controllerLoadoutChange)
-	hotkey(cfg.d2AppLoadoutKey,d2LoadoutModifier)
-	loop cfg.d2LoadoutCoords.length {
-		if a_index == 10 {
-				hotkey(cfg.d2AppLoadoutKey " & 0",d2LoadoutModifier)
-		} else {
-					hotKey(cfg.d2AppLoadoutKey " & " substr(a_index,-1),d2LoadoutModifier)
-				}
-			}
-	hotIf()
-}
-
-d2AppEnabled(*) {
-	if !cfg.d2AppPaused && winActive("ahk_exe destiny2.exe")
-		return 1
-	else
-		return 0
-}
-
-d2CreateLoadoutKeys()
-
-d2controllerLoadoutChange(*) {
-	osdLog("Controller Loadout Hotkey Pressed")
-	joyx := "center"
-	joyy := "center"
-	while getKeyState("joy12") {
-		if getKeyState("JoyX") < 20 
-			joyx := "left" 
-		if getKeyState("JoyX") > 80
-			joyx := "right"
-		if getKeyState("JoyX") == 50
-			joyx := "center"
-		if getKeyState("JoyY") < 35 
-			joyy := "up"
-		if getKeyState("JoyY") > 75
-			joyy := "down"
-		if getKeyState("JoyY") == 50
-			joyy := "center"
-	}
-	osdLog("L3 + " joyx " and " joyy " pressed")
-	switch {
-		case joyy == "up" && joyx == "center":d2LoadoutModifier("prismatic",true)
-		case joyx == "right" && joyy == "center":d2LoadoutModifier("`3",true)
-		case joyy == "down" && joyx == "center":d2LoadoutModifier("`2",true) 
-		case joyx == "left" && joyy == "center":d2LoadoutModifier("`1",true)
-		default:return
-	}
-}
-
-d2LoadoutModifier(hotKeyName,isController := false) {
-	d2LoadoutCoordsStr := ""
-	if (hotKeyName == "prismatic") {
-		cfg.d2AppLoadoutMultiplier := 1.5
-		sleep(550*cfg.d2AppLoadoutMultiplier)
-		keyWait("joy12")
-		send("{F1}")
-		togglePrismatic()
-		return
-	} 
-	
-	if (hotkeyName == "``" ) {
-		if (A_PriorHotkey == "``") And (A_TimeSincePriorHotkey < 200) {
-			togglePrismatic()
-		}
-		return
-	}
-	
-	loop cfg.d2LoadoutCoords.length {
-		d2LoadoutCoordsStr .= cfg.d2LoadoutCoords[a_index] ","
-	}
-	d2LoadoutCoordsStr := rtrim(d2LoadoutCoordsStr,",")
-
-	try {
-		ui.dockBarLoadouts.opt("background" cfg.themeButtonAlertColor)
-		ui.dockBarLoadouts.redraw()
-	}
-	
-	ui.d2AppLoadoutKeyData.text := cfg.d2AppLoadoutKey " - " subStr(hotKeyName,-1)
-	ui.d2AppLoadoutKeyData.opt("c" cfg.themeButtonOnColor)
-	ui.d2AppLoadoutKeyData.redraw()
-	setTimer () => (ui.d2AppLoadoutKeyData.text := cfg.d2AppLoadoutKey,ui.d2AppLoadoutKeyData.opt("c" cfg.themeButtonAlertColor),ui.d2AppLoadoutKeyData.redraw()),-1000
-
-	loadoutX := strSplit(cfg.d2LoadoutCoords[subStr(hotKeyName,-1)],":")[1]
-	loadoutY := strSplit(cfg.d2LoadoutCoords[subStr(hotKeyName,-1)],":")[2]
-
-	if !(loadoutX || loadoutY)
-		return
-		
-	if isController {
-		cfg.d2AppLoadoutMultiplier := 1.5
-		sleep(550*cfg.d2AppLoadoutMultiplier)
-		keyWait("joy12")
-	}
-	;msgBox('here')
-	send("{F1}")
-	sleep(550*cfg.d2AppLoadoutMultiplier)
-	send("{Left}")
-	sleep(150*cfg.d2AppLoadoutMultiplier)
-	coordMode("mouse","client")
-	if isController {
-		click(loadoutX+30,loadoutY+30,0)
-		click(loadoutX,loadoutY,0)
-	} else
-		click(loadoutX,loadoutY,0)
-	sleep(250*cfg.d2AppLoadoutMultiplier)
-	send("{LButton}")
-	sleep(100*cfg.d2AppLoadoutMultiplier)
-	send("{F1}")
-	try {
-		ui.dockBarLoadouts.opt("background" cfg.themeButtonOnColor)
-		ui.dockBarLoadouts.redraw()
-	}
-}
-	
-d2ToggleAlwaysSprint(*) {
-	(cfg.d2AlwaysRunEnabled := !cfg.d2AlwaysRunEnabled)
-		? (ui.d2AppToggleSprintKeyData.opt("c" cfg.themeButtonOnColor)
-			,ui.d2AppToggleSprintKeyData.redraw()
-			,ui.d2GameToggleSprintKeyData.opt("c" cfg.themeButtonOnColor)
-			,ui.d2GameToggleSprintKeyData.redraw()
-			,SetCapsLockState("Off"))
-		: (ui.d2IsSprinting := false
-			,SetCapsLockState("Off")
-			,ui.d2AppToggleSprintKeyData.opt("c" cfg.themeButtonAlertColor)
-			,ui.d2AppToggleSprintKeyData.redraw()
-			,ui.d2GameToggleSprintKeyData.opt("c" cfg.themebuttonAlertColor)
-			,ui.d2GameToggleSprintKeyData.redraw()
-			,((ui.d2IsSprinting)
-				? send("{" cfg.d2AppToggleSprintKey "}")
-				: 0))
-}
-
-d2ToggleAppFunctions(*) {
-	(cfg.d2AppPaused := !cfg.d2AppPaused)
-		? d2ToggleAppFunctionsOff()
-		: d2ToggleAppFunctionsOn()
-}
-
-d2ToggleAppFunctionsOn() {
-	ui.d2ToggleAppFunctions.Opt("Background" cfg.ThemeButtonOnColor)
-	ui.d2ToggleAppFunctions.value := "./img/toggle_vertical_trans_on.png"
-	try {				
-		ui.dockBarD2AlwaysRun.Opt("Background" cfg.ThemeButtonOnColor)
-		ui.dockBarD2AlwaysRun.value := "./img/toggle_vertical_trans_on.png"
-	}
-}
-
-d2ToggleAppFunctionsOff() {
-	ui.d2AppFunctionsEnabled := false
-	ui.d2ToggleAppFunctions.opt("background" cfg.ThemeButtonReadyColor)
-	ui.d2ToggleAppFunctions.value := "./img/toggle_vertical_trans_off.png"
-	ui.d2ToggleAppFunctions.redraw()
-	try {
-		ui.dockBarD2AlwaysRun.opt("background" cfg.ThemeButtonAlertColor)
-		ui.dockBarRunIcon.opt("background" cfg.themeButtonOnColor)
-		ui.dockBarRunIcon.redraw()
-		ui.dockBarD2AlwaysRun.value := "./img/toggle_vertical_trans_off.png"
-	}
-}
-
-d2ToggleAutoGameConfigOn() {
-	;ui.d2Log.text := " start: SPRINT`n rcvd: " strUpper(subStr(cfg.d2AppToggleSprintKey,1,8)) "`n" ui.d2Log.text
-	ui.d2ToggleAutoGameConfig.Opt("Background" cfg.ThemeButtonOnColor)
-	ui.d2ToggleAutoGameConfig.value := "./img/toggle_vertical_trans_on.png"
-}
-
-d2ToggleAutoGameConfigOff() {
-	ui.d2AutoGameConfigEnabled := false
-	ui.d2ToggleAutoGameConfig.opt("background" cfg.ThemeButtonReadyColor)
-	ui.d2ToggleAutoGameConfig.value := "./img/toggle_vertical_trans_off.png"
-	ui.d2ToggleAutoGameConfig.redraw()
-}
-	
 ui.d2Log								:= ui.gameSettingsGui.addText("x405 y10 w68 h80 hidden background" cfg.themePanel3color " c" cfg.themeFont3color," Destiny 2`n Log Started`n Waiting for Input")
 ui.d2Log.setFont("s7","ariel")
-
 
 ui.d2ToggleAppFunctions.ToolTip 		:= "Toggles holdToCrouch"
 ui.d2LaunchDIMbutton.ToolTip			:= "Launch DIM in Browser"
@@ -1780,13 +1100,6 @@ ui.d2Launchd2FoundryButton.toolTip		:= "Launch d2Foundry"
 
 ui.d2ToggleAppFunctions.OnEvent("Click", d2ToggleAppFunctions)
 ui.d2ToggleAutoGameConfig.OnEvent("Click", d2ToggleAutoGameConfig)
-
-d2ToggleAutoGameConfig(*) {
-	(cfg.d2AutoGameConfigEnabled := !cfg.d2AutoGameConfigEnabled)
-		? d2ToggleAutoGameConfigOn()
-		: d2ToggleAutoGameConfigOff()
-	}
-	
 ui.d2AppLoadoutKey.onEvent("click",d2AppLoadoutKeyClicked)
 ui.d2AppLoadoutKeyData.onEvent("click",d2AppLoadoutKeyClicked)
 ui.d2AppToggleSprintKey.onEvent("click",d2AppToggleSprintKeyClicked)
@@ -1798,7 +1111,6 @@ ui.d2LaunchBlueberriesButton.onEvent("click",d2launchBlueBerriesButtonClicked)
 ui.d2LaunchDestinyTrackerButton.onEvent("click",d2LaunchDestinyTrackerButtonClicked)
 ui.d2Launchd2FoundryButton.onEvent("click",toggleGlyphWindow)
 ui.d2LaunchBrayTechButton.onEvent("click",d2LaunchBrayTechButtonClicked)
-
 
 d2RedrawUI(*) {
 	reload()
@@ -1875,8 +1187,6 @@ hideCodeWindow(*) {
 	ui.d2LaunchBrayTechButton.value := "./img/d2_button_brayTech.png"
 	ui.d2wwCodesGui.hide()
 }
-
-
 	
 keyBindDialogBox(Msg,Alignment := "Center") {
 	Global
@@ -2394,20 +1704,20 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 	this2.maxRange:=100
 	this2.state:=false
 	this2.itemNum:=1
-	this2.YOffset:=748
+	this2.YOffset:=0
 	this2.restartQueued:=false
 	this2.elapsedSec:=1
 		
-		ui.gametabs.useTab(" Vault Cleaner")
-		this2.statusText:=ui.gameSettingsGui.addText("x10 y" 38+this2.yOffset " w640 h30 backgroundTrans c00FFFF","Please Wait....")
+		ui.gametabs.useTab("222Vault Cleaner222")
+		this2.statusText:=ui.gameSettingsGui.addText("x10 y33 w640 h30 backgroundTrans c00FFFF","Please Wait....")
 		this2.statusText.setFont("s16")
-		this2.mainButtonBg:=ui.gameSettingsGui.addText("x5 y" 5+this2.yOffset " w80 h30 background353535")
-		this2.mainButton:=ui.gameSettingsGui.addText("section center x7 y" 7+this2.yOffset " w76 h26 background454545 c00FFFF","")
-		this2.mainButtonText:=ui.gameSettingsGui.addText("section center x7 y" 2+this2.yOffset " w76 h30 backgroundTrans c353535","Start")
+		this2.mainButtonBg:=ui.gameSettingsGui.addText("x5 y5 w80 h30 background55FF33")
+		this2.mainButton:=ui.gameSettingsGui.addText("section center x7 y6 w76 h28 background008800 c00FFFF","")
+		this2.mainButtonText:=ui.gameSettingsGui.addText("section center x10 y3 w70 h30 backgroundTrans c55ff55","Start")
 		this2.mainButtonText.setFont("s20")
-		this2.mainButtonHotkey:=ui.gameSettingsGui.addText("left ys backgroundTrans c454545 h30 w130","[ Shift ]+[ \ ]")
-		this2.mainButtonHotkey.setFont("s20")
-		this2.mainButton.onEvent("click",cleanVaultStart)
+		this2.mainButtonHotkey:=ui.gameSettingsGui.addText("left x+15 ys+3 backgroundTrans cbbbbbb h30 w130","[Shift + \]")
+		this2.mainButtonHotkey.setFont("s16 c00AA00","calibri")
+this2.mainButton.onEvent("click",cleanVaultStart)
 		this2.mainButtonText.onEvent("click",cleanVaultStart)
 		;this2.mainButton.onEvent("click",toggleButton)
 		toggleButton2(*) {
@@ -2445,3 +1755,319 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 		this2.vaultProgressLabel.setFont("s14","Helvetica")
 		this2.vaultProgress := ui.gameSettingsGui.addProgress("x90 y" 70+this2.yOffset " w1289 h30 c440000 background151515 range1-500")
 		this2.completeMsg := ui.gameSettingsGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
+		ui.gameTabs.useTab("Mouse")
+cfg.rmbBind:=iniRead(cfg.file,"Game","RButtonBind","RButton")
+		cfg.lmbBind:=iniRead(cfg.file,"Game","LButtonBind","LButton")
+		cfg.mmbBind:=iniRead(cfg.file,"Game","MButtonBind","MButton")
+		cfg.fbBind:=iniRead(cfg.file,"Game","XButton2Bind","XButton2")
+		cfg.bbBind:=iniRead(cfg.file,"Game","XButton1Bind","XButton1")
+		ui.gameSettingsGui.addPicture("section x15 y5 w65 h-1 backgroundTrans","./img/mouse_lmb.png")
+		ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_rmb.png")
+		ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_mmb.png")
+		ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_bb.png")
+		ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_fb.png")
+		ui.gameSettingsGui.addText("section xs-13 w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.lmbBind)
+		ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.rmbBind)
+		ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.mmbBind)
+		ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.fbBind)
+		ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2color " c" cfg.themeFont2Color,cfg.bbBind)
+		;this2.add
+{
+; ui.d2PhAfkActive := false
+
+; toggleD2PhAfk(*) {
+	; (ui.d2PhAfkActive := !ui.d2PhAfkActive)
+		; ? startD2PhAfk()
+		; : stopD2PhAfk()
+; }
+
+; startD2PhAfk(*) {
+	; ui.d2PhAfkActive := true
+	; debugLog("Starting: Pale Heart AFK")
+	; setTimer(timerD2PhAfk,60000)
+	; timerD2PhAfk()
+; }
+
+; stopD2PhAfk(*) {
+	; ui.d2PhAfkActive := false
+		; debugLog("Stopping: Pale Heart AFK")
+		; setTimer(timerD2PhAfk,0)
+	; }
+; loopTimerD2PhAfk(*) {
+	; setTimer(timerD2PhAfk,60000)
+; }
+
+; timerD2PhAfk(*) {
+	; if !ui.d2PhAfkActive
+		; return
+	; winActivate("ahk_exe destiny2.exe")
+	; if !ui.d2PhAfkActive
+		; return	sleep(500)
+	; debugLog("Pale Heart AFK: Open Menu")
+	; send("{3}")
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(1000)
+	; debugLog('Pale Heart AFK: Selecting "The Landing"')
+	; if !ui.d2PhAfkActive
+		; return	
+	; mouseMove(-(a_screenwidth/2)+200,0,50,"R")
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(2000)
+	; mouseMove((a_screenwidth/2)-355,((a_screenHeight-40)/2)-7,50,)
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(500)
+	; send("{LButton Down}")
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(1800)
+	; send("{LButton Up}")
+	; debugLog("Pale Heart AFK: Waiting to Spawn")
+	; loop 8 {
+		; if !ui.d2PhAfkActive
+			; return
+		; sleep(1000)
+	; }
+	; debugLog("Pale Heart AFK: Walking Forward")
+	; send("{w down}")
+	; loop 9 {
+		; if !ui.d2PhAfkActive
+			; return	
+		; sleep(1000)
+	; }
+	; sleep(500)
+	; send("{w up}")
+	; sleep(250)
+	; debugLog("Pale Heart AFK: Turning Left")
+	; dllCall("mouse_event","UInt","0x01","Int",-1600,"Int",0,"UInt",0,"UInt",0)
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(250)
+	; debugLog("Pale Heart AFK: Walking Forward")
+	; send("{w down}")
+	; loop 6 {
+		; if !ui.d2PhAfkActive
+			; return	
+		; sleep(1000)
+	; }
+	; send("{w up}")
+	; debugLog("Pale Heart AFK: Turning Around")
+	; dllCall("mouse_event","UInt","0x01","Int",-3600,"Int",0,"UInt",0,"UInt",0)	
+	; debugLog("Pale Heart AFK: Waiting for Chest to Spawn")
+	; loop 30 {
+		; if !ui.d2PhAfkActive
+			; return	
+		; sleep(1000)
+	; }
+	; debugLog("Pale Heart AFK: Walking Forward")
+	; send("{w down}")
+	; loop 6 {
+		; if !ui.d2PhAfkActive
+			; return	
+		; sleep(1000)
+	; }
+	; sleep(500)
+	; debugLog("Pale Heart AFK: Strafing Right")
+	; send("{d down}")
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(1600)
+	; send("{d up}")
+	; debugLog("Pale Heart AFK: Walking Forward")
+	; loop 6 {
+		; if !ui.d2PhAfkActive
+			; return	
+		; sleep(1000)
+	; }
+	; sleep(100)
+	; send("{w up}")
+	; dllCall("mouse_event","UInt","0x01","Int",-1600,"Int",0,"UInt",0,"UInt",0)
+	; debugLog("Pale Heart AFK: Collecting Chest")
+	; send("{e down}")
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(1800)
+	; send("{e up}")
+	; if !ui.d2PhAfkActive
+		; return	
+	; sleep(1500)
+	; debugLog("Pale Heart AFK: Waiting to Restart")
+; }
+; timerD2PhAfk(*) {
+		; ui.d2PhAfkActive := true
+		;toolTip("Starting Pale Heart AFK")
+		; Loop {
+			; Loop 40 {
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{3}")
+				; sleep(2000)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break				
+				; mouseMove(a_screenwidth/2,(a_screenheight-40)/2,0)
+				; sleep(1500)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; dllCall("mouse_event","UInt","0x01","Int",-600,"Int",0,"UInt",0,"UInt",0)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(1225)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; dllCall("mouse_event","UInt","0x01","Int",175,"Int",0,"UInt",0,"UInt",0)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(500)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{LButton down}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(1200)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{LButton up}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(10000)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{shift down}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{w down}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(8000)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{shift up}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{w up}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; dllCall("mouse_event","UInt","0x01","Int",1360,"Int",0,"UInt",0,"UInt",0)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; loop 30 {
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(1000)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break		
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{shift down}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send ("{w down}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; loop 6 {
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(1000)
+					; if !ui.d2PhAfkActive
+						; break
+				; }
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(400)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; dllCall("mouse_event","UInt","0x01","Int",-330,"Int",0,"UInt",0,"UInt",0)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; loop 3 {
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+					; sleep(1000)
+					; if !ui.d2PhAfkActive
+						; break
+				; }
+				; sleep(200)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{shift up}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{w up}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; dllCall("mouse_event","UInt","0x01","Int",-91000,"Int",0,"UInt",0,"UInt",0)
+				; if !ui.d2PhAfkActive
+					; break
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(500)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{e down}")
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; sleep(1200)
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+				; send("{e up}")	
+				; sleep(500)
+				; if !ui.d2PhAfkActive
+					; break
+			; }
+			; if !ui.d2PhAfkActive
+				; break
+				; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+					; break
+			; send("{Tab}")
+			; sleep(1000)
+			; if !ui.d2PhAfkActive
+				; break
+			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+			; send("{o down}")
+			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+			; loop 40 {
+				; sleep(1000)
+				; if !ui.d2PhAfkActive
+					; break
+			; }	
+			; send("{o up}")
+			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+			; loop 10 {
+				; sleep(1000)
+				; if !ui.d2PhAfkActive
+					; break
+			; }
+			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+			; send("{3}")
+			; sleep(1000)
+			; if !ui.d2PhAfkActive
+				; break
+			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+			; mouseMove(a_screenwidth/1.2,(a_screenheight-40)/1.15,0)
+			; sleep(500)
+			; if !ui.d2PhAfkActive
+				; break
+			; if (A_TimeIdlePhysical > 2500 and A_TimeIdleMouse > 2500)
+				; send("{LButton}")
+			; loop 30 {
+				; sleep(1000)
+				; if !ui.d2PhAfkActive
+					; break
+			; }
+		; }
+	; }
+; }
+	
+	; stopD2PhAfk(*) {
+		; ui.d2PhAfkActive := false
+	;toolTip("Stopping Pale Heart AFK")
+		; send("{w up}")
+		; send("{shift up}")
+	; send("{LButton up}")
+}

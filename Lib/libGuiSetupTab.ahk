@@ -171,7 +171,7 @@ GuiSetupTab(&ui,&cfg) {
 	; cfg.MouseRemapEnabled:=iniRead(cfg.file,"System","MouseRemapEnabled",false)
  	; ui.toggleMouseRemap := ui.MainGui.AddPicture("xs y+2 w50 h22 section vMouseRemap " (cfg.MouseRemapEnabled ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.MouseRemapEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
 	; ui.toggleMouseRemap.OnEvent("Click", toggleChanged)
-	; ui.toggleMouseRemap.ToolTip := "Enables Mouse Remapping (cShift)"
+	; ui.toggleMouseRemap.ToolTip := "Enables mouseping (cShift)"
 	; ui.labelMouseRemap:= ui.MainGui.AddText("x+5 ys+2 backgroundTrans","  Remap Mouse")
 	; ToggleMouseRemap(*)
 	; {

@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.1.2"
+A_FileVersion := "1.4.1.3"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -103,6 +103,7 @@ ui.loadingProgress.value += 10
 #include <libAfkFunctions>
 #include <libGuiSetupTab>
 #include <libGuiAppDockTab>
+#include <libGameAssists>
 #include <libGameSettingsTab>
 ;#include <libEditorTab>
 ui.loadingProgress.value += 15
@@ -111,6 +112,7 @@ ui.loadingProgress.value += 15
 #include <libHotkeys>
 #include <libRoutines>
 #include <libThemeEditor>
+
 #include <libVaultCleaner>
 ui.loadingProgress.value += 10
 
@@ -193,4 +195,4 @@ d2AutoGameConfigOverride()
 loadScreen(0)
 ui.isActiveWindow:=""
 setTimer () => (ui.isActiveWindow:=(winActive("ahk_exe destiny2.exe")) ? (ui.isActiveWindow) ? 1 : (setCapsLockState(cfg.d2AlwaysRunEnabled),1) : (ui.isActiveWindow) ? (0,setCapsLockState(0)) : 0),500
-winSetTransparent(150,ui.mainGui)
+;winSetTransparent(150,ui.mainGui)

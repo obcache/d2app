@@ -34,6 +34,7 @@ initGui(&cfg, &ui) {
 	ui.2_SetupButton := ui.mainGui.addText("ys+5 x+-80 w80 h22 center backgroundTrans","Setup")
 	;msgBox(cfg.mainTabList[1])
 	ui.3_FillBg:=ui.mainGui.addPicture("ys+0 w310 h30 center background" cfg.themeBackgroundColor,"./img/tab_unselected.png")
+	ui.3_FillBg.onEvent("click",WM_LBUTTONDOWN_callback)
 	ui.mainGuiTabs := ui.MainGui.AddTab3("x32 y2 w495 h213  Buttons -redraw Background" cfg.ThemeBackgroundColor " -E0x200",["1_Game","2_Setup"])
 	ui.mainGuiTabs.setFont("s13")
 	ui.MainGuiTabs.OnEvent("Change",TabsChanged)
