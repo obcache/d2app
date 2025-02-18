@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.1.4"
+A_FileVersion := "1.4.1.5"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -48,15 +48,15 @@ themeFileName	:= "d2app.themes"
 ; keyWait("Escape")
 ; return
 
-loadingProgressStep(*) {
-		ui.loadingProgress.value += 1
+advProgress(progressAmount:=5,*) {
+		ui.loadingProgress.value += progressAmount
 }
+
 preAutoExec(InstallDir,ConfigFileName)
 cfg.file 		:= "./" ConfigFileName
-adjustPos()
-loadScreen()
-initTrayMenu()
-	d2ActivePanel := 1
+
+
+d2ActivePanel := 1
 
 ; ui.AfkGui 		:= Gui()
 dockApp 		:= Object()
@@ -70,6 +70,7 @@ ui.AfkHeight 	:= 170
 ui.latestVersion := ""
 ui.installedVersion := ""
 ui.incursionDebug := false
+loadScreen()
 
 MonitorGet(MonitorGetprimary(),
 	&primaryMonitorLeft,
@@ -82,16 +83,17 @@ MonitorGetWorkArea(MonitorGetprimary(),
 	&primaryWorkAreaTop,
 	&primaryWorkAreaRight,
 	&primaryWorkAreaBottom)
-	
+advProgress(5)	
 cfgLoad(&cfg, &ui)
-ui.loadingProgress.value += 5
-
+advProgress(10)
+initTrayMenu()
 
 initGui(&cfg, &ui)
-ui.loadingProgress.value += 10
+advProgress(10)
 
 initConsole(&ui)
 ui.loadingProgress.value += 10
+
 
 #include <class_sqliteDb>
 #include <class_lv_colors>
@@ -99,20 +101,17 @@ ui.loadingProgress.value += 10
 #include <libWinMgr>
 #include <libGlobal>
 #include <libInstall>
-;#include <libGuiOperationsTab>
-#include <libAfkFunctions>
+;#include <libAfkFunctions>
 #include <libGuiSetupTab>
 #include <libGuiAppDockTab>
 #include <libGameAssists>
 #include <libGameSettingsTab>
-;#include <libEditorTab>
+#include <libIncursionCheck>
 ui.loadingProgress.value += 15
-#include <libGuiSystemTab>
 #include <libGuiSystemTab>
 #include <libHotkeys>
 #include <libRoutines>
 #include <libThemeEditor>
-
 #include <libVaultCleaner>
 ui.loadingProgress.value += 10
 
@@ -122,8 +121,8 @@ debugLog("Console Initialized")
 
 ui.gameTabs.choose(cfg.gameModuleList[cfg.activeGameTab])
 ui.loadingProgress.value += 5
-
-createDockBar()
+tabsChanged()
+;createDockBar()
 ui.loadingProgress.value += 5
 	
 
@@ -132,10 +131,11 @@ try
 	guiVis("all",false)
 ui.loadingProgress.value += 5
 
-ui.afkGui.show("x" cfg.guiX+45 " y" cfg.guiY+50 " w270 h140 noActivate")
-ui.gameSettingsGui.show("x" cfg.guiX+30 " y" cfg.guiY+32 " w495 h182 noActivate")
+;ui.afkGui.show("x" cfg.guiX+45 " y" cfg.guiY+50 " w270 h140 noActivate")
 ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
 
+ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h184 noActivate")
+ui.gameTabGui.show("w495 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
 ui.loadingProgress.value += 5
 
 if (cfg.startMinimizedEnabled)
@@ -154,10 +154,13 @@ ui.loadingProgress.value += 5
 
 ui.loadingProgress.value += 5
 	fadeIn()
-
+	try {
+			ui.notifyGui.hide()
+			ui.notifyGui.destroy()
+	}
 try {
 	whr := ComObject("WinHttp.WinHttpRequest.5.1")
-	whr.Open("GET", "http://sorryneedboost.com/d2app/recentIncursion.dat", true)
+	whr.Open("GET", "http://sorryneedboost.com/cacheApp/recentIncursion.dat", true)
 	whr.Send()
 	whr.WaitForResponse()
 	iniWrite(whr.ResponseText,cfg.file,"Game","LastIncursion")
@@ -173,16 +176,9 @@ if cfg.topDockEnabled
 ;OnMessage(0x0201, wm_lButtonDown)
 	if (cfg.AlwaysOnTopEnabled) {
 		ui.MainGui.Opt("+AlwaysOnTop")
-		; ui.titleBarButtonGui.Opt("+AlwaysOnTop")
-		ui.AfkGui.Opt("+AlwaysOnTop")
-		try
-			ui.dockBarGui.opt("+alwaysOnTop")
 	} else {
 		ui.MainGui.Opt("-AlwaysOnTop")
-		; ui.titleBarButtonGui.Opt("-AlwaysOnTop")
 		ui.AfkGui.Opt("-AlwaysOnTop")	
-		try
-			ui.dockBarGui.opt("+alwaysOnTop")
 	}
 	
 	
@@ -192,7 +188,8 @@ cfg.consoleVisible := !cfg.consoleVisible
 ;statusBar()
 ;listhotkeys()
 d2AutoGameConfigOverride()
-loadScreen(0)
+
 ui.isActiveWindow:=""
 setTimer () => (ui.isActiveWindow:=(winActive("ahk_exe destiny2.exe")) ? (ui.isActiveWindow) ? 1 : (setCapsLockState(cfg.d2AlwaysRunEnabled),1) : (ui.isActiveWindow) ? (0,setCapsLockState(0)) : 0),500
 ;winSetTransparent(150,ui.mainGui)
+loadScreen(0)

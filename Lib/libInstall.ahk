@@ -479,14 +479,16 @@ bail(*) {
 	
 autoUpdate() {		
 	runWait("cmd /C start /b /wait ping -n 1 8.8.8.8 > " a_scriptDir "/.tmp",,"Hide")
-	if !inStr(fileRead(a_scriptDir "/.tmp"),"100% loss") {
-		checkForUpdates(0)
-	} else {
-		setTimer () => pbNotify("Network Down. Bypassing Auto-Update.",1000),-100
+	try {
+		if !inStr(fileRead(a_scriptDir "/.tmp"),"100% loss") {
+			checkForUpdates(0)
+		} else {
+			setTimer () => pbNotify("Network Down. Bypassing Auto-Update.",1000),-100
+		}
+		try
+		if fileExist("./.tmp")
+			fileDelete("./.tmp")
 	}
-	try
-	if fileExist("./.tmp")
-		fileDelete("./.tmp")
 }	
 
 CheckForUpdates(msg,*) {
@@ -500,7 +502,7 @@ CheckForUpdates(msg,*) {
 			whr.Send()
 			whr.WaitForResponse()
 			ui.latestVersion := whr.ResponseText
-			ui.latestVersionText.text := "Available:`t" substr(ui.latestVersion,1,1) "." substr(ui.latestVersion,2,1) "." substr(ui.latestVersion,3,1) "." substr(ui.latestVersion,4,1)
+			ui.latestVersionText.text := "Available:`t" substr(ui.latestVersion,1,x) "." substr(ui.latestVersion,2,1) "." substr(ui.latestVersion,3,1) "." substr(ui.latestVersion,4,1)
 	} catch {
 			if(msg != 0) {
 				ui.latestVersionText.text := "Available:`t--No Network--"

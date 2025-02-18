@@ -90,17 +90,16 @@ libVaultInit(*) {
 		footerBarBg:=thisGui.addText("x0 y" this.yOffset " w1284 h100 background454545")
 		thisGui.addText("x0 y30 w1284 h2 background959595")
 		thisGui.addText("x0 y" this.YOffset " w1284 h2 background959595")
-		onMessage(0x47,WM_WINDOWPOSCHANGED)
-		WM_WINDOWPOSCHANGED(*) {
-			try {
-				winGetPos(&tX,&tY,,,thisGui.hwnd)
-				winMove(tx+3,ty+32,,,this.gameWin)
-			}		
-		}
-		WM_LBUTTONDOWN_callback(this_control*) {
-			postMessage("0xA1",2,,,"A")
-			;WM_LBUTTONDOWN(0,0,0,this_control)
-		}
+		; onMessage(0x47,WM_WINDOWPOSCHANGED)
+		; WM_WINDOWPOSCHANGED(*) {
+			; try {
+				; winGetPos(&tX,&tY,,,thisGui.hwnd)
+				; winMove(tx+3,ty+32,,,this.gameWin)
+			; }		
+		; }
+		; WM_LBUTTONDOWN_callback(this_control*) {
+			; postMessage("0xA1",2,,,"A")
+		; }
 		this.statusText:=thisGui.addText("x10 y" 38+this.yOffset " w640 h30 backgroundTrans c00FFFF","Please Wait....")
 		this.statusText.setFont("s16")
 		this.mainButtonBg:=thisGui.addText("x5 y" 5+this.yOffset " w80 h30 background353535")

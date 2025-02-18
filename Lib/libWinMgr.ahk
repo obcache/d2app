@@ -19,14 +19,10 @@ collateGuis(hwnd := ui.mainGui.hwnd) {
 	try {
 		switch hwnd {
 			case ui.mainGui.hwnd:
-				if (!ui.afkDocked) {
 					winGetPos(&mainGuiX,&mainGuiY,,,ui.mainGui)
-					ui.AfkGui.Move((mainGuiX+45),(mainGuiY+50),270,)
-					;ui.titleBarButtonGui.Move((mainGuiX+456)*(A_ScreenDPI/96),(mainGuiY-3)*(a_screenDpi/96))
-					ui.gameSettingsGui.move((mainGuiX+33)*(A_ScreenDPI/96),(mainGuiY+32)*(A_ScreenDPI/96))
-					ui.gameTabGui.move((mainGuiX+33)*(A_ScreenDPI/96),(mainGuiY+182)*(A_ScreenDPI/96))
-					ui.gameSettingsLinkGui.move((mainGuiX+35+12)*(A_ScreenDPI/96),(mainGuiY+32+79)*(A_ScreenDPI/96))
-				}
+					ui.gameTabGui.move((mainGuiX+34)*(A_ScreenDPI/96),(mainGuiY+182)*(A_ScreenDPI/96))
+					ui.gameSettingsGui.move((mainGuiX+34)*(A_ScreenDPI/96),(mainGuiY+30)*(A_ScreenDPI/96))
+					ui.gameSettingsLinkGui.move((mainGuiX+35+12)*(A_ScreenDPI/96),(mainGuiY+35+79)*(A_ScreenDPI/96))
 			case ui.infoGui.hwnd:
 					winGetPos(&tmpX,&tmpY,,,ui.infoGui)
 					ui.infoGuiBg.move(tmpX,tmpY)
@@ -61,19 +57,10 @@ WM_LBUTTONDOWN_pBcallback(*) {
 WM_LBUTTONDOWN(wParam, lParam, msg, Hwnd) {
 	;ShowMouseClick()
 		postMessage("0xA1",2)
-	
-		; (hwnd == ui.handlebarImage)
-			; ? ui.handleBar
-			; : (ui.rightHandlebarImage2)
-				; ?
-		; : return
 }
 
 wm_mouseMove(wParam, lParam, msg, hwnd) {
 	static prevHwnd := 0
-	(cfg.debugEnabled)
-		? (mouseGetPos(,,,&this_ctrl), tooltip(this_ctrl))
-		: 0
 	try {
 		(hwnd == prevHwnd) 
 		? (prevHwnd := hwnd,bail()) 
@@ -87,6 +74,7 @@ wm_mouseMove(wParam, lParam, msg, hwnd) {
 					,setTimer(d2FlashIncursionNoticeB,0)
 					,ui.incursionGuiBg.opt("background" cfg.themeFont3Color))
 				: prevHwnd:=hwnd
+			prevHwnd:=hwnd
 }
 
 toolTipDelayStart(origHwnd) {

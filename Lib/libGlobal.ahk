@@ -16,19 +16,29 @@ restoreWin(*) {
 		ui.mainGui.opt("-toolWindow")
 	}
 }
+	hideGui(*) {
+		winGetPos(&GuiX,&GuiY,,,ui.MainGui.hwnd)
+		cfg.guix := guiX
+		cfg.guiy := guiy
+		ui.mainGui.opt("toolWindow")
+		guiVis(ui.mainGui,false)
+		;guiVis(ui.titleBarButtonGui,false)
+		;guiVis(ui.afkGui,false)
+		guiVis(ui.gameSettingsGui,false)
+		guiVis(ui.gameTabGui,false)
+		;guiVis(ui.dockBarGui,false)
+		;debugLog("Hiding Interface")
+	}
 
 initTrayMenu(*) {
-	A_TrayMenu.Delete
-	A_TrayMenu.Add
-	A_TrayMenu.Add("Show Window", restoreWin)
-	A_TrayMenu.Add("Hide Window", HideGui)
-	A_TrayMenu.Add("Reset Window Position", ResetWindowPosition)
-	; A_TrayMenu.Add("Toggle Dock", DockApps)
-	A_TrayMenu.Add()
-	;A_TrayMenu.Add("Toggle Log Window", toggleConsole)
-	;A_TrayMenu.Add()
-	A_TrayMenu.Add("Exit App", KillMe)
-	A_TrayMenu.Default := "Show Window"
+	; A_TrayMenu.Delete
+	; A_TrayMenu.Add
+	; A_TrayMenu.Add("Show Window", restoreWin)
+	; A_TrayMenu.Add("Hide Window", HideGui)
+	; A_TrayMenu.Add("Reset Window Position", ResetWindowPosition)
+	; A_TrayMenu.Add()
+	; A_TrayMenu.Add("Exit App", KillMe)
+	; A_TrayMenu.Default := "Show Window"
 	Try
 		installLog("Tray Initialized")
 }
@@ -588,27 +598,31 @@ loadScreen(visible := true,NotifyMsg := "d2app Loading",Duration := 10) {
 		ui.notifyGui.Title 		:= "d2app Loading"
 
 		ui.notifyGui.Opt("+AlwaysOnTop -Caption +ToolWindow")  ; +ToolWindow avoids a taskbar button and an alt-tab menu item.
-		ui.notifyGui.BackColor := "353535" ; Can be any RGB color (it will be made transparent below).
+		ui.notifyGui.BackColor := "c0c0c0" ; Can be any RGB color (it will be made transparent below).
 		ui.notifyGui.SetFont("s22")  ; Set a large font size (32-point).
-		ui.notifyGui.AddText("y5 w300 h35 cBABABA center BackgroundTrans",NotifyMsg)  ; XX & YY serve to 00auto-size the window.
-		ui.notifyGUi.addText("xs+1 y+1 w302 h22 background959595")
-		ui.loadingProgress := ui.notifyGui.addProgress("smooth x+-301 y+-21 w300 h20 cABABAB background252525")
+		ui.notifyGui.addText("section x1 y1 w348 h94 background353535")
+		
+		;ui.notifyGui.AddText("y5 x5 w340 h35 cBABABA center BackgroundTrans",NotifyMsg)  ; XX & YY serve to 00auto-size the window.
+		;ui.notifyGUi.addText("xs25 y+1 w302 h22 background959595")
+		ui.notifyGui.addPicture("y5 x65 w-1 h88 backgroundTrans","./img2/d2app.png")
+		ui.loadingProgress := ui.notifyGui.addProgress("smooth x1 y96 w348 h20 ccaaBcB background353535")
 		;setTimer(loadingProgressStep,100)
 		ui.notifyGui.AddText("xs hidden")
 	
 		tmpX := iniRead(cfg.file,"Interface","GuiX",200)
 		tmpY := iniRead(cfg.file,"Interface","GuiY",200)
 		
-		ui.notifyGui.Show("w350 h70")
+		;ui.notifyGui.Show("w350 h70")
 		winGetPos(&x,&y,&w,&h,ui.notifyGui.hwnd)
-		ui.notifyGui.move((tmpX+275)-(w/2),(tmpY+95)-(h/2))
-		drawOutline(ui.notifyGui,1,1,w-2,h-2,"454545","757575",1)
-		drawOutline(ui.notifyGui,2,2,w-4,h-4,"858585","454545",1)
+		winSetTransparent(0,ui.notifyGui)
+		ui.notifyGui.show("w350 h117 x" (tmpX+100)-(w/2) " y" (tmpY+50)-(h/2))
+		;drawOutline(ui.notifyGui,1,1,w-2,h-2,"454545","757575",1)
+		;drawOutline(ui.notifyGui,2,2,w-4,h-4,"858585","454545",1)
 		while transparent < 245 {
 			winSetTransparent(transparent,ui.notifyGui.hwnd)
 			transparent += 8
-			sleep(1)
-		}
+			sleep(10)
+		} 
 		winSetTransparent("Off",ui.notifyGui.hwnd)
 	
 	} else {
@@ -620,8 +634,7 @@ loadScreen(visible := true,NotifyMsg := "d2app Loading",Duration := 10) {
 				transparent -= 8
 				sleep(1)
 			}
-			ui.notifyGui.hide()
-			ui.notifyGui.destroy()
+
 		}
 	}
 }
@@ -650,7 +663,7 @@ resetWindowPosition(*) {
 }
 
 exitFunc(ExitReason,ExitCode) {
-	debugLog("Exit Command Received")
+	;debugLog("Exit Command Received")
 	ui.MainGui.Opt("-AlwaysOnTop")
 	If  !ui.fastShutdown && (cfg.confirmExitEnabled) && !InStr("Logoff Shutdown Reload Single Close",ExitReason)
 	{
@@ -662,7 +675,7 @@ exitFunc(ExitReason,ExitCode) {
 		}
 	}
 	; guiVis(ui.titlebarButtonGui,false)
-	guiVis(ui.afkGui,false)
+	;guiVis(ui.afkGui,false)
 	guiVis(ui.gameSettingsGui,false)
 	guiVis(ui.mainGui,false)
 	try {
@@ -675,10 +688,8 @@ exitFunc(ExitReason,ExitCode) {
 	cfg.guiX := winX
 	cfg.guiY := winY
 	
-	if fileExist("./.tmp")
-		fileDelete("./.tmp")
 	WriteConfig()
-	runWait("redist/mouseSC_x64.exe /verticalScroll:4",,"hide")
+	;runWait("redist/mouseSC_x64.exe /verticalScroll:4",,"hide")
 }
 
 restartApp(*) {

@@ -16,7 +16,7 @@ GuiGameTab(&ui,&cfg)
 
 	ui.MainGuiTabs.UseTab("Setup")
 	ui.MainGui.SetFont("s09")
-	ui.GameTabs := ui.MainGui.AddTab3("x35 y1 w495 h213 Buttons -Redraw Background" cfg.ThemeBackgroundColor " -E0x200", cfg.gameList)
+	ui.GameTabs := ui.MainGui.AddTab3("x35 y1 w495 h213 Buttons -Redraw Background" cfg.ThemePanel2Color " -E0x200", cfg.gameList)
 
 
 	
