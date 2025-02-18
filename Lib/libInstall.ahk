@@ -141,6 +141,12 @@ preAutoExec(InstallDir,ConfigFileName) {
 				dirCreate(installDir "/redist/mouseSC")
 			
 			fileInstall("./redist/mouseSC_x64.exe",installDir "/redist/mouseSC_x64.exe",1)
+			fileInstall("./img2/mouse_lmb.png",installDir "/img2/mouse_lmb.png",1)
+			fileInstall("./img2/mouse_rmb.png",installDir "/img2/mouse_rmb.png",1)
+			fileInstall("./img2/mouse_mmb.png",installDir "/img2/mouse_mmb.png",1)
+			fileInstall("./img2/mouse_fb.png",installDir "/img2/mouse_fb.png",1)
+			fileInstall("./img2/mouse_bb.png",installDir "/img2/mouse_bb.png",1)
+			
 			FileInstall("./Img/keyboard_key_up.png",InstallDir "/img/keyboard_key_up.png",1)
 			FileInstall("./Img/keyboard_key_down.png",InstallDir "/img/keyboard_key_down.png",1)
 			FileInstall("./Img/attack_icon.png",InstallDir "/Img/attack_icon.png",true)
