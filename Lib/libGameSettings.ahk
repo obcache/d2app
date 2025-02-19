@@ -21,7 +21,7 @@ GuiGameTab(&ui,&cfg)
 
 	
 	ui.MainGui.SetFont("s10")
-	drawOutlineMainGui(39,31,499,182,cfg.ThemeBorderDarkColor,cfg.ThemeBorderLightColor,2)
+	
 	
 	ui.MainGui.SetFont("s10")
 	

@@ -36,8 +36,11 @@ tabsChanged(*) {
 
 
 	initGui(&cfg, &ui) {
+		
+
 	ui.TransparentColor 	:= "010203"
 	ui.MainGui 				:= Gui()
+	drawOutlineMainGui(34,28,496,218,cfg.ThemeDark2Color,cfg.themeDark2Color,2)
 	ui.MainGui.Name 		:= "d2app"
 	ui.mainGui.Title		:= "d2app"
 	ui.TaskbarHeight 		:= GetTaskBarHeight()
@@ -71,9 +74,21 @@ tabsChanged(*) {
 	; ui.2_SetupButtonBg.onEvent("click",setupTabClicked)
 	ui.2_SetupButton := ui.mainGui.addText("y3 x114 w80 h22 center backgroundTrans","Setup")
 	;msgBox(cfg.mainTabList[1])
-	ui.3_FillOutline:=ui.mainGui.addText("x194 y0 w310 h30 background" cfg.themePanel1Color,"")
-	ui.3_FillBg:=ui.mainGui.addPicture("y0 x194 w310 h30 background" cfg.themePanel1Color,"./img/tab_unselected.png")
-	ui.3_FillBg.onEvent("click",WM_LBUTTONDOWN_callback)
+	ui.3_FillOutline:=ui.mainGui.addText("x194 y2 w280 h28 left background" cfg.themePanel1Color,"           d2app")
+	ui.3_fillOutline.setFont("s16 cDDCCFF","Move-X")
+	;ui.3_FillBg:=ui.mainGui.addText("y0 x194 w260 h30 background" cfg.themePanel1Color)
+	ui.3_FillOutline.onEvent("click",WM_LBUTTONDOWN_callback)
+	ui.mainGui.addText("y5 x394 w72 h20 background959595")
+	ui.mainGui.addText("y5 x394 w71 h19 background505050")
+
+	ui.mainGui.addText("y7 x396 w68 h16 backgroundC0B5C5")
+	
+	ui.3_FillText:=ui.mainGui.addText("y5 x397 w66 h16 center backgroundTrans","build" strSplit(a_fileVersion)[1] "" strSplit(a_fileVersion)[2] "" strSplit(a_fileVersion)[3] "" strSplit(a_fileVersion)[4])
+	
+	ui.3_fillText.setFont("s12 c151025","Notu Sans")
+	
+	line(ui.mainGui,194,28,320,2,cfg.themeBright1Color)
+	line(ui.mainGui,194,0,310,2,cfg.themeDark2Color)
 	ui.mainGuiTabs := ui.MainGui.AddTab3("x34 y0 w494 h213 Buttons -redraw Background" cfg.ThemePanel2Color " -E0x200",["1_Game","2_Setup"])
 	ui.MainGuiTabs.useTab("")
 	ui.mainGuiTabs.setFont("s13")
@@ -83,19 +98,19 @@ tabsChanged(*) {
 	ui.activeTab := ui.mainGuiTabs.Text
 	ui.previousTab := ui.activeTab
 	ui.MainGui.SetFont("s12 c" cfg.ThemeFont1Color,"Calibri")
-	ui.handleBarBorder := ui.mainGui.addText("x0 y0 w34 h220 background" cfg.themeBright1Color,"")
-	ui.handleBarImage := ui.MainGui.AddPicture("x1 y2 w33 h220 backgroundTrans","./img/handlebar_vertical.png")
+	ui.handleBarBorder := ui.mainGui.addText("hidden x0 y0 w34 h220 background" cfg.themeBright1Color,"")
+	ui.handleBarImage := ui.MainGui.AddPicture("hidden x1 y2 w33 h220 backgroundTrans","./img/handlebar_vertical.png")
 	ui.ButtonHandlebarDebug := ui.MainGui.AddPicture( 
 	(cfg.consoleVisible) 
-		? "x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonOnColor 
-		: "x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonReadyColor,
+		? "hidden x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonOnColor 
+		: "hidden x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonReadyColor,
 	(cfg.consoleVisible) 
 		? "./Img/button_console_ready.png" 
 		: "./Img/button_console_ready.png")
 	ui.handleBarImage.ToolTip := "Drag Handlebar to Move.`nDouble-Click to collapse/uncollapse."
 	
-	ui.rightHandlebarBg := ui.mainGui.addText("x529 y32 w31 h182 background" cfg.themeBright1Color,"")
-	ui.rightHandlebarImage2 := ui.mainGui.AddPicture("x528 w31 y33 h180 section","./img/right_handlebar_vertical.png")
+	ui.rightHandlebarBg := ui.mainGui.addText("hidden x529 y32 w31 h182 background" cfg.themeBright1Color,"")
+	ui.rightHandlebarImage2 := ui.mainGui.AddPicture("hidden x528 w31 y33 h180 section","./img/right_handlebar_vertical.png")
 	ui.handleBarImage.OnEvent("DoubleClick",ToggleGuiCollapse)
 
 	ui.rightHandleBarImage2.OnEvent("DoubleClick",ToggleGuiCollapse)
@@ -106,12 +121,12 @@ tabsChanged(*) {
 	;ui.gameTabTopDockButton := ui.mainGui.addPicture("x0 y0 w34 h33 background" cfg.themeButtonOnColor,"./img/button_dock_up.png")
 	;ui.gameTabTopDockButton.onEvent("click",topDockOn)
 	;ui.gameTabTopDockButton.toolTip := "Dock to top of screen"
-	ui.exitButtonBg := ui.mainGui.addText("x502 y2 w58 h30 background" cfg.themeBright1Color,"")
-	ui.DownButton := ui.mainGui.AddPicture("x502 y0 w26 h30 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
+	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x470 y0 w60 h30 Background" cfg.ThemeBright1Color,"")
+	;ui.exitButtonBg := ui.mainGui.addText("x466 y0 w30 h30 background" cfg.themeBright1Color,"")
+	ui.DownButton := ui.mainGui.AddPicture("x470 y0 w30 h30 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
 	ui.DownButton.OnEvent("Click",HideGui)
 	ui.DownButton.ToolTip := "Minimizes d2app App"
-	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x+2 ys0 section w30 h30 Background" cfg.ThemeBright1Color,"")
-	ui.ExitButton 	:= ui.mainGui.AddPicture("x+-32 ys0 w31 h32 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
+	ui.ExitButton 	:= ui.mainGui.AddPicture("x499 y0 w30 h30 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
 	ui.ExitButton.OnEvent("Click",ExitButtonPushed)
 	ui.ExitButton.ToolTip := "Terminates d2app App"
 	
@@ -182,9 +197,10 @@ tabsChanged(*) {
 	debugLog("Interface Initialized")
 	
 	ui.MainGuiTabs.UseTab("")
-	line(ui.mainGui,33,210,495,2,cfg.themeDark2Color)
-	line(ui.mainGui,34,32,2,210,cfg.themeBright1Color)
-	line(ui.mainGui,528,34,2,210,cfg.themeBright1Color)
+	;line(ui.mainGui,34,200,495,2,cfg.themeDark2Color)
+	line(ui.mainGui,34,212,494,2,cfg.themeBright1Color)
+	line(ui.mainGui,34,30,2,210,cfg.themeBright1Color)
+	line(ui.mainGui,528,30,2,210,cfg.themeBright1Color)
 	;line(ui.gameSettingsGui,250,190,280,2,cfg.themeBright2Color)
 
 }
@@ -672,8 +688,8 @@ initConsole(&ui) {
 
 	drawMainOutlines() {
 	ui.mainGuiTabs.useTab("")
-		drawOutlineNamed("consolePanelOutline",ui.mainGui,35,150,498,6,cfg.ThemeBorderDarkColor,cfg.ThemeBorderLightColor,2) 		;Log Panel Outline
-		drawOutlineNamed("consolePanelOutline2",ui.mainGui,35,220,498,184,cfg.ThemeBorderDarkColor,cfg.ThemeBorderLightColor,1)		;Log Panel 3D Effect
+		drawOutlineNamed("consolePanelOutline",ui.mainGui,34,200,498,2,cfg.ThemeBorderDarkColor,cfg.ThemeBorderLightColor,2) 		;Log Panel Outline
+		;drawOutlineNamed("consolePanelOutline2",ui.mainGui,35,210,498,184,cfg.ThemeBright1Color,cfg.ThemeBright1Color,1)		;Log Panel 3D Effect
 	}
 
 	drawOpsOutlines() {

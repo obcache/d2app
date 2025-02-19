@@ -611,7 +611,7 @@ d2DrawUi(*) {
 
 d2drawPanel3(*) {
 	ui.gameTabs.useTab("Gameplay")
-	ui.gameSettingsGui.addText("x7 y78 w481 h69 background" cfg.themePanel1Color,"")
+	ui.gameSettingsGui.addText("x7 y78 w481 h67 background" cfg.themePanel1Color,"")
 	ui.gameSettingsGui.addText("x12 y81 w470 h58 c" cfg.themePanel1Color " background" cfg.themePanel2Color)
 	drawOutlineNamed("d2linkPanel",ui.gameSettingsGui,13,82,470,57,cfg.themeDark1Color,cfg.themeBright2Color,1)
 	drawOutlineNamed("d2AlwaysRunOutline",ui.gameSettingsGui,6,76,484,68,cfg.themeBright1Color,cfg.themeBright1Color,1)
@@ -896,11 +896,12 @@ drawGameTabs(tabNum := 1) {
 
 	
 	winGetPos(&mainGuiX,&mainGuiY,,,ui.mainGui.hwnd)
-		ui.gameTabGui.addText("y2 x362 w" 498-(ui.gameTabWidth+3) " h30 background" cfg.themePanel1Color)
+		ui.gameTabGui.addText("y2 x362 w" 498-(ui.gameTabWidth+3) " h28 background" cfg.themePanel1Color)
 	if !(mainGuiX==0 && mainGuiY==0) {
 		ui.gameTabGui.show("w495 h32 noActivate x" mainGuiX+34 " y" mainGuiY+183)
 		
-	} 
+	}
+	line(ui.gameTabGui,362,29,200,2,cfg.themeDark2Color)
 }
 			
 

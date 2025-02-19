@@ -28,7 +28,7 @@ GuiSetupTab(&ui,&cfg) {
 	drawPanel(ui.mainGui,45,36,210,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,263,36,210,108,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,263,151,210,53,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-	drawPanel(ui.mainGui,480,36,40,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
+	drawPanel(ui.mainGui,480,36,37,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	
 	ui.MainGui.SetFont("s09")
 	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y42 w25 h150 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
@@ -38,7 +38,7 @@ GuiSetupTab(&ui,&cfg) {
 	ui.AutoClickerSpeedSlider.OnEvent("Change",AutoClickerSpeedChanged)
 	
 	ui.MainGui.SetFont("s10 c" cfg.themeFont1Color)
-	drawOutlineMainGui(36,30,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,1)
+	drawOutlineMainGui(42,33,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)
 
 	ui.MainGui.SetFont("s10")
 	

@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.1.8"
+A_FileVersion := "1.4.1.9"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -17,7 +17,7 @@ if !a_isAdmin {
     {
         if a_isCompiled
             run '*runAs "' a_scriptFullPath '" /restart'
-        else
+			else
             run '*runAs "' a_ahkPath '" /restart "' a_scriptFullPath '"'
     }
     exitApp()
@@ -134,7 +134,7 @@ ui.loadingProgress.value += 5
 ;ui.afkGui.show("x" cfg.guiX+45 " y" cfg.guiY+50 " w270 h140 noActivate")
 ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
 
-ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h184 noActivate")
+ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h182 noActivate")
 ui.gameTabGui.show("w495 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
 ui.loadingProgress.value += 5
 
