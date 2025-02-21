@@ -618,7 +618,7 @@ d2drawPanel3(*) {
 	ui.gameSettingsGui.addText("hidden x19 y21 section")
 	ui.d2LaunchDIMbutton				:= ui.gameSettingsGui.addPicture("x25 y+49 section w50 h50 backgroundTrans","./img/button_DIM.png")
 	ui.d2LaunchVaultCleanerButton			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_vault_up.png")
-	ui.d2LaunchBlueberriesButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_bbgg.png")
+	ui.d2LaunchBlueberriesButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_blueberries.png")
 	ui.d2LaunchD2CheckListButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_d2CheckList.png")
 	ui.d2LaunchDestinyTrackerButton 	:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_DestinyTracker.png")
 	ui.d2Launchd2FoundryButton 			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_d2Foundry.png")
@@ -991,8 +991,8 @@ d2LaunchVaultCleanerButtonClicked(*) {
 }
 
 d2LaunchBlueBerriesButtonClicked(*) {
-	ui.d2LaunchBlueberriesButton.value := "./img/button_bbgg_down.png"
-	setTimer () => ui.d2LaunchBlueberriesButton.value := "./img/button_bbgg.png",-400
+	ui.d2LaunchBlueberriesButton.value := "./img/button_blueberries_down.png"
+	setTimer () => ui.d2LaunchBlueberriesButton.value := "./img/button_blueberries.png",-400
 	run("chrome.exe https://www.blueberries.gg")
 }
 	
