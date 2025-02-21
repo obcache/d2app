@@ -175,6 +175,8 @@ preAutoExec(InstallDir,ConfigFileName) {
 			FileInstall("./Img/button_DIM_down.png",InstallDir "/Img/button_DIM_down.png",1)
 			FileInstall("./Img/button_Blueberries.png",InstallDir "/Img/button_blueberries.png",1)
 			FileInstall("./Img/button_Blueberries_down.png",InstallDir "/Img/button_BlueBerries_down.png",1)
+			FileInstall("./Img/button_DestinyTracker.png",InstallDir "/Img/button_DestinyTracker.png",1)
+			FileInstall("./Img/button_DestinyTracker_down.png",InstallDir "/Img/button_DestinyTracker_down.png",1)
 			FileInstall("./Img/button_power.png",InstallDir "/Img/button_power.png",1)
 			FileInstall("./Img/button_power_on.png",InstallDir "/Img/button_power_on.png",1)
 			FileInstall("./Img/button_power_ready.png",InstallDir "/Img/button_power_ready.png",1)
