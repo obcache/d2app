@@ -113,18 +113,6 @@ preAutoExec(InstallDir,ConfigFileName) {
 			{
 				DirCreate(InstallDir "\Img")
 			}
-			if !(DirExist(InstallDir "\Img2"))
-			{
-				DirCreate(InstallDir "\Img2")
-			}
-			if !(DirExist(InstallDir "\Img2\infogfx"))
-			{
-				DirCreate(InstallDir "\Img2\infogfx")
-			}
-			if !(DirExist(InstallDir "\Img2\infogfx\vod"))
-			{
-				DirCreate(InstallDir "\Img2\infogfx\vod")
-			}
 			if !(DirExist(InstallDir "\Redist"))
 			{
 				DirCreate(InstallDir "\Redist")
@@ -141,12 +129,12 @@ preAutoExec(InstallDir,ConfigFileName) {
 				dirCreate(installDir "/redist/mouseSC")
 			
 			fileInstall("./redist/mouseSC_x64.exe",installDir "/redist/mouseSC_x64.exe",1)
-			fileInstall("./img2/d2app.png",installdir "/img2/d2app.png",1)
-			fileInstall("./img2/mouse_lmb.png",installDir "/img2/mouse_lmb.png",1)
-			fileInstall("./img2/mouse_rmb.png",installDir "/img2/mouse_rmb.png",1)
-			fileInstall("./img2/mouse_mmb.png",installDir "/img2/mouse_mmb.png",1)
-			fileInstall("./img2/mouse_fb.png",installDir "/img2/mouse_fb.png",1)
-			fileInstall("./img2/mouse_bb.png",installDir "/img2/mouse_bb.png",1)
+			fileInstall("./img/d2app.png",installdir "/img/d2app.png",1)
+			fileInstall("./img/mouse_lmb.png",installDir "/img/mouse_lmb.png",1)
+			fileInstall("./img/mouse_rmb.png",installDir "/img/mouse_rmb.png",1)
+			fileInstall("./img/mouse_mmb.png",installDir "/img/mouse_mmb.png",1)
+			fileInstall("./img/mouse_fb.png",installDir "/img/mouse_fb.png",1)
+			fileInstall("./img/mouse_bb.png",installDir "/img/mouse_bb.png",1)
 	
 			FileInstall("./Img/color_swatches.png",InstallDir "/Img/color_swatches.png",1)
 
@@ -156,12 +144,17 @@ preAutoExec(InstallDir,ConfigFileName) {
 			fileInstall("./img/toggle_vertical_trans_off.png",installDir "/img/toggle_vertical_trans_off.png",1)
 			FileInstall("./Img/button_update.png",InstallDir "/img/button_update.png",1)
 			FileInstall("./Img/button_exit_gaming.png",InstallDir "/img/button_exit_gaming.png",1)
-
+			fileInstall("./img/d2ClassIconWarlock_on.png",installDir "/img/d2ClassIconWarlock_on.png",1)
+			fileInstall("./img/d2ClassIconWarlock_off.png",installDir "/img/d2ClassIconWarlock_off.png",1)
+			fileInstall("./img/d2ClassIconHunter_on.png",installDir "/img/d2ClassIconHunter_on.png",1)
+			fileInstall("./img/d2ClassIconHunter_off.png",installDir "/img/d2ClassIconHunter_off.png",1)
+			fileInstall("./img/d2ClassIconTitan_on.png",installDir "/img/d2ClassIconWarlock_on.png",1)
+			fileInstall("./img/d2ClassIconTitan_off.png",installDir "/img/d2ClassIconTitan_off.png",1)
 
 			FileInstall("./Img/button_plus.png",InstallDir "/Img/button_plus.png",1)
 			FileInstall("./Img/button_power.png",InstallDir "/Img/button_power.png",1)
 			FileInstall("./Img/button_minus.png",InstallDir "/Img/button_minus.png",1)
-			fileInstall("./img2/d2app_titlebar.png",installDir "/img2/d2app_titlebar.png",1)
+			fileInstall("./img/d2app_titlebar.png",installDir "/img/d2app_titlebar.png",1)
 			FileInstall("./Img/button_autoClicker_ready.png",InstallDir "/Img/button_autoClicker_ready.png",1)
 			FileInstall("./Img/button_autoClicker_on.png",InstallDir "/Img/button_autoClicker_on.png",1)
 			FileInstall("./Img/button_quit.png",InstallDir "/Img/button_quit.png",true)

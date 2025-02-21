@@ -86,7 +86,7 @@ tabsChanged(*) {
 	ui.3_FillText:=ui.mainGui.addText("y5 x397 w66 h16 center backgroundTrans","build" strSplit(a_fileVersion)[1] "" strSplit(a_fileVersion)[2] "" strSplit(a_fileVersion)[3] "" strSplit(a_fileVersion)[4])
 	
 	ui.3_fillText.setFont("s12 c151025","Notu Sans")
-	ui.titleBar:=ui.mainGui.addPicture("y5 x194 y2 w280 h28 left backgroundTrans","./img2/d2app_titlebar.png")
+	ui.titleBar:=ui.mainGui.addPicture("y5 x194 y2 w280 h28 left backgroundTrans","./img/d2app_titlebar.png")
 	line(ui.mainGui,194,28,320,2,cfg.themeBright1Color)
 	line(ui.mainGui,194,0,310,2,cfg.themeDark2Color)
 	ui.mainGuiTabs := ui.MainGui.AddTab3("x34 y0 w494 h213 Buttons -redraw Background" cfg.ThemePanel2Color " -E0x200",["1_Game","2_Setup"])
