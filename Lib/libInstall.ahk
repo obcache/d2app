@@ -166,6 +166,8 @@ preAutoExec(InstallDir,ConfigFileName) {
 			FileInstall("./Img/button_autoClicker_on.png",InstallDir "/Img/button_autoClicker_on.png",1)
 			FileInstall("./Img/button_quit.png",InstallDir "/Img/button_quit.png",true)
 			FileInstall("./Img/button_minimize.png",InstallDir "/Img/button_minimize.png",true)
+			fileInstall("./img/tab_selected.png",installDir "/img/tab_selected.png",1)
+			fileInstall("./img/tab_unselected.png",installDir "/img/tab_unselected.png",1)
 			
 			FileInstall("./Img/button_plus_ready.png",InstallDir "/Img/button_plus_ready.png",true)
 			FileInstall("./Img/button_plus_on.png",InstallDir "/Img/button_plus_on.png",true)
