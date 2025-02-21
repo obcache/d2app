@@ -99,7 +99,7 @@ tabsChanged(*) {
 	ui.previousTab := ui.activeTab
 	ui.MainGui.SetFont("s12 c" cfg.ThemeFont1Color,"Calibri")
 	ui.handleBarBorder := ui.mainGui.addText("hidden x0 y0 w34 h220 background" cfg.themeBright1Color,"")
-	ui.handleBarImage := ui.MainGui.AddPicture("hidden x1 y2 w33 h220 backgroundTrans","./img/handlebar_vertical.png")
+	ui.handleBarImage := ui.MainGui.AddPicture("hidden x1 y2 w33 h220 backgroundTrans")
 	ui.ButtonHandlebarDebug := ui.MainGui.AddPicture( 
 	(cfg.consoleVisible) 
 		? "hidden x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonOnColor 
@@ -110,7 +110,7 @@ tabsChanged(*) {
 	ui.handleBarImage.ToolTip := "Drag Handlebar to Move.`nDouble-Click to collapse/uncollapse."
 	
 	ui.rightHandlebarBg := ui.mainGui.addText("hidden x529 y32 w31 h182 background" cfg.themeBright1Color,"")
-	ui.rightHandlebarImage2 := ui.mainGui.AddPicture("hidden x528 w31 y33 h180 section","./img/right_handlebar_vertical.png")
+	ui.rightHandlebarImage2 := ui.mainGui.AddPicture("hidden x528 w31 y33 h180 section")
 	ui.handleBarImage.OnEvent("DoubleClick",ToggleGuiCollapse)
 
 	ui.rightHandleBarImage2.OnEvent("DoubleClick",ToggleGuiCollapse)

@@ -168,7 +168,8 @@ preAutoExec(InstallDir,ConfigFileName) {
 			FileInstall("./Img/button_minimize.png",InstallDir "/Img/button_minimize.png",true)
 			fileInstall("./img/tab_selected.png",installDir "/img/tab_selected.png",1)
 			fileInstall("./img/tab_unselected.png",installDir "/img/tab_unselected.png",1)
-			
+			fileInstall("./img/handlebar_vertical.png", installDir "/img/handlebar_vertical.png",1)
+			fileInstall("./img/right_handlebar_vertical.png", installDir "/img/right_handlebar_vertical.png",1)
 			FileInstall("./Img/button_plus_ready.png",InstallDir "/Img/button_plus_ready.png",true)
 			FileInstall("./Img/button_plus_on.png",InstallDir "/Img/button_plus_on.png",true)
 			FileInstall("./Img/button_minus_ready.png",InstallDir "/Img/button_minus_ready.png",true)
