@@ -616,13 +616,13 @@ d2drawPanel3(*) {
 	drawOutlineNamed("d2linkPanel",ui.gameSettingsGui,13,82,470,57,cfg.themeDark1Color,cfg.themeBright2Color,1)
 	drawOutlineNamed("d2AlwaysRunOutline",ui.gameSettingsGui,6,76,484,68,cfg.themeBright1Color,cfg.themeBright1Color,1)
 	ui.gameSettingsGui.addText("hidden x19 y21 section")
-	ui.d2LaunchDIMbutton				:= ui.gameSettingsGui.addPicture("x25 y+49 section w50 h50 backgroundTrans","./img/d2_button_DIM.png")
+	ui.d2LaunchDIMbutton				:= ui.gameSettingsGui.addPicture("x25 y+49 section w50 h50 backgroundTrans","./img/button_DIM.png")
 	ui.d2LaunchVaultCleanerButton			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_vault_up.png")
-	ui.d2LaunchBlueberriesButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/d2_button_bbgg.png")
-	ui.d2LaunchD2CheckListButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/d2_button_d2CheckList.png")
-	ui.d2LaunchDestinyTrackerButton 	:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/d2_button_DestinyTracker.png")
-	ui.d2Launchd2FoundryButton 			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/d2_button_d2Foundry.png")
-	ui.d2LaunchBrayTechButton 			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 vBrayTechButton backgroundTrans","./img/d2_button_braytech.png")
+	ui.d2LaunchBlueberriesButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_bbgg.png")
+	ui.d2LaunchD2CheckListButton 		:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_d2CheckList.png")
+	ui.d2LaunchDestinyTrackerButton 	:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_DestinyTracker.png")
+	ui.d2Launchd2FoundryButton 			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 backgroundTrans","./img/button_d2Foundry.png")
+	ui.d2LaunchBrayTechButton 			:= ui.gameSettingsGui.addPicture("x+15 ys w50  h50 vBrayTechButton backgroundTrans","./img/button_braytech.png")
 }
 
 d2KeybindTabChange(this_button,*) {
@@ -978,8 +978,8 @@ d2RedrawUI(*) {
 }
 
 d2LaunchDIMButtonClicked(*) {
-	ui.d2LaunchDIMbutton.value := "./img/d2_button_DIM_down.png"
-	setTimer () => ui.d2LaunchDIMbutton.value := "./img/d2_button_DIM.png",-400
+	ui.d2LaunchDIMbutton.value := "./img/button_DIM_down.png"
+	setTimer () => ui.d2LaunchDIMbutton.value := "./img/button_DIM.png",-400
 	
 	run("chrome.exe http://app.destinyitemmanager.com")
 }
@@ -991,20 +991,20 @@ d2LaunchVaultCleanerButtonClicked(*) {
 }
 
 d2LaunchBlueBerriesButtonClicked(*) {
-	ui.d2LaunchBlueberriesButton.value := "./img/d2_button_bbgg_down.png"
-	setTimer () => ui.d2LaunchBlueberriesButton.value := "./img/d2_button_bbgg.png",-400
+	ui.d2LaunchBlueberriesButton.value := "./img/button_bbgg_down.png"
+	setTimer () => ui.d2LaunchBlueberriesButton.value := "./img/button_bbgg.png",-400
 	run("chrome.exe https://www.blueberries.gg")
 }
 	
 d2Launchd2CheckListButtonClicked(*) {
-	ui.d2Launchd2ChecklistButton.value := "./img/d2_button_d2Checklist_down.png"
-	setTimer () => ui.d2Launchd2ChecklistButton.value := "./img/d2_button_d2Checklist.png",-400
+	ui.d2Launchd2ChecklistButton.value := "./img/button_d2Checklist_down.png"
+	setTimer () => ui.d2Launchd2ChecklistButton.value := "./img/button_d2Checklist.png",-400
 	run("chrome.exe https://www.d2checklist.com")
 }
 
 d2LaunchDestinyTrackerButtonClicked(*) {
-	ui.d2LaunchDestinyTrackerButton.value := "./img/d2_button_DestinyTracker_down.png"
-	setTimer () => ui.d2LaunchDestinyTrackerButton.value := "./img/d2_button_DestinyTracker.png",-400
+	ui.d2LaunchDestinyTrackerButton.value := "./img/button_DestinyTracker_down.png"
+	setTimer () => ui.d2LaunchDestinyTrackerButton.value := "./img/button_DestinyTracker.png",-400
 	run("chrome.exe https://www.DestinyTracker.com")
 }
 
@@ -1026,7 +1026,7 @@ toggleCodeWindow(lparam,wparam*) {
 }
 	
 showCodeWindow(*) {
-	ui.d2LaunchBrayTechButton.value := "./img/d2_button_brayTech_down.png"
+	ui.d2LaunchBrayTechButton.value := "./img/button_brayTech_down.png"
 	d2wwCodesGuiHwnd := false
 	try 
 		d2wwCodesGuiHwnd := ui.d2wwCodesGui.hwnd
@@ -1045,7 +1045,7 @@ showCodeWindow(*) {
 }																																																																																																																																																																																																																				
 
 hideCodeWindow(*) {
-	ui.d2LaunchBrayTechButton.value := "./img/d2_button_brayTech.png"
+	ui.d2LaunchBrayTechButton.value := "./img/button_brayTech.png"
 	ui.d2wwCodesGui.hide()
 }
 	
@@ -1508,13 +1508,13 @@ toggleGlyphWindow(*) {
 showGlyphWindow(*) {
 	ui.infoGuiBg.show("noActivate") 
 	ui.infoGui.show("noActivate")
-	ui.d2Launchd2FoundryButton.value := "./img/d2_button_d2Foundry_down.png"
+	ui.d2Launchd2FoundryButton.value := "./img/button_d2Foundry_down.png"
 	winSetTransparent(255,ui.infoGuiBg.hwnd)
 	winSetTransparent(255,ui.infoGui.hwnd)
 }
 
 hideGlyphWindow(*) {
-	ui.infoGui.hide(), ui.infoGuiBg.hide(),ui.d2Launchd2FoundryButton.value := "./img/d2_button_d2Foundry.png"
+	ui.infoGui.hide(), ui.infoGuiBg.hide(),ui.d2Launchd2FoundryButton.value := "./img/button_d2Foundry.png"
 }
 
 
