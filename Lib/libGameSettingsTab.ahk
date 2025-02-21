@@ -1569,14 +1569,26 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 	this2.elapsedSec:=1
 	
 	ui.gametabs.useTab("222Vault Cleaner222")
-	this2.statusText:=ui.gameSettingsGui.addText("x10 y33 w640 h18 backgroundTrans c00FFFF","Please Wait....")
-	this2.statusText.setFont("s16","Maze-X")
-	this2.mainButtonBg:=ui.gameSettingsGui.addText("x5 y5 w50 h18 background55FF33")
-	this2.mainButton:=ui.gameSettingsGui.addText("section center x7 y6 w76 h16 background008800 c00FFFF","")
-	this2.mainButtonText:=ui.gameSettingsGui.addText("section center x5 y2 w50 h18 backgroundTrans c55ff55","Start")
-	this2.mainButtonText.setFont("s14","Maze-x")
-	this2.mainButtonHotkey:=ui.gameSettingsGui.addText("left x+15 ys+3 backgroundTrans cbbbbbb h18 w130","[Shift + \]")
-	this2.mainButtonHotkey.setFont("s16 c00AA00","calibri")
+	ui.gameSettingsGui.addText("x9 y13 w118 h42 backgroundffffff")
+	ui.gameSettingsGui.addText("x9 y34 w480 h44 backgroundffffff")
+	ui.gameSettingsGui.addText("x10 y35 w478 h20 background252525")
+	ui.gameSettingsGui.addText("x11 y36 w476 h18 background656565")
+	this2.statusText:=ui.gameSettingsGui.addText("x15 y36 w640 h20 backgroundTrans cbbFF33","Please Wait....")
+	this2.statusText.setFont("s12","Maze-X")
+
+	
+
+	this2.mainButtonBg:=ui.gameSettingsGui.addText("x10 y14 w48 h20 background252525")
+
+	this2.mainButton:=ui.gameSettingsGui.addText("section center x11 y15 w46 h18 background33FF33 c00FFFF","")
+		this2.mainButtonText:=ui.gameSettingsGui.addText("section center x10 y12 w48 h22 backgroundTrans c252525","Start")
+	this2.mainButtonText.setFont("s14","Ubuntu One")
+	
+	ui.gameSettingsGui.addText("x60 y14 w66 h20 background252525")
+	this2.mainButtonHotkey:=ui.gameSettingsGui.addText("left x61 y15 background656565 c252525 h18 w64")
+	
+	this2.mainButtonHotkeyText:=ui.gameSettingsGui.addText("left x68 y15 backgroundTrans cbbbbbb h18 w63","Shift + \")
+	this2.mainButtonHotkeyText.setFont("s11 cbbbbbb","Ubuntu One")
 	this2.mainButton.onEvent("click",cleanVaultStart)
 	this2.mainButtonText.onEvent("click",cleanVaultStart)
 	toggleButton2(*) {
@@ -1600,10 +1612,10 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 	this2.dismantledExotics:=ui.gameSettingsGui.addText("x1240 y" 25+this2.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
 	this2.dismantledTotalLabel:=ui.gameSettingsGui.addText("x1160 y" 40+this2.yOffset " w80 right h25 c00FFFF backgroundTrans","Total: ")
 	this2.dismantledTotal:=ui.gameSettingsGui.addText("x1240 y" 40+this2.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
-	this2.vaultProgressLabelBg:=ui.gameSettingsGui.addText("x0 y" 70+this2.yOffset " w100 h30 background505060 c151515","")
-	this2.vaultProgressLabel:=ui.gameSettingsGui.addText("x5 y" 70+this2.yOffset " w85 h30 backgroundTrans c302535","Progress")
+	this2.vaultProgressLabelBg:=ui.gameSettingsGui.addText("x10 y56 w65 h21 background505060 c151515","")
+	this2.vaultProgressLabel:=ui.gameSettingsGui.addText("x15 y58 w60 h18 backgroundTrans ccccccc","Progress")
 	this2.vaultProgressLabel.setFont("s10","Helvetica")
-	this2.vaultProgress := ui.gameSettingsGui.addProgress("x90 y" 70+this2.yOffset " w1289 h30 c440000 background151515 range1-500")
+	this2.vaultProgress := ui.gameSettingsGui.addProgress("x76 y56 w412 h21 c440000 background151515 range1-500")
 	this2.completeMsg := ui.gameSettingsGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
 	ui.gameTabs.useTab("Mouse")
 	cfg.rmbBind:=iniRead(cfg.file,"Game","RButtonBind","RButton")

@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.2.6"
+A_FileVersion := "1.4.2.7"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -85,80 +85,72 @@ MonitorGetWorkArea(MonitorGetprimary(),
 	&primaryWorkAreaBottom)
 advProgress(5)	
 cfgLoad(&cfg, &ui)
-advProgress(10)
+advProgress(5)
 initTrayMenu()
 
 initGui(&cfg, &ui)
-advProgress(10)
+advProgress(5)
 
 initConsole(&ui)
-ui.loadingProgress.value += 10
+advProgress(5)
 
 
 #include <class_sqliteDb>
 #include <class_lv_colors>
 #include <libGui>
+advProgress(5)
 #include <libWinMgr>
 #include <libGlobal>
+advProgress(5)
 #include <libInstall>
-;#include <libAfkFunctions>
+advProgress(5)
 #include <libGuiSetupTab>
 #include <libGuiAppDockTab>
+advProgress(5)
 #include <libGameAssists>
 #include <libGameSettingsTab>
 #include <libIncursionCheck>
-ui.loadingProgress.value += 15
+advProgress(5)
 #include <libGuiSystemTab>
 #include <libHotkeys>
 #include <libRoutines>
+advProgress(5)
 #include <libThemeEditor>
 #include <libVaultCleaner>
-ui.loadingProgress.value += 10
+advProgress(5)
 
-debugLog("Interface Initialized")
 OnExit(ExitFunc)
-debugLog("Console Initialized")
 
 ui.gameTabs.choose(cfg.gameModuleList[cfg.activeGameTab])
-ui.loadingProgress.value += 5
+advProgress(5)
 tabsChanged()
-;createDockBar()
-ui.loadingProgress.value += 5
-	
-
+advProgress(5)
 
 try
 	guiVis("all",false)
-ui.loadingProgress.value += 5
+advProgress(5)
 
-;ui.afkGui.show("x" cfg.guiX+45 " y" cfg.guiY+50 " w270 h140 noActivate")
 winSetRegion("33-0 w500 h214",ui.mainGui)
 ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
-
 ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h182 noActivate")
 ui.gameTabGui.show("w495 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
-ui.loadingProgress.value += 5
+advProgress(10)
 
 if (cfg.startMinimizedEnabled)
 	ui.mainGui.hide()
 
-
-	ui.loadingProgress.value += 5
-	monitorResChanged()
-
+advProgress(5)
+monitorResChanged()
 ui.MainGuiTabs.Choose(cfg.mainTabList[cfg.activeMainTab])
 
-ui.loadingProgress.value += 5
+advProgress(5)
+fadeIn()
 
-; initGuiState()
+try {
+	ui.notifyGui.hide()
+	ui.notifyGui.destroy()
+}
 
-
-ui.loadingProgress.value += 5
-	fadeIn()
-	try {
-			ui.notifyGui.hide()
-			ui.notifyGui.destroy()
-	}
 try {
 	whr := ComObject("WinHttp.WinHttpRequest.5.1")
 	whr.Open("GET", "http://sorryneedboost.com/cacheApp/recentIncursion.dat", true)
@@ -166,24 +158,18 @@ try {
 	whr.WaitForResponse()
 	iniWrite(whr.ResponseText,cfg.file,"Game","LastIncursion")
 }
+	
 autoUpdate()
 
-	if (cfg.AlwaysOnTopEnabled) {
-		ui.MainGui.Opt("+AlwaysOnTop")
-	} else {
-		ui.MainGui.Opt("-AlwaysOnTop")
-		ui.AfkGui.Opt("-AlwaysOnTop")	
-	}
-	
+if (cfg.AlwaysOnTopEnabled) {
+	ui.MainGui.Opt("+AlwaysOnTop")
+} else {
+	ui.MainGui.Opt("-AlwaysOnTop")
+	ui.AfkGui.Opt("-AlwaysOnTop")	
+}
 	
 cfg.consoleVisible := !cfg.consoleVisible	
-
-;toggleConsole()
-;statusBar()
-;listhotkeys()
 d2AutoGameConfigOverride()
-
 ui.isActiveWindow:=""
 setTimer () => (ui.isActiveWindow:=(winActive("ahk_exe destiny2.exe")) ? (ui.isActiveWindow) ? 1 : (setCapsLockState(cfg.d2AlwaysRunEnabled),1) : (ui.isActiveWindow) ? (0,setCapsLockState(0)) : 0),500
-;winSetTransparent(150,ui.mainGui)
 loadScreen(0)
