@@ -161,7 +161,7 @@ preAutoExec(InstallDir,ConfigFileName) {
 			FileInstall("./Img/button_plus.png",InstallDir "/Img/button_plus.png",1)
 			FileInstall("./Img/button_power.png",InstallDir "/Img/button_power.png",1)
 			FileInstall("./Img/button_minus.png",InstallDir "/Img/button_minus.png",1)
-			fileInstall("./img2/d2app_titlebar.png",installDir "/img/d2app_titlebar.png",1)
+			fileInstall("./img2/d2app_titlebar.png",installDir "/img2/d2app_titlebar.png",1)
 			FileInstall("./Img/button_autoClicker_ready.png",InstallDir "/Img/button_autoClicker_ready.png",1)
 			FileInstall("./Img/button_autoClicker_on.png",InstallDir "/Img/button_autoClicker_on.png",1)
 			FileInstall("./Img/button_quit.png",InstallDir "/Img/button_quit.png",true)
