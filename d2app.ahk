@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.1.9"
+A_FileVersion := "1.4.2.2"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -132,6 +132,7 @@ try
 ui.loadingProgress.value += 5
 
 ;ui.afkGui.show("x" cfg.guiX+45 " y" cfg.guiY+50 " w270 h140 noActivate")
+winSetRegion("33-0 w500 h214",ui.mainGui)
 ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
 
 ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h182 noActivate")
@@ -165,15 +166,8 @@ try {
 	whr.WaitForResponse()
 	iniWrite(whr.ResponseText,cfg.file,"Game","LastIncursion")
 }
-
 autoUpdate()
 
-if cfg.topDockEnabled
-	ui.topDockPrevTab := ui.mainGuiTabs.text
-
-;if ui.incursionDebug
-;	incursionNotice("manualFire")
-;OnMessage(0x0201, wm_lButtonDown)
 	if (cfg.AlwaysOnTopEnabled) {
 		ui.MainGui.Opt("+AlwaysOnTop")
 	} else {

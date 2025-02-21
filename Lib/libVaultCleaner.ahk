@@ -149,7 +149,7 @@ libVaultInit(*) {
 
 		this.vaultProgressLabelBg:=thisGui.addText("x0 y" 70+this.yOffset " w100 h30 background505060 c151515","")
 		this.vaultProgressLabel:=thisGui.addText("x5 y" 70+this.yOffset " w85 h30 backgroundTrans c302535","Progress")
-		this.vaultProgressLabel.setFont("s14","Helvetica")
+		this.vaultProgressLabel.setFont("s18","Mode-X")
 		this.vaultProgress := thisGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
 		this.completeMsg := thisGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
 		

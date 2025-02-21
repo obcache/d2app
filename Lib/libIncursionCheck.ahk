@@ -9,15 +9,19 @@ if (InStr(A_LineFile,A_ScriptFullPath))
 	Return
 }
 
-setTimer(incursionNotice,15000)
+if cfg.pushNotificationsEnabled:=iniRead(cfg.file,"Toggles","PushNotificationsEnabled",false)
+	setTimer(incursionNotice,15000)
+	
 
 toggleIncursionNotice(*) {
 	cfg.pushNotificationsEnabled := !cfg.pushNotificationsEnabled
-	if cfg.pushNotificationsEnabled == false {
+	if cfg.pushNotificationsEnabled == 0 {
+		setTimer(incursionNotice,0)
 		ui.incursionOptOut.value := "./img/checkbox_true.png"
 		ui.togglePushNotifications.value := cfg.toggleOff
 		ui.togglePushNotifications.opt("background" cfg.themeButtonReadyColor)
 	} else {
+		setTimer(incursionNotice,15000)
 		ui.incursionOptOut.value := "./img/checkbox_false.png"
 		ui.togglePushNotifications.value := cfg.toggleOn
 		ui.togglePushNotifications.opt("background" cfg.themeButtonOnColor)

@@ -25,10 +25,10 @@ GuiSetupTab(&ui,&cfg) {
 	global
 	ui.MainGuiTabs.UseTab("2_Setup")
 	
-	drawPanel(ui.mainGui,45,36,210,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-	drawPanel(ui.mainGui,263,36,210,108,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-	drawPanel(ui.mainGui,263,151,210,53,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-	drawPanel(ui.mainGui,480,36,37,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
+	drawPanel(ui.mainGui,40,39,218,164,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
+	drawPanel(ui.mainGui,261,39,214,104,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
+	drawPanel(ui.mainGui,261,151,214,53,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
+	drawPanel(ui.mainGui,478,39,41,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	
 	ui.MainGui.SetFont("s09")
 	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y42 w25 h150 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
@@ -38,7 +38,7 @@ GuiSetupTab(&ui,&cfg) {
 	ui.AutoClickerSpeedSlider.OnEvent("Change",AutoClickerSpeedChanged)
 	
 	ui.MainGui.SetFont("s10 c" cfg.themeFont1Color)
-	drawOutlineMainGui(42,33,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)
+	drawOutlineMainGui(38,36,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)
 
 	ui.MainGui.SetFont("s10")
 	
@@ -55,10 +55,10 @@ GuiSetupTab(&ui,&cfg) {
 	ui.toggleAfkSnap := ui.MainGui.AddPicture("x49 y18 w60 h1 section hidden vAfkSnap " (cfg.AfkSnapEnabled ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.AfkSnapEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
 	ui.toggleAfkSnap.OnEvent("Click", toggleChanged)
 	ui.toggleAfkSnap.ToolTip := "Toggles Afk Screen Snapping"
-	ui.labelAfkSnap:= ui.MainGui.AddText("x+2 ys+3 hidden background" cfg.themePanel3Color,"AFK Snapping")
+	ui.labelAfkSnap:= ui.MainGui.AddText("x+2 ys+7 hidden background" cfg.themePanel3Color,"AFK Snapping")
 
 	cfg.toolTipsEnabled:=iniRead(cfg.file,"Toggles","ToolTipsEnabled",true)
-	ui.toggleToolTips := ui.MainGui.AddPicture("xs y+3 w50 h22 section vToolTips " ((cfg.ToolTipsEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.ToolTipsEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
+	ui.toggleToolTips := ui.MainGui.AddPicture("xs y+5 w50 h22 section vToolTips " ((cfg.ToolTipsEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.ToolTipsEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
 	ui.toggleToolTips.OnEvent("Click", toggleChanged)
 	ui.toggleToolTips.ToolTip := "Toggles ToolTips"
 	ui.labelToolTips := ui.MainGui.AddText("x+5 ys+2 BackgroundTrans","  ToolTips")
@@ -191,6 +191,7 @@ GuiSetupTab(&ui,&cfg) {
 	{
 		ui.togglePushNotifications.Opt((cfg.PushNotificationsEnabled := !cfg.PushNotificationsEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor))
 		ui.togglePushNotifications.Redraw()
+		
 	}
 	cfg.PushNotificationsEnabled:=iniRead(cfg.file,"Toggles","PushNotificationsEnabled",true)
 	ui.togglePushNotifications := ui.MainGui.AddPicture("xs y+2 w50 h22 section vPushNotifications " (cfg.PushNotificationsEnabled ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.PushNotificationsEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
@@ -209,23 +210,24 @@ GuiSetupTab(&ui,&cfg) {
 	ui.toggleDebug.ToolTip := "Keeps this app on top of all other windows."
 	ui.labelDebug:= ui.MainGui.AddText("x+5 ys+2 backgroundTrans","  Debug")
 
-	drawOutlineNamed("toggleBlock",ui.mainGui,49,39,52,162,cfg.themePanel2Color,cfg.themePanel2Color,1)
-	drawOutlineNamed("toggleBlock",ui.mainGui,48,38,51,161,cfg.themeDark1Color,cfg.themeDark1Color,1)
-	drawOutlineNamed("toggleBlock",ui.mainGui,48,39,52,163,cfg.themeBorderDarkColor,cfg.themeBorderDarkColor,1)
-	ui.mainGui.addText("x270 y42 w197 h62 background" cfg.themePanel3Color)
-	ui.mainGui.addText("x271 y43 w195 h60 background" cfg.themeBorderDarkColor)
-	ui.mainGui.addText("x272 y44 w193 h58 background" cfg.themeBorderLightColor)
-	ui.mainGui.addText("x273 y45 w191 h56 background" cfg.themePanel3Color)
-	ui.checkForUpdatesLabel := ui.mainGui.addtext("x293 y46 w160 h30 section backgroundTrans c" cfg.themeFont3Color,"Check For Updates")
+	drawOutlineNamed("toggleBlock",ui.mainGui,49,45,51,154,cfg.themeDark1Color,cfg.themeDark1Color,1)
+	drawOutlineNamed("toggleBlock",ui.mainGui,48,44,50,153,cfg.themeDark2Color,cfg.themeDark2Color,1)
+	drawOutlineNamed("toggleBlock",ui.mainGui,48,45,51,155,cfg.themeBorderDarkColor,cfg.themeBorderDarkColor,1)
+
+	ui.mainGui.addText("x270 y44 w197 h62 background" cfg.themePanel3Color)
+	ui.mainGui.addText("x271 y45 w195 h60 background" cfg.themeBorderDarkColor)
+	ui.mainGui.addText("x272 y46 w193 h58 background" cfg.themeBorderLightColor)
+	ui.mainGui.addText("x273 y47 w191 h56 background" cfg.themePanel3Color)
+	ui.checkForUpdatesLabel := ui.mainGui.addtext("x303 y46 w160 h30 section backgroundTrans c" cfg.themeFont3Color,"Check For Updates")
 	ui.checkForUpdatesLabel.SetFont("s12")
 	ui.checkForUpdatesButton := ui.mainGui.addPicture("xs-15 y+-9 w30 h30 section background" cfg.themeButtonOnColor,"./img/button_update.png")
 	ui.checkForUpdatesButton.onEvent("Click",checkForUpdates)
 	ui.checkForUpdatesButton.Tooltip := "Checks to see if a more recent version is available"	
-	ui.installedVersionText := ui.mainGui.addText("ys-1 x+5 section w140 h19 backgroundTrans c" cfg.themeFont3Color ,"Installed:`t#.#.#.#")
+	ui.installedVersionText := ui.mainGui.addText("ys-1 x+7 section w140 h19 backgroundTrans c" cfg.themeFont3Color ,"Installed:`t#.#.#.#")
 	ui.latestVersionText := ui.mainGui.addText("xs y+-4 w140 backgroundTrans c" cfg.themeFont3Color,"Available:`t#.#.#.#")
 	ui.monitorResList := ["1920x1080","1920x1200","2560x1440","3440x1440","Custom"]
 
-	ui.monitorResDDL := ui.mainGui.AddDDL("xs-42 y+15 w90 r4 choose" cfg.monitorRes " background" cfg.themeBackgroundColor,ui.monitorResList)
+	ui.monitorResDDL := ui.mainGui.AddDDL("xs-45 y+17 w90 r4 choose" cfg.monitorRes " background" cfg.themeBackgroundColor,ui.monitorResList)
 	ui.monitorResDDL.onEvent("change",monitorResChanged)
 	ui.monitorResLabel := ui.mainGui.AddText("x+3 y+-23 w65 c" cfg.themeFont1Color " backgroundTrans","Screen")	
 	ui.monitorResLabel2 := ui.mainGui.AddText("y+-7 w65 c" cfg.themeFont1Color " backgroundTrans","Size")
@@ -233,12 +235,12 @@ GuiSetupTab(&ui,&cfg) {
 	ui.monitorResLabel2.setFont("s7")
 	ui.monitorAuto := ui.mainGui.addCheckbox("x+-22 y+-18 w15 h15",cfg.displaySizeAuto)
 	ui.monitorAuto.onEvent("Click",toggleAutoDisplaySize)
-	ui.monitorAutoLabel := ui.mainGui.addText("x+-21 y+-28 w25 h12 section c" cfg.themeFont1Color " backgroundTrans","Auto")
+	ui.monitorAutoLabel := ui.mainGui.addText("x+-21 y+-26 w25 h12 section c" cfg.themeFont1Color " backgroundTrans","Auto")
 	ui.monitorAutoLabel.setFont("s8")
 
-	ui.macroSpeed := ui.mainGui.addText("x+7 ys+13 w33 h16 center border section")
+	ui.macroSpeed := ui.mainGui.addText("x+7 ys+15 w35 h16 center border section")
 	ui.macroSpeed := ui.mainGui.addUpDown("vMacroSpeed range1-10",cfg.d2AppLoadoutMultiplier)
-	ui.macroSpeedLabel := ui.mainGui.addText("x+-31 y+-29 w30 backgroundTrans","Delay")
+	ui.macroSpeedLabel := ui.mainGui.addText("x+-31 y+-28 w30 backgroundTrans","Delay")
 	ui.macroSpeedLabel.setFont("s8")
 	ui.macroSpeed.onEvent("change",macroSpeedChanged)
 	ui.installedVersionText.setFont("s10")

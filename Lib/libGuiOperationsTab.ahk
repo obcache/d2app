@@ -662,7 +662,7 @@ refreshWinHwnd(*) {
 		controlFocus(ui.dockTopDockButton)
 		if ui.gameWindowFound == true
 			ui.clearClockAlert := false
-		setTimer(watchForGames,5000)
+		;setTimer(watchForGames,5000)
 		ui.gameWindowFound := false
 	} else {
 		ui.gameDDL.setFont("c" cfg.themeFont3Color,"calibri bold")
@@ -673,7 +673,7 @@ refreshWinHwnd(*) {
 		ui.dockGameDDL.redraw()
 		controlFocus(ui.mainGuiTabs)
 		controlFocus(ui.dockTopDockButton)
-		setTimer(watchForGames,0)
+		;setTimer(watchForGames,0)
 		ui.gameWindowFound := true
 	}
 

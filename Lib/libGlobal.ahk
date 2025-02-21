@@ -16,29 +16,26 @@ restoreWin(*) {
 		ui.mainGui.opt("-toolWindow")
 	}
 }
-	hideGui(*) {
-		winGetPos(&GuiX,&GuiY,,,ui.MainGui.hwnd)
-		cfg.guix := guiX
-		cfg.guiy := guiy
-		ui.mainGui.opt("toolWindow")
-		guiVis(ui.mainGui,false)
-		;guiVis(ui.titleBarButtonGui,false)
-		;guiVis(ui.afkGui,false)
-		guiVis(ui.gameSettingsGui,false)
-		guiVis(ui.gameTabGui,false)
-		;guiVis(ui.dockBarGui,false)
-		;debugLog("Hiding Interface")
-	}
+
+hideGui(*) {
+	winGetPos(&GuiX,&GuiY,,,ui.MainGui.hwnd)
+	cfg.guix := guiX
+	cfg.guiy := guiy
+	ui.mainGui.opt("toolWindow")
+	guiVis(ui.mainGui,false)
+	guiVis(ui.gameSettingsGui,false)
+	guiVis(ui.gameTabGui,false)
+}
 
 initTrayMenu(*) {
-	; A_TrayMenu.Delete
-	; A_TrayMenu.Add
-	; A_TrayMenu.Add("Show Window", restoreWin)
-	; A_TrayMenu.Add("Hide Window", HideGui)
-	; A_TrayMenu.Add("Reset Window Position", ResetWindowPosition)
-	; A_TrayMenu.Add()
-	; A_TrayMenu.Add("Exit App", KillMe)
-	; A_TrayMenu.Default := "Show Window"
+	A_TrayMenu.Delete
+	A_TrayMenu.Add
+	A_TrayMenu.Add("Show Window", restoreWin)
+	A_TrayMenu.Add("Hide Window", HideGui)
+	A_TrayMenu.Add("Reset Window Position", ResetWindowPosition)
+	A_TrayMenu.Add()
+	A_TrayMenu.Add("Exit App", KillMe)
+	A_TrayMenu.Default := "Show Window"
 	Try
 		installLog("Tray Initialized")
 }
@@ -136,7 +133,7 @@ cfgLoad(&cfg, &ui) {
 	cfg.GuiY 					:= IniRead(cfg.file,"Interface","GuiY",PrimaryWorkAreaTop + 200)
 	cfg.GuiW					:= IniRead(cfg.file,"Interface","GuiW",545)
 	cfg.GuiH					:= IniRead(cfg.file,"Interface","GuiH",210)
-	cfg.pushNotificationsEnabled := iniRead(cfg.file,"Interface","PushNotifications",false)
+	cfg.pushNotificationsEnabled := iniRead(cfg.file,"Toggles","PushNotificationsEnabled",false)
 	
 
 	cfg.AfkX					:= IniRead(cfg.file,"Interface","AfkX",cfg.GuiX+10)
@@ -239,6 +236,9 @@ cfgLoad(&cfg, &ui) {
 	
 }
 
+initProgress(progressAmount:=5,*) {
+		ui.loadingProgress.value += progressAmount
+}
 
 WriteConfig() {
 	Global
@@ -266,7 +266,7 @@ WriteConfig() {
 	IniWrite(cfg.AppDockMonitor,cfg.file,"AppDock","AppDockMonitor")
 	IniWrite(cfg.dockHeight,cfg.file,"AppDock","DockHeight")
 	IniWrite(cfg.dockMarginSize,cfg.file,"AppDock","DockMarginSize")
-
+	iniWrite(cfg.pushNotificationsEnabled,cfg.file,"Toggles","PushNotificationsEnabled")
 	IniWrite(cfg.undockedX,cfg.file,"AppDock","UndockedX")
 	IniWrite(cfg.undockedY,cfg.file,"AppDock","UndockedY")
 	IniWrite(cfg.undockedW,cfg.file,"AppDock","UndockedW")
@@ -309,8 +309,8 @@ WriteConfig() {
 		IniWrite(cfg.themeButtonOnColor,cfg.themeFile,"Custom","ThemeButtonOnColor")
 		IniWrite(cfg.themeButtonReadyColor,cfg.themeFile,"Custom","ThemeButtonReadyColor")
 		IniWrite(cfg.themeButtonAlertColor,cfg.themeFile,"Custom","ThemeButtonAlertColor")
-		IniWrite(cfg.activeMainTab,cfg.file,"Interface","ActiveMainTab")
-		IniWrite(cfg.activeGameTab,cfg.file,"Interface","ActiveGameTab")
+		IniWrite(ui.mainGuiTabs.value,cfg.file,"Interface","ActiveMainTab")
+		IniWrite(ui.gameTabs.value,cfg.file,"Interface","ActiveGameTab")
 		iniWrite(cfg.activeEditorTab,cfg.file,"Interface","ActiveEditorTab")
 		iniWrite(cfg.topDockEnabled,cfg.file,"Interface","TopDockEnabled")
 		
