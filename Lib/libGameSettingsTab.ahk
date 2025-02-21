@@ -901,7 +901,8 @@ drawGameTabs(tabNum := 1) {
 		ui.gameTabGui.show("w495 h32 noActivate x" mainGuiX+34 " y" mainGuiY+183)
 		
 	}
-	line(ui.gameTabGui,362,29,200,2,cfg.themeDark2Color)
+	line(ui.gameTabGui,363,30,180,2,cfg.themeDark2Color)
+
 }
 			
 
@@ -1557,7 +1558,7 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 	this2.row:=1
 	this2.col:=1
 	this2.x:=0
-	this2.y:=1
+this2.y:=1
 	this2.locked:=true
 	this2.exotic:=false
 	this2.wasMax:=false
@@ -1633,3 +1634,7 @@ drawPanelLabel(guiName,labelX,labelY,labelW := 100,labelH := 20,labelText := "ne
 	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.mmbBind)
 	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.fbBind)
 	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2color " c" cfg.themeFont2Color,cfg.bbBind)
+
+;line(ui.mainGui,529,0,2,30,cfg.themeDark2Color)
+line(ui.gameTabGui,496,1,2,32,cfg.themeDark2Color)
+line(ui.mainGui,474,28,55,2,cfg.themeDark2Color)

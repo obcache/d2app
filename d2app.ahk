@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.2.7"
+A_FileVersion := "1.4.2.8"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -133,7 +133,7 @@ advProgress(5)
 winSetRegion("33-0 w500 h214",ui.mainGui)
 ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
 ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h182 noActivate")
-ui.gameTabGui.show("w495 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
+ui.gameTabGui.show("w497 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
 advProgress(10)
 
 if (cfg.startMinimizedEnabled)

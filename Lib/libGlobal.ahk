@@ -605,7 +605,7 @@ loadScreen(visible := true,NotifyMsg := "d2app Loading",Duration := 10) {
 		;ui.notifyGui.AddText("y5 x5 w340 h35 cBABABA center BackgroundTrans",NotifyMsg)  ; XX & YY serve to 00auto-size the window.
 		;ui.notifyGUi.addText("xs25 y+1 w302 h22 background959595")
 		ui.notifyGui.addPicture("y5 x65 w-1 h88 backgroundTrans","./img2/d2app.png")
-		ui.loadingProgress := ui.notifyGui.addProgress("smooth x1 y96 w348 h20 ccaaBcB background353535")
+		ui.loadingProgress := ui.notifyGui.addProgress("smooth x1 y96 w348 h20 caaaaaa background353535")
 		;setTimer(loadingProgressStep,100)
 		ui.notifyGui.AddText("xs hidden")
 	

@@ -116,11 +116,11 @@ tabsChanged(*) {
 	ui.rightHandleBarImage2.OnEvent("DoubleClick",ToggleGuiCollapse)
 	ui.handleBarImage.OnEvent("Click",WM_LBUTTONDOWN_callback)
 	ui.rightHandleBarImage2.OnEvent("Click",WM_LBUTTONDOWN_callback)
-	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x470 y0 w60 h30 Background" cfg.ThemeBright1Color,"")
-	ui.DownButton := ui.mainGui.AddPicture("x470 y0 w30 h30 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
+	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x472 y0 w59 h30 Background" cfg.ThemeBright1Color,"")
+	ui.DownButton := ui.mainGui.AddPicture("x474 y1 w27 h27 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
 	ui.DownButton.OnEvent("Click",HideGui)
 	ui.DownButton.ToolTip := "Minimizes d2app App"
-	ui.ExitButton 	:= ui.mainGui.AddPicture("x499 y0 w30 h30 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
+	ui.ExitButton 	:= ui.mainGui.AddPicture("x501 y1 w28 h27 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
 	ui.ExitButton.OnEvent("Click",ExitButtonPushed)
 	ui.ExitButton.ToolTip := "Terminates d2app App"
 
@@ -152,8 +152,9 @@ tabsChanged(*) {
 	
 	ui.MainGuiTabs.UseTab("")
 
-	line(ui.mainGui,34,212,494,2,cfg.themeDark2Color)
-	line(ui.mainGui,34,30,2,210,cfg.themeDark2Color)
+	;line(ui.mainGui,34,212,494,2,cfg.themeDark2Color)
+	;line(ui.mainGui,34,30,2,210,cfg.themeDark2Color)
+	
 	;line(ui.mainGui,528,30,2,60,cfg.themeBright1Color)
 
 }
@@ -339,6 +340,7 @@ exitMenuShow(this_button) {
 }
 
 exitButtonPushed(this_button,*) {
+	exitApp
 	if !keyWait("LButton","T.450") {
 		exitMenuShow(this_button)
 		keyWait("LButton")

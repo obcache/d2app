@@ -28,17 +28,17 @@ GuiSetupTab(&ui,&cfg) {
 	drawPanel(ui.mainGui,40,39,218,164,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,261,39,214,104,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,261,151,214,53,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-	drawPanel(ui.mainGui,478,39,41,168,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
+	drawPanel(ui.mainGui,478,39,42,165,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	
 	ui.MainGui.SetFont("s09")
-	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y42 w25 h150 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
+	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y45 w25 h144 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
 	ui.AutoClickerSpeedSlider.ToolTip := "AutoClicker Speed"
 	ui.AutoClickerSpeedSliderLabel2 := ui.MainGui.AddText("x475 y190 w50 r1 Center BackgroundTrans","CPS")
-	drawOutlineNamed("autoClicker",ui.mainGui,487,42,27,150,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1)
+	drawOutlineNamed("autoClicker",ui.mainGui,486,45,27,145,cfg.themeBorderDarkColor,cfg.themeBorderDarkColor,1)
 	ui.AutoClickerSpeedSlider.OnEvent("Change",AutoClickerSpeedChanged)
 	
 	ui.MainGui.SetFont("s10 c" cfg.themeFont1Color)
-	drawOutlineMainGui(38,36,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)
+	drawOutlineMainGui(36,36,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)
 
 	ui.MainGui.SetFont("s10")
 	
@@ -227,21 +227,21 @@ GuiSetupTab(&ui,&cfg) {
 	ui.latestVersionText := ui.mainGui.addText("xs y+-4 w140 backgroundTrans c" cfg.themeFont3Color,"Available:`t#.#.#.#")
 	ui.monitorResList := ["1920x1080","1920x1200","2560x1440","3440x1440","Custom"]
 
-	ui.monitorResDDL := ui.mainGui.AddDDL("xs-55 y+16 w90 r4 choose" cfg.monitorRes " background" cfg.themeBackgroundColor,ui.monitorResList)
+	ui.monitorResDDL := ui.mainGui.AddDDL("xs-55 y+18 w90 r4 choose" cfg.monitorRes " background" cfg.themeBackgroundColor,ui.monitorResList)
 	ui.monitorResDDL.onEvent("change",monitorResChanged)
-	ui.monitorResLabel := ui.mainGui.AddText("x+3 y+-24 w65 c" cfg.themeFont1Color " backgroundTrans","Screen")	
+	ui.monitorResLabel := ui.mainGui.AddText("x+4 y+-25 w65 c" cfg.themeFont1Color " backgroundTrans","Screen")	
 	ui.monitorResLabel2 := ui.mainGui.AddText("y+-2 w65 c" cfg.themeFont1Color " backgroundTrans","Size")
 	ui.monitorResLabel.setFont("s9")
 	ui.monitorResLabel2.setFont("s9")
-	ui.monitorAutoLabel := ui.mainGui.addText("x+-33 y+-13 w25 h12 section c" cfg.themeFont1Color " backgroundTrans","Auto")
+	ui.monitorAutoLabel := ui.mainGui.addText("x+-28 y+-12 w25 h12 section c" cfg.themeFont1Color " backgroundTrans","Auto")
 	ui.monitorAutoLabel.setFont("s8")
-	ui.monitorAuto := ui.mainGui.addCheckbox("x+-16 y+-22 w15 h15",cfg.displaySizeAuto)
+	ui.monitorAuto := ui.mainGui.addCheckbox("x+-18 y+-27 w15 h15",cfg.displaySizeAuto)
 	ui.monitorAuto.onEvent("Click",toggleAutoDisplaySize)
 
 
-	ui.macroSpeed := ui.mainGui.addText("x+10 y+-28 w35 h16 center border section")
+	ui.macroSpeed := ui.mainGui.addText("x+8 y+-15 w35 h16 center border section")
 	ui.macroSpeed := ui.mainGui.addUpDown("vMacroSpeed range1-10",cfg.d2AppLoadoutMultiplier)
-	ui.macroSpeedLabel := ui.mainGui.addText("x+-31 ys+3 w30 backgroundTrans","Delay")
+	ui.macroSpeedLabel := ui.mainGui.addText("x+-31 ys+16 w30 backgroundTrans","Delay")
 	ui.macroSpeedLabel.setFont("s8")
 	ui.macroSpeed.onEvent("change",macroSpeedChanged)
 	ui.installedVersionText.setFont("s10")
