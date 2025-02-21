@@ -105,8 +105,8 @@ tabsChanged(*) {
 		? "hidden x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonOnColor 
 		: "hidden x2 y185 w30 h27 section hidden Background" cfg.ThemeButtonReadyColor,
 	(cfg.consoleVisible) 
-		? "./Img/button_console_ready.png" 
-		: "./Img/button_console_ready.png")
+		? "" 
+		: "")
 	ui.handleBarImage.ToolTip := "Drag Handlebar to Move.`nDouble-Click to collapse/uncollapse."
 	
 	ui.rightHandlebarBg := ui.mainGui.addText("hidden x529 y32 w31 h182 background" cfg.themeBright1Color,"")
