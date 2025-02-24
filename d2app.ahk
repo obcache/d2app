@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.4.5"
+A_FileVersion := "1.4.4.8"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -38,15 +38,6 @@ setWorkingDir(a_scriptDir)
 installDir 		:= a_myDocuments "\d2app"
 configFileName 	:= "d2app.ini"
 themeFileName	:= "d2app.themes"
-
-; if fileExist("./extractAssets.ahk")
-	; fileDelete("./extractAssets.ahk")
-; loop files, "./img/infogfx/vod/*.png" {
-	; flist .= a_loopFilename "`n"
-	; fileAppend('fileInstall("./img/infogfx/vod/' a_loopFilename '", "' installDir '/img/infogfx/vod/' a_loopFilename '",1)`n',"./extractAssets.ahk")
-; }
-; keyWait("Escape")
-; return
 
 advProgress(progressAmount:=5,*) {
 		ui.loadingProgress.value += progressAmount
@@ -96,45 +87,48 @@ advProgress(5)
 
 
 #include <class_sqliteDb>
+advProgress(2)
 #include <class_lv_colors>
+advProgress(2)
 #include <libGui>
-advProgress(5)
+advProgress(2)
 #include <libWinMgr>
+advProgress(2)
 #include <libGlobal>
-advProgress(5)
+advProgress(2)
 #include <libInstall>
-advProgress(5)
+advProgress(2)
 #include <libGuiSetupTab>
-#include <libGuiAppDockTab>
-advProgress(5)
+advProgress(2)
 #include <libGameAssists>
+advProgress(2)
 #include <libGameSettingsTab>
+advProgress(2)
 #include <libIncursionCheck>
-advProgress(5)
-#include <libGuiSystemTab>
+advProgress(2)
 #include <libHotkeys>
+advProgress(2)
 #include <libRoutines>
-advProgress(5)
+advProgress(2)
 #include <libThemeEditor>
+advProgress(2)
 #include <libVaultCleaner>
-advProgress(5)
+advProgress(2)
 
 OnExit(ExitFunc)
 
 ui.gameTabs.choose(cfg.gameModuleList[cfg.activeGameTab])
-advProgress(5)
 tabsChanged()
 advProgress(5)
 
 try
 	guiVis("all",false)
-advProgress(5)
 
 winSetRegion("33-0 w500 h214",ui.mainGui)
 ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
 ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h182 noActivate")
 ui.gameTabGui.show("w497 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
-advProgress(10)
+advProgress(5)
 
 if (cfg.startMinimizedEnabled)
 	ui.mainGui.hide()
@@ -171,5 +165,5 @@ if (cfg.AlwaysOnTopEnabled) {
 cfg.consoleVisible := !cfg.consoleVisible	
 d2AutoGameConfigOverride()
 ui.isActiveWindow:=""
-setTimer () => (ui.isActiveWindow:=(winActive("ahk_exe destiny2.exe")) ? (ui.isActiveWindow) ? 1 : (setCapsLockState(cfg.d2AlwaysRunEnabled),1) : (ui.isActiveWindow) ? (0,setCapsLockState(0)) : 0),500
+;setTimer () => (ui.isActiveWindow:=(winActive("ahk_exe destiny2.exe")) ? (ui.isActiveWindow) ? 1 : (setCapsLockState(cfg.d2AlwaysRunEnabled),1) : (ui.isActiveWindow) ? (0,setCapsLockState(0)) : 0),500
 loadScreen(0)

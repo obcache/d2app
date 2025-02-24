@@ -34,7 +34,8 @@ initTrayMenu(*) {
 	A_TrayMenu.Add("Hide Window", HideGui)
 	A_TrayMenu.Add("Reset Window Position", ResetWindowPosition)
 	A_TrayMenu.Add()
-	A_TrayMenu.Add("Exit App", KillMe)
+	A_TrayMenu.Add("Exit App"
+	, KillMe)
 	A_TrayMenu.Default := "Show Window"
 	Try
 		installLog("Tray Initialized")

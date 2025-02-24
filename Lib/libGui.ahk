@@ -37,119 +37,112 @@ tabsChanged(*) {
 
 	initGui(&cfg, &ui) {
 		
-
+advProgress(2)
 	ui.TransparentColor 	:= "010203"
 	ui.MainGui 				:= Gui()
-	drawOutlineMainGui(34,0,497,218,cfg.ThemeBright1Color,cfg.themeBright1Color,2)
+	drawOutlineMainGui(34,30,497,155,cfg.ThemeBright1Color,cfg.themeBright1Color,2)
+	advProgress(2)
 	ui.MainGui.Name 		:= "d2app"
 	ui.mainGui.Title		:= "d2app"
 	ui.TaskbarHeight 		:= GetTaskBarHeight()
 	ui.MainGui.BackColor 	:= ui.transparentColor
 	ui.MainGui.Color 		:= ui.TransparentColor
 	ui.MainGui.Opt("-Caption -Border")
+	advProgress(2)
+	
 	if (cfg.AlwaysOnTopEnabled)
 	{
 		ui.MainGui.Opt("+AlwaysOnTop 0x4000000")
 	}	
+	advProgress(2)
 	ui.MainGui.MarginX := 0
 	ui.MainGui.MarginY := 0
 	ui.MainGui.SetFont("s13 c" cfg.ThemeFont1Color,"Calibri")
 	ui.mainGuiAnchor := ui.mainGui.addText("x0 y0 w0 h0 section hidden")
-
 	ui.mainBg := ui.mainGui.addText("x34 y0 w490 h180 background" cfg.themePanel2Color,"")
-
-	;ui.topHandlebar := ui.mainGui.addPicture("x-5 y2 w528 h28 backgroundTrans","./img/handlebar_horz.png")
-	;ui.5_titleBar:=ui.mainGui.addText("y0 x272 w310 h30 left backgroundTrans c" cfg.themeFont1Color,"d2app v" a_fileVersion)
+	advProgress(2)
 	ui.1_GameButtonBg := ui.mainGui.addPicture("x34 y0 w80 h30 background" cfg.themePanel2Color,(cfg.activeMainTab==1) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
 	ui.1_GameButton := ui.mainGui.addText("x34 y3 w80 h22 center backgroundTrans","Game")
-	;ui.1_GameButtonBg.onEvent("click",gameTabClicked)
-
+	advProgress(2)
+	
 	gameTabClicked(*) {
 		ui.mainGuiTabs.choose(1)
 	}
 	setupTabClicked(*) {
 		ui.mainGuiTabs.choose(2)
 	}
+	
 	ui.2_SetupButtonBg := ui.mainGui.addPicture("x114 y0 w80 h30 background" cfg.themePanel2Color,(cfg.activeMainTab==6) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
-	; ui.2_SetupButtonBg.onEvent("click",setupTabClicked)
 	ui.2_SetupButton := ui.mainGui.addText("y3 x114 w80 h22 center backgroundTrans","Setup")
-	;msgBox(cfg.mainTabList[1])
-	ui.3_FillOutline:=ui.mainGui.addText("x194 y2 w280 h28 left background" cfg.themePanel1Color,"           d2app")
+	ui.3_FillOutline:=ui.mainGui.addText("x196 y2 w280 h28 left background" cfg.themePanel3Color,"           d2app")
 	ui.3_fillOutline.setFont("s16 cDDCCFF","Move-X")
-	;ui.3_FillBg:=ui.mainGui.addText("y0 x194 w260 h30 background" cfg.themePanel1Color)
+	ui.3_FillBg:=ui.mainGui.addText("y0 x194 w260 h30 background" cfg.themePanel1Color)
 	ui.3_FillOutline.onEvent("click",WM_LBUTTONDOWN_callback)
+
 	ui.mainGui.addText("y5 x394 w72 h20 background959595")
 	ui.mainGui.addText("y5 x394 w71 h19 background505050")
-
 	ui.mainGui.addText("y7 x396 w68 h16 backgroundC0B5C5")
 	
 	ui.3_FillText:=ui.mainGui.addText("y5 x397 w66 h16 center backgroundTrans","build" strSplit(a_fileVersion)[1] "" strSplit(a_fileVersion)[2] "" strSplit(a_fileVersion)[3] "" strSplit(a_fileVersion)[4])
-	
 	ui.3_fillText.setFont("s12 c151025","Notu Sans")
-	ui.titleBar:=ui.mainGui.addPicture("y5 x194 y2 w280 h28 left backgroundTrans","./img/d2app_titlebar.png")
-	line(ui.mainGui,194,28,320,2,cfg.themeBright1Color)
-	line(ui.mainGui,194,0,310,2,cfg.themeDark2Color)
+	
+	ui.titleBar:=ui.mainGui.addPicture("x195 y2 w280 h28 left backgroundTrans","./img/d2app_titlebar.png")
+	advProgress(2)
+	
+	line(ui.mainGui,194,28,330,2,cfg.themeBright1Color)
+	line(ui.mainGui,194,0,310,2,cfg.themePanel2Color)
+	advProgress(2)
+	
 	ui.mainGuiTabs := ui.MainGui.AddTab3("x34 y0 w494 h213 Buttons -redraw Background" cfg.ThemePanel2Color " -E0x200",["1_Game","2_Setup"])
 	ui.MainGuiTabs.useTab("")
 	ui.mainGuiTabs.setFont("s13")
-	ui.MainGuiTabs.OnEvent("Change",TabsChanged)
-	; ui.mainGuiTabs.useTab("")
-	;line(ui.mainGui,526,0,2,80,cfg.themeBright1color)
-	ui.activeTab := ui.mainGuiTabs.Text
-	ui.previousTab := ui.activeTab
 	ui.MainGui.SetFont("s12 c" cfg.ThemeFont1Color,"Calibri")
-	ui.handleBarBorder := ui.mainGui.addText("hidden x0 y0 w34 h220 background" cfg.themeBright1Color,"")
-	ui.handleBarImage := ui.MainGui.AddPicture("hidden x1 y2 w33 h220 backgroundTrans")
-	ui.ButtonHandlebarDebug := ui.MainGui.AddPicture("hidden x2 y185 w30 h27")
-	ui.handleBarImage.ToolTip := "Drag Handlebar to Move.`nDouble-Click to collapse/uncollapse."
+	ui.MainGuiTabs.OnEvent("Change",TabsChanged)
 	
-	ui.rightHandlebarBg := ui.mainGui.addText("hidden x529 y32 w31 h182 background" cfg.themeBright1Color,"")
+	advProgress(2)
+	ui.activeTab 				:= ui.mainGuiTabs.Text
+	ui.previousTab 				:= ui.activeTab
+	ui.handleBarBorder 			:= ui.mainGui.addText("hidden x0 y0 w34 h220 background" cfg.themeBright1Color,"")
+	ui.handleBarImage 			:= ui.MainGui.AddPicture("hidden x1 y2 w33 h220 backgroundTrans")
+	ui.ButtonHandlebarDebug 	:= ui.MainGui.AddPicture("hidden x2 y185 w30 h27")
+	ui.handleBarImage.ToolTip 	:= "Drag Handlebar to Move.`nDouble-Click to collapse/uncollapse."
+	advProgress(2)
+	
+	ui.rightHandlebarBg 	:= ui.mainGui.addText("hidden x529 y32 w31 h182 background" cfg.themeBright1Color,"")
 	ui.rightHandlebarImage2 := ui.mainGui.AddPicture("hidden x528 w31 y33 h180 section")
-	;ui.handleBarImage.OnEvent("DoubleClick",ToggleGuiCollapse)
-
-	;ui.rightHandleBarImage2.OnEvent("DoubleClick",ToggleGuiCollapse)
+	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x472 y0 w59 h30 Background" cfg.ThemeBright1Color,"")
+	ui.ExitButton 			:= ui.mainGui.AddPicture("x501 y1 w28 h27 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
+	ui.DownButton 			:= ui.mainGui.AddPicture("x474 y1 w27 h27 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
+	ui.ExitButton.OnEvent("Click",ExitButtonPushed)
+	ui.DownButton.OnEvent("Click",HideGui)
+	advProgress(2)
 	ui.handleBarImage.OnEvent("Click",WM_LBUTTONDOWN_callback)
 	ui.rightHandleBarImage2.OnEvent("Click",WM_LBUTTONDOWN_callback)
-	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x472 y0 w59 h30 Background" cfg.ThemeBright1Color,"")
-	ui.DownButton := ui.mainGui.AddPicture("x474 y1 w27 h27 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
-	ui.DownButton.OnEvent("Click",HideGui)
-	ui.DownButton.ToolTip := "Minimizes d2app App"
-	ui.ExitButton 	:= ui.mainGui.AddPicture("x501 y1 w28 h27 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
-	ui.ExitButton.OnEvent("Click",ExitButtonPushed)
-	ui.ExitButton.ToolTip := "Terminates d2app App"
+	ui.DownButton.ToolTip 	:= "Minimizes d2app App"
+	ui.ExitButton.ToolTip 	:= "Terminates d2app App"
 
-	;ui.ButtonHandlebarDebug.OnEvent("Click",toggleConsole)	
-	ui.loadingProgress.value += 5
+	advProgress(2)
 	
-	ui.gvConsole := ui.MainGui.AddListBox("x0 y214 w560 h192 +Background" cfg.ThemePanel1Color)
-	ui.gvConsole.Color := cfg.ThemeBright1Color	
-	afk 						:= Object()	
+	ui.gvConsole 		:= ui.MainGui.AddListBox("x0 y214 w560 h192 +Background" cfg.ThemePanel1Color)
+	ui.gvConsole.Color 	:= cfg.ThemeBright1Color	
+	advProgress(2)
+	afk 				:= Object()	
 
-	ui.loadingProgress.value += 5
-	ui.loadingProgress.value += 5
-	ui.loadingProgress.value += 5
-
+	advProgress(2)
 	GuiSetupTab(&ui,&cfg)
-	ui.loadingProgress.value += 5
 	
+	advProgress(2)
 	GuiGameTab()
-	ui.loadingProgress.value += 5
+	
+	advProgress(2)
 	
 	OnMessage(0x0200, WM_MOUSEMOVE)
 	OnMessage(0x0202, WM_LBUTTONDOWN)
 	OnMessage(0x47, WM_WINDOWPOSCHANGED)
-	
-	ui.loadingProgress.value += 5
-	
-
-	debugLog("Interface Initialized")
-	
+	advProgress(2)
 	ui.MainGuiTabs.UseTab("")
 
-	;line(ui.mainGui,34,212,494,2,cfg.themeDark2Color)
-	;line(ui.mainGui,34,30,2,210,cfg.themeDark2Color)
-	
-	;line(ui.mainGui,528,30,2,60,cfg.themeBright1Color)
+	advProgress(2)
 
 }
 
@@ -211,13 +204,6 @@ fadeIn() {
 			guiVis(ui.dockBarGui,true)
 		} else {
 			switch ui.mainGuiTabs.text {
-				case "3_AFK":
-					while transparency < 253 {
-						transparency += 2.5
-						winSetTransparent(round(transparency),ui.mainGui)			
-						winSetTransparent(round(transparency),ui.afkGui)
-						sleep(1)
-					}
 				case "1_Game":
 					guiVis(ui.gameTabGui,true)
 					while transparency < 223 {
