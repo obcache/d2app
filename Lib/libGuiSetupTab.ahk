@@ -139,7 +139,7 @@ GuiSetupTab(&ui,&cfg) {
 	setAutoStart(OnOff) {
 		if (OnOff == "On" || OnOff == true || OnOff == 1) {
 			try {
-				fileCreateShortcut(installDir "/d2app.exe", A_StartMenu "\Programs\Startup\d2app.lnk",installDir,,"d2app - Destiny2 Companion",installDir "/img/d2app.ico")
+				fileCreateShortcut(installDir "/d2app.exe", A_StartMenu "\Programs\Startup\d2app.lnk",installDir,,"d2app - Destiny2 Companion",installDir "/img/d2app_icon.ico")
 				trayTip("d2app now set to Autostart","d2app Config Change","Iconi Mute")
 			} catch {
 				trayTip("Failed to set d2app to Autostart","d2app Config Change","Iconi Mute")

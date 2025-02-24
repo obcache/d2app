@@ -135,14 +135,11 @@ cfgLoad(&cfg, &ui) {
 	cfg.GuiW					:= IniRead(cfg.file,"Interface","GuiW",545)
 	cfg.GuiH					:= IniRead(cfg.file,"Interface","GuiH",210)
 	cfg.pushNotificationsEnabled := iniRead(cfg.file,"Toggles","PushNotificationsEnabled",false)
-	
-
 	cfg.AfkX					:= IniRead(cfg.file,"Interface","AfkX",cfg.GuiX+10)
 	cfg.AfkY					:= IniRead(cfg.file,"Interface","AfkY",cfg.GuiY+35)
 	cfg.AfkSnapEnabled			:= IniRead(cfg.file,"Interface","AfkSnapEnabled",false)
 	cfg.GuiSnapEnabled			:= IniRead(cfg.file,"Interface","GuiSnapEnabled",true)
 	cfg.topDockEnabled 			:= iniRead(cfg.file,"Interface","TopDockEnabled",false)
-				
 	cfg.displaySizeAuto			:= iniRead(cfg.file,"Game","DisplaySizeAuto",true)
 	cfg.AutoDetectGame			:= IniRead(cfg.file,"Game","AutoDetectGame",true)
 	cfg.excludedProcesses		:= IniRead(cfg.file,"Game","ExcludedProcesses",true)
@@ -171,14 +168,12 @@ cfgLoad(&cfg, &ui) {
 	cfg.app1path				:= IniRead(cfg.file,"AppDock","app1path","")
 	cfg.app2filename			:= IniRead(cfg.file,"AppDock","app2filename","")
 	cfg.app2path				:= IniRead(cfg.file,"AppDock","app2path","")
-	
 	cfg.DockHeight 				:= IniRead(cfg.file,"AppDock","DockHeight","240")
 	cfg.DockMarginSize 			:= IniRead(cfg.file,"AppDock","DockMarginSize","8")
 	cfg.UndockedX 				:= IniRead(cfg.file,"AppDock","UndockedX","150")
 	cfg.UndockedY 				:= IniRead(cfg.file,"AppDock","UndockedY","150")
 	cfg.UndockedW 				:= IniRead(cfg.file,"AppDock","UndockedW","1600")
 	cfg.UndockedH 				:= IniRead(cfg.file,"AppDock","UndockedH","1000")
-
 	cfg.allowedAudioDevices		:= iniRead(cfg.file,"Audio","AllowedAudioOutput","")
 	cfg.gameAudioEnabled		:= IniRead(cfg.file,"audio","gameAudioEnabled","false")
 	cfg.MicName					:= IniRead(cfg.file,"audio","MicName","Yeti")
@@ -188,7 +183,6 @@ cfgLoad(&cfg, &ui) {
 	cfg.SpeakerVolume	 		:= IniRead(cfg.file,"audio","SpeakerVolume",".50")
 	cfg.HeadsetVolume			:= IniRead(cfg.file,"audio","HeadsetVolume",".80")
 	cfg.Mode					:= IniRead(cfg.file,"audio","Mode","1")
-
 	cfg.Theme					:= IniRead(cfg.file,"Interface","Theme","Modern Class")
 	cfg.ThemeList				:= StrSplit(IniRead(cfg.themeFile,"Interface","ThemeList","Modern Class,Cold Steel,Militarized,Custom"),",")
 	cfg.ThemeBackgroundColor	:= IniRead(cfg.themeFile,cfg.Theme,"ThemeBackgroundColor","414141")
@@ -212,10 +206,8 @@ cfgLoad(&cfg, &ui) {
 	cfg.ThemeButtonAlertColor	:= IniRead(cfg.themeFile,cfg.Theme,"ThemeButtonAlertColor","3C3C3C")
 	cfg.ThemeButtonOnColor		:= IniRead(cfg.themeFile,cfg.Theme,"ThemeButtonOnColor","FF01FF")
 	cfg.ThemeButtonReadyColor	:= IniRead(cfg.themeFile,cfg.Theme,"ThemeButtonReadyColor","1FFFF0")
-	
 	cfg.holdToCrouchEnabled 	:= IniRead(cfg.file,"game","HoldToCrouch",true)
 	cfg.cs2HoldToScopeEnabled	:= IniRead(cfg.file,"game","cs2HoldToScopeEnabled",true)
-
 	cfg.d2AppPauseKey			:= iniRead(cfg.file,"Game","d2AppPauseKey","<UNSET>")
 	cfg.d2AppPaused				:= iniRead(cfg.file,"Game","d2AppPaused",false)
 	cfg.d2AlwaysRunEnabled		:= iniRead(cfg.file,"Game","d2AlwaysRunEnabled",false)
@@ -228,13 +220,12 @@ cfgLoad(&cfg, &ui) {
 	cfg.d2GameHoldToCrouchKey	:= iniRead(cfg.file,"Game","d2GameHoldToCrouchKey","LControl")
 	cfg.d2GameToggleSprintKey	:= IniRead(cfg.file,"Game","d2GameToggleSprintKey","<UNSET>")
 	cfg.d2GameReloadKey			:= IniRead(cfg.file,"Game","d2GameReloadKey","<UNSET>")
-	cfg.d2GameGrenadeKey			:= IniRead(cfg.file,"Game","d2GameGrenadeKey","<UNSET>")
+	cfg.d2GameGrenadeKey		:= IniRead(cfg.file,"Game","d2GameGrenadeKey","<UNSET>")
 	cfg.d2GameSuperKey			:= IniRead(cfg.file,"Game","d2GameSuperKey","<UNSET>")
 	cfg.d2CharacterClass		:= iniRead(cfg.file,"Game","d2CharacterClass","1")
 	cfg.d2AutoGameConfigEnabled := iniRead(cfg.file,"Game","d2AutoGameConfigEnabled",true)
 	cfg.SLBHopKey				:= iniRead(cfg.file,"Game","ShatterLineBunnyHopKey","<UNSET>")
 	runWait("./redist/mouseSC_x64.exe /verticalScroll:1",,"hide")
-	
 }
 
 initProgress(progressAmount:=5,*) {
@@ -257,7 +248,6 @@ WriteConfig() {
 	IniWrite(ui.monitorResDDL.value,cfg.file,"System","MonitorResolution")
 	IniWrite(arr2str(cfg.gameModuleList),cfg.file,"Game","GameModuleList")
 	IniWrite(arr2str(cfg.gameList),cfg.file,"Game","GameList")
-	;IniWrite(ui.gameDDL.value,cfg.file,"Game","Game")
 	IniWrite(ui.win1enabled,cfg.file,"Game","Win1Enabled")
 	IniWrite(ui.win2enabled,cfg.file,"Game","Win2Enabled")	
 	IniWrite(cfg.win1disabled,cfg.file,"Game","win1disabled")
@@ -272,7 +262,6 @@ WriteConfig() {
 	IniWrite(cfg.undockedY,cfg.file,"AppDock","UndockedY")
 	IniWrite(cfg.undockedW,cfg.file,"AppDock","UndockedW")
 	IniWrite(cfg.undockedH,cfg.file,"AppDock","UndockedH")
-
 	IniWrite(cfg.gameAudioEnabled,cfg.file,"Audio","gameAudioEnabled")
 	IniWrite(cfg.micName,cfg.file,"Audio","Mic")
 	IniWrite(cfg.speakerName,cfg.file,"Audio","Speaker")
@@ -281,7 +270,6 @@ WriteConfig() {
 	IniWrite(cfg.speakerVolume,cfg.file,"Audio","SpeakerVolume")
 	IniWrite(cfg.headsetVolume,cfg.file,"Audio","HeadsetVolume")
 	IniWrite(cfg.mode,cfg.file,"Audio","Mode")
-
 	if (ui.themeResetScheduled) {
 		FileDelete(cfg.themeFile)
 		FileAppend(ui.defaultThemes,cfg.themeFile)
@@ -314,8 +302,6 @@ WriteConfig() {
 		IniWrite(ui.gameTabs.value,cfg.file,"Interface","ActiveGameTab")
 		iniWrite(cfg.activeEditorTab,cfg.file,"Interface","ActiveEditorTab")
 		iniWrite(cfg.topDockEnabled,cfg.file,"Interface","TopDockEnabled")
-		
-
 		iniWrite(cfg.d2AppPauseKey,cfg.file,"Game","d2AppPauseKey")
 		iniWrite(cfg.d2AppPaused,cfg.file,"Game","d2AppPaused")
 		IniWrite(cfg.d2AppHoldToCrouchKey,cfg.file,"Game","d2AppHoldToCrouchKey")
@@ -336,46 +322,39 @@ WriteConfig() {
 			d2LoadoutCoordsStr .= cfg.d2LoadoutCoords1920x1080[a_index] ","
 		}
 		iniWrite(rtrim(d2LoadoutCoordsStr,","),cfg.file,"Game","d2LoadoutCoords1920x1080")
-
 		d2LoadoutCoordsStr := ""
 		loop cfg.d2LoadoutCoords.length {
 			d2LoadoutCoordsStr .= cfg.d2LoadoutCoords3440x1440[a_index] ","
 		}		
 		iniWrite(rtrim(d2LoadoutCoordsStr,","),cfg.file,"Game","d2LoadoutCoords3440x1440")
-
 		d2LoadoutCoordsStr := ""
 		loop cfg.d2LoadoutCoords.length {
 			d2LoadoutCoordsStr .= cfg.d2LoadoutCoords1920x1200[a_index] ","
 		}
 		iniWrite(rtrim(d2LoadoutCoordsStr,","),cfg.file,"Game","d2LoadoutCoords1920x1200")
-		
 		d2LoadoutCoordsStr := ""
 		loop cfg.d2LoadoutCoords.length {
 			d2LoadoutCoordsStr .= cfg.d2LoadoutCoords2560x1440[a_index] ","
 		}		
 		iniWrite(rtrim(d2LoadoutCoordsStr,","),cfg.file,"Game","d2LoadoutCoords2560x1440")
-
 		ui.mainTabListString := ""
 		loop cfg.mainTabList.length {
 			ui.mainTabListString .= cfg.mainTabList[a_index] ','
 		}
 		IniWrite(rtrim(ui.mainTabListString,","),cfg.file,"Interface","MainTabList")
 	}
-	
-		if (ui.AfkDocked) {
-			cfg.GuiX := ui.GuiPrevX
-			cfg.GuiY := ui.GuiPrevY
-		} 
-		
-		try {
-			winGetPos(&guiX,&guiY,,,ui.mainGui.hwnd)
-			cfg.guiX := guiX
-			cfg.guiY := GuiY
-		} catch {
-			cfg.GuiX := 200
-			cfg.GuiY := 200
-		}
-
+	if (ui.AfkDocked) {
+		cfg.GuiX := ui.GuiPrevX
+		cfg.GuiY := ui.GuiPrevY
+	} 
+	try {
+		winGetPos(&guiX,&guiY,,,ui.mainGui.hwnd)
+		cfg.guiX := guiX
+		cfg.guiY := GuiY
+	} catch {
+		cfg.GuiX := 200
+		cfg.GuiY := 200
+	}
 	IniWrite(cfg.GuiX,cfg.file,"Interface","GuiX")
 	IniWrite(cfg.GuiY,cfg.file,"Interface","GuiY")
 	IniWrite(cfg.AfkX,cfg.file,"Interface","AfkX")
@@ -394,19 +373,6 @@ WriteConfig() {
 	iniWrite(cfg.towerInterval,cfg.file,"AFK","TowerInterval")
 	iniWrite(cfg.CelestialTowerEnabled,cfg.file,"AFK","CelestialTowerEnabled")
 	IniWrite(ui.AutoClickerSpeedSlider.Value,cfg.file,"AFK","AutoClickerSpeed")
-	;IniWrite(ui.win1classDDL.value,cfg.file,"AFK","Win1Class")
-
-	;if (ui.win2ClassDDL.Text != "N/A")
-	;IniWrite(ui.win2classDDL.value,cfg.file,"AFK","Win2Class")
-	;if !(DirExist("./Logs"))
-	;{
-	;	DirCreate("./Logs")
-	;}
-	
-	; if (cfg.ConsoleVisible)
-	; {
-		; FileAppend(ui.gvConsole.Value,"./Logs/gvLog_" A_YYYY A_MM A_DD A_Hour A_Min A_Sec ".txt")
-	; }
 	ui.MainGui.Destroy()
 	BlockInput("Off")
 }
@@ -480,31 +446,25 @@ debugLog(LogMsg) {
 	PostMessage("0x115",7,,,"ahk_id " ui.gvConsole.hwnd) 
 }
 
-
 DialogBox(Msg,Alignment := "Center") {
 	Global
 	if !InStr("LeftRightCenter",Alignment)
 		Alignment := "Left"
 	Transparent := 250
-	
 	ui.notifyGui			:= Gui()
 	ui.notifyGui.Title 		:= "Notify"
-
 	ui.notifyGui.Opt("+AlwaysOnTop -Caption +ToolWindow +Owner" ui.mainGui.hwnd)  ; +ToolWindow avoids a taskbar button and an alt-tab menu item.
 	ui.notifyGui.BackColor := cfg.ThemePanel1Color  ; Can be any RGB color (it will be made transparent below).
 	ui.notifyGui.SetFont("s16")  ; Set a large font size (32-point).
 	ui.notifyMsg := ui.notifyGui.AddText("c" cfg.ThemeFont1Color " " Alignment " BackgroundTrans",Msg)  ; XX & YY serve to 00auto-size the window.
 	ui.notifyGui.AddText("xs hidden")
-	
 	WinSetTransparent(0,ui.notifyGui)
 	ui.notifyGui.Show("NoActivate Autosize")  ; NoActivate avoids deactivating the currently active window.
 	ui.notifyGui.GetPos(&x,&y,&w,&h)
-	
 	winGetPos(&GuiX,&GuiY,&GuiW,&GuiH,ui.mainGui.hwnd)
 	ui.notifyGui.Show("x" (GuiX+(GuiW/2)-(w/2)) " y" GuiY+(100-(h/2)) " NoActivate")
 	drawOutlineNotifyGui(1,1,w,h,cfg.ThemeBorderDarkColor,cfg.ThemeBorderLightColor,1)
 	drawOutlineNotifyGui(2,2,w-2,h-2,cfg.ThemeBright2Color,cfg.ThemeBright2Color,1)
-	
 	Transparency := 0
 	guiVis("all",false)	
 	While Transparency < 253 {
@@ -512,7 +472,6 @@ DialogBox(Msg,Alignment := "Center") {
 		WinSetTransparent(Round(Transparency),ui.notifyGui)
 	}
 }
-
 
 DialogBoxClose(*)
 {
@@ -527,29 +486,24 @@ NotifyOSD(NotifyMsg,Duration := 10,Alignment := "Left",YN := "")
 {
 	if !InStr("LeftRightCenter",Alignment)
 		Alignment := "Left"
-		
 	Transparent := 250
 	try
 		ui.notifyGui.Destroy()
 	ui.notifyGui			:= Gui()
 	ui.notifyGui.Title 		:= "Notify"
-
 	ui.notifyGui.Opt("+AlwaysOnTop -Caption +ToolWindow +Owner" ui.mainGui.hwnd)  ; +ToolWindow avoids a taskbar button and an alt-tab menu item.
 	ui.notifyGui.BackColor := cfg.ThemePanel1Color  ; Can be any RGB color (it will be made transparent below).
 	ui.notifyGui.SetFont("s16")  ; Set a large font size (32-point).
 	ui.notifyGui.AddText("c" cfg.ThemeFont1Color " " Alignment " BackgroundTrans",NotifyMsg)  ; XX & YY serve to 00auto-size the window.
 	ui.notifyGui.AddText("xs hidden")
-	
 	WinSetTransparent(0,ui.notifyGui)
 	ui.notifyGui.Show("NoActivate Autosize")  ; NoActivate avoids deactivating the currently active window.
 	ui.notifyGui.GetPos(&x,&y,&w,&h)
-	
 	winGetPos(&GuiX,&GuiY,&GuiW,&GuiH,ui.mainGui.hwnd)
 	ui.notifyGui.Show("x" (GuiX+(GuiW/2)-(w/2)) " y" GuiY+(100-(h/2)) " NoActivate")
 	guiVis(ui.notifyGui,true)
 	drawOutlineNotifyGui(1,1,w,h,cfg.ThemeBorderDarkColor,cfg.ThemeBorderLightColor,1)
 	drawOutlineNotifyGui(2,2,w-2,h-2,cfg.ThemeBright2Color,cfg.ThemeBright2Color,1)
-	
 	if (YN) {
 		ui.notifyGui.AddText("xs hidden")
 		ui.notifyYesButton := ui.notifyGui.AddPicture("ys x30 y30","./Img/button_yes.png")
@@ -564,22 +518,15 @@ NotifyOSD(NotifyMsg,Duration := 10,Alignment := "Left",YN := "")
 			setTimer () => (sleep(duration),fadeOSD()),-100
 		}
 	}
-
 	waitOSD() {
-	
 		ui.notifyGui.destroy()
 		notifyOSD("Timed out waiting for response.`nPlease try your action again",-1000)
-	
 	}
-
-
-
 }
 
 fadeOSD() {
 	ui.transparent := 250
 	While ui.Transparent > 10 { 	
-	
 		try
 			WinSetTransparent(ui.Transparent,ui.notifyGui)
 		ui.Transparent -= 3
@@ -587,9 +534,7 @@ fadeOSD() {
 	}
 	try
 		guiVis(ui.notifyGui,false)
-	
 	ui.Transparent := ""
-	
 }
 
 loadScreen(visible := true,NotifyMsg := "d2app Loading",Duration := 10) {
@@ -597,35 +542,24 @@ loadScreen(visible := true,NotifyMsg := "d2app Loading",Duration := 10) {
 		Transparent := 0
 		ui.notifyGui			:= Gui()
 		ui.notifyGui.Title 		:= "d2app Loading"
-
 		ui.notifyGui.Opt("+AlwaysOnTop -Caption +ToolWindow")  ; +ToolWindow avoids a taskbar button and an alt-tab menu item.
 		ui.notifyGui.BackColor := "c0c0c0" ; Can be any RGB color (it will be made transparent below).
 		ui.notifyGui.SetFont("s22")  ; Set a large font size (32-point).
 		ui.notifyGui.addText("section x1 y1 w348 h94 background353535")
-		
-		;ui.notifyGui.AddText("y5 x5 w340 h35 cBABABA center BackgroundTrans",NotifyMsg)  ; XX & YY serve to 00auto-size the window.
-		;ui.notifyGUi.addText("xs25 y+1 w302 h22 background959595")
 		ui.notifyGui.addPicture("y5 x65 w-1 h88 backgroundTrans","./img/d2app.png")
 		ui.loadingProgress := ui.notifyGui.addProgress("smooth x1 y96 w348 h20 caaaaaa background353535")
-		;setTimer(loadingProgressStep,100)
 		ui.notifyGui.AddText("xs hidden")
-	
 		tmpX := iniRead(cfg.file,"Interface","GuiX",200)
 		tmpY := iniRead(cfg.file,"Interface","GuiY",200)
-		
-		;ui.notifyGui.Show("w350 h70")
 		winGetPos(&x,&y,&w,&h,ui.notifyGui.hwnd)
 		winSetTransparent(0,ui.notifyGui)
 		ui.notifyGui.show("w350 h117 x" (tmpX+100)-(w/2) " y" (tmpY+50)-(h/2))
-		;drawOutline(ui.notifyGui,1,1,w-2,h-2,"454545","757575",1)
-		;drawOutline(ui.notifyGui,2,2,w-4,h-4,"858585","454545",1)
 		while transparent < 245 {
 			winSetTransparent(transparent,ui.notifyGui.hwnd)
 			transparent += 8
 			sleep(10)
 		} 
 		winSetTransparent("Off",ui.notifyGui.hwnd)
-	
 	} else {
 		try {
 			setTimer(loadingProgressStep,0)
@@ -656,7 +590,6 @@ killMe(*) {
 resetWindowPosition(*) {
 	try {
 		guiVis(ui.dockBarGui,false)
-
 		guiVis(ui.mainGui,true)
 		tabsChanged()
 		ui.MainGui.Move(PrimaryWorkAreaLeft+200,PrimaryWorkAreaTop+200,,)
@@ -664,7 +597,6 @@ resetWindowPosition(*) {
 }
 
 exitFunc(ExitReason,ExitCode) {
-	;debugLog("Exit Command Received")
 	ui.MainGui.Opt("-AlwaysOnTop")
 	If  !ui.fastShutdown && (cfg.confirmExitEnabled) && !InStr("Logoff Shutdown Reload Single Close",ExitReason)
 	{
@@ -675,22 +607,15 @@ exitFunc(ExitReason,ExitCode) {
 			Return 1
 		}
 	}
-	; guiVis(ui.titlebarButtonGui,false)
-	;guiVis(ui.afkGui,false)
 	guiVis(ui.gameSettingsGui,false)
 	guiVis(ui.mainGui,false)
 	try {
 		guiVis(ui.gameTabGui,false)
 	}
-	; if (cfg.topDockEnabled) {
-		; topDockOff()
-	; }
 	winGetPos(&winX,&winY,,,ui.mainGui.hwnd)
 	cfg.guiX := winX
 	cfg.guiY := winY
-	
 	WriteConfig()
-	;runWait("redist/mouseSC_x64.exe /verticalScroll:4",,"hide")
 }
 
 restartApp(*) {
