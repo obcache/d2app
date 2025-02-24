@@ -40,7 +40,7 @@ tabsChanged(*) {
 advProgress(2)
 	ui.TransparentColor 	:= "010203"
 	ui.MainGui 				:= Gui()
-	drawOutlineMainGui(34,30,497,155,cfg.ThemeBright1Color,cfg.themeBright1Color,2)
+	drawOutlineMainGui(34,29,497,155,cfg.ThemeBright1Color,cfg.themeBright1Color,2)
 	advProgress(2)
 	ui.MainGui.Name 		:= "d2app"
 	ui.mainGui.Title		:= "d2app"
@@ -59,7 +59,8 @@ advProgress(2)
 	ui.MainGui.MarginY := 0
 	ui.MainGui.SetFont("s13 c" cfg.ThemeFont1Color,"Calibri")
 	ui.mainGuiAnchor := ui.mainGui.addText("x0 y0 w0 h0 section hidden")
-	ui.mainBg := ui.mainGui.addText("x34 y0 w490 h180 background" cfg.themePanel2Color,"")
+	line(ui.mainGui,529,184,2,29,cfg.themeBright1Color)
+	ui.mainBg := ui.mainGui.addText("x36 y29 w493 h185 background" cfg.themePanel2Color,"")
 	advProgress(2)
 	ui.1_GameButtonBg := ui.mainGui.addPicture("x34 y0 w80 h30 background" cfg.themePanel2Color,(cfg.activeMainTab==1) ? "./img/tab_selected.png" : "./img/tab_unselected.png")
 	ui.1_GameButton := ui.mainGui.addText("x34 y3 w80 h22 center backgroundTrans","Game")
@@ -111,8 +112,8 @@ advProgress(2)
 	ui.rightHandlebarBg 	:= ui.mainGui.addText("hidden x529 y32 w31 h182 background" cfg.themeBright1Color,"")
 	ui.rightHandlebarImage2 := ui.mainGui.AddPicture("hidden x528 w31 y33 h180 section")
 	ui.ExitButtonBorder 	:= ui.mainGui.AddText("x472 y0 w59 h30 Background" cfg.ThemeBright1Color,"")
-	ui.ExitButton 			:= ui.mainGui.AddPicture("x501 y1 w28 h27 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
-	ui.DownButton 			:= ui.mainGui.AddPicture("x474 y1 w27 h27 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
+	ui.ExitButton 			:= ui.mainGui.AddPicture("x501 y2 w28 h27 Background" cfg.ThemeButtonOnColor,"./Img/button_power_ready.png")
+	ui.DownButton 			:= ui.mainGui.AddPicture("x474 y2 w27 h27 section Background" cfg.ThemeFont1Color,"./Img/button_minimize.png")
 	ui.ExitButton.OnEvent("Click",ExitButtonPushed)
 	ui.DownButton.OnEvent("Click",HideGui)
 	advProgress(2)
@@ -143,7 +144,7 @@ advProgress(2)
 	ui.MainGuiTabs.UseTab("")
 
 	advProgress(2)
-
+line(ui.mainGui,34,211,496,2,cfg.themeBright1Color)
 }
 
 line(this_gui,startingX,startingY,length,thickness,color,vertical:=false) {
@@ -292,7 +293,7 @@ UncollapseGui() {
 			sleep(20)
 		}
 	}
-	ui.mainGui.move(,,562,)
+	ui.mainGui.move(,,575,)
 	guiVis(ui.gameTabGui,true)
 	tabsChanged()
 }

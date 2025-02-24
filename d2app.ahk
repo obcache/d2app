@@ -1,4 +1,4 @@
-A_FileVersion := "1.4.4.8"
+A_FileVersion := "1.4.4.9"
 a_appName := "d2app"
 if (fileExist("./d2app_currentBuild.dat"))
 a_fileVersion := fileRead("./d2app_currentBuild.dat")
@@ -124,8 +124,8 @@ advProgress(5)
 try
 	guiVis("all",false)
 
-winSetRegion("33-0 w500 h214",ui.mainGui)
-ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w562 h214 NoActivate")
+winSetRegion("33-0 w498 h214",ui.mainGui)
+ui.mainGui.Show("x" cfg.guix " y" cfg.guiy " w567 h215 NoActivate")
 ui.gameSettingsGui.show("x" cfg.guiX+34 " y" cfg.guiY+30 " w495 h182 noActivate")
 ui.gameTabGui.show("w497 h32 noActivate x" cfg.guiX+34 " y" cfg.guiY+183)
 advProgress(5)

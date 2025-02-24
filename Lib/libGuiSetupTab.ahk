@@ -29,7 +29,7 @@ GuiSetupTab(&ui,&cfg) {
 	drawPanel(ui.mainGui,261,39,214,104,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,261,151,214,53,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,478,39,42,165,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-	
+		line(ui.mainGui,34,0,2,30,cfg.themePanel2Color)	
 	ui.MainGui.SetFont("s09")
 	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y45 w25 h144 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
 	ui.AutoClickerSpeedSlider.ToolTip := "AutoClicker Speed"
@@ -38,7 +38,7 @@ GuiSetupTab(&ui,&cfg) {
 	ui.AutoClickerSpeedSlider.OnEvent("Change",AutoClickerSpeedChanged)
 	
 	ui.MainGui.SetFont("s10 c" cfg.themeFont1Color)
-	drawOutlineMainGui(36,36,494,183,cfg.ThemeBorderDarkColor,cfg.ThemeBorderDarkColor,2)
+	drawOutlineMainGui(34,28,497,190,cfg.ThemeBright1Color,cfg.ThemeBright1Color,2)
 
 	ui.MainGui.SetFont("s10")
 	
@@ -213,11 +213,13 @@ GuiSetupTab(&ui,&cfg) {
 	drawOutlineNamed("toggleBlock",ui.mainGui,49,45,51,154,cfg.themeDark1Color,cfg.themeDark1Color,1)
 	drawOutlineNamed("toggleBlock",ui.mainGui,48,44,50,153,cfg.themeDark2Color,cfg.themeDark2Color,1)
 	drawOutlineNamed("toggleBlock",ui.mainGui,48,45,51,155,cfg.themeBorderDarkColor,cfg.themeBorderDarkColor,1)
-
+	
 	ui.mainGui.addText("x270 y44 w197 h62 background" cfg.themePanel3Color)
 	ui.mainGui.addText("x271 y45 w195 h60 background" cfg.themeBorderDarkColor)
 	ui.mainGui.addText("x272 y46 w193 h58 background" cfg.themeBorderLightColor)
 	ui.mainGui.addText("x273 y47 w191 h56 background" cfg.themePanel3Color)
+	line(ui.mainGui,0,36,2,155,cfg.themeBright1Color)
+
 	ui.checkForUpdatesLabel := ui.mainGui.addtext("x303 y46 w160 h30 section backgroundTrans c" cfg.themeFont3Color,"Check For Updates")
 	ui.checkForUpdatesLabel.SetFont("s12")
 	ui.checkForUpdatesButton := ui.mainGui.addPicture("xs-15 y+-9 w30 h30 section background" cfg.themeButtonOnColor,"./img/button_update.png")
