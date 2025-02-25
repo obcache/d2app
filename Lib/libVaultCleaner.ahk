@@ -163,6 +163,10 @@ libVaultInit(*) {
 		this.vaultProgress := vaultGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
 		this.completeMsg := vaultGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
 		
+		
+		
+
+		
 		if this.gameWin {
 			winGetPos(&gameWinX,&gameWinY,&gameWinW,&gameWinH,this.gameWin)
 			this.origGameWinX:=gameWinX
@@ -195,6 +199,12 @@ libVaultInit(*) {
 			this.mainButton.redraw()
 			this.vaultProgressLabelBg.opt("backgroundD0D0F0")
 			this.vaultProgressLabelBg.redraw()
+			this2.mainButtonHotkey.setFont("c00FFFF")
+			this2.statusText.text:="Dismantles ALL unlocked items. *DIM Search 'is:unlocked' to review"
+			this2.mainButton.opt("background22aa11")
+			this2.mainButton.redraw()
+			this2.vaultProgressLabelBg.opt("backgroundD0D0F0")
+			this2.vaultProgressLabelBg.redraw()
 	} else {
 				msgBox("Process " setting.gameExe " not Running")
 		}
@@ -202,13 +212,18 @@ libVaultInit(*) {
 
 	
 cleanVaultStart(*) {
+	winActivate(this.gameWin)
 	this.statusText.text:="[Esc] to Stop/Exit"
+	this2.statusText.text:="[Esc] to Stop/Exit"
 	setTimer(timer,1000)
 	timer()
 	coordMode("mouse","client")
 	this.mainButtonHotkey.text:="[Esc]" 	
 	this.mainButton.opt("backgroundbb2211 c252525")
 	this.mainButtonText.text:="Stop"
+	this2.mainButtonHotkey.text:="[Esc]" 	
+	this2.mainButton.opt("backgroundbb2211 c252525")
+	this2.mainButtonText.text:="Stop"
 
 	mouseMove(955,170)
 	sleep(500)
@@ -228,6 +243,7 @@ cleanVaultStart(*) {
 			mouseMove(955,170)
 			this.page+=1
 			this.pageCount.text:=format("{:03d}",this.page)
+			this2.pageCount.text:=format("{:03d}",this.page)
 			sleep(250)
 			send("{LButton Down}")
 			sleep(250)
@@ -248,9 +264,12 @@ cleanVaultStart(*) {
 	send("{LButton Up}")
 	this.page-=1
 	this.pageCount.text:=format("{:03d}",this.page)
+	this2.pageCount.text:=format("{:03d}",this.page)
 	this.maxRange:=this.page*50
 	this.vaultProgress.opt("range1-" this.maxRange)
 	this.vaultProgress.value:=0
+	this2.vaultProgress.opt("range1-" this.maxRange)
+	this2.vaultProgress.value:=0
 	sleep(800)
 
 
@@ -262,7 +281,7 @@ cleanVaultStart(*) {
 			if this.restartQueued {
 				exit()
 			}
-			this.vaultProgress.value+=1
+			this.vaultProgress.value+=1		  
 			this.col:=setting.columnCount-a_index
 			this.itemNum+=1
 			;dismantle(this.col,this.row,tile(this.col,this.row).x,tile(this.col,this.row).y)
@@ -272,7 +291,6 @@ cleanVaultStart(*) {
 			isUnlocked(this.col,this.row)
 				
 			}
-		}
 		;sleep(500)
 		mouseMove(905,170)
 		sleep(500)
@@ -282,10 +300,12 @@ cleanVaultStart(*) {
 		this.page-=1
 		
 		this.pageCount.text:=format("{:03d}",this.page)
+		this2.pageCount.text:=format("{:03d}",this.page)
 		sleep(600)
 	}
 	this.completeMsg.text:="Operation Complete"
-	
+	this2.completeMsg.text:="Operation Complete"
+	}
 		;msgBox(result.logUi.text)
 }
 
@@ -357,10 +377,10 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 		if this.restartQueued {
 			exit()
 		}
-		loop 50 {
-			if !pixelSearch(&returnX,&returnY,(thisCol>=5) ? x+50 : x-150,300,100,720,"0xFFFFFF",50) {
+		loop 20 {
+			if -(!pixelSearch(&returnX,&returnY,(thisCol>=5) ? x+50 : x-150,300,100,720,"0xFFFFFF",50)) {
 				this.exotic:=true
-				sleep(3600)
+				sleep(2000)
 				break
 			}
 			sleep(10)

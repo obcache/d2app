@@ -1,4 +1,4 @@
-A_FileVersion := "1.1.1.2"
+A_FileVersion := "1.1.2.2"
 A_AppName := "d2app_updater"
 ;@Ahk2Exe-Let FileVersion=%A_PriorLine~U)^(.+"){1}(.+)".*$~$2% 
 
@@ -53,15 +53,18 @@ if (A_Args.length > 0) && FileExist("./versions/" A_Args[1]) {
 	currentVersion := fileRead("./d2app_currentBuild.dat")
 	if !(DirExist("./versions"))
 		DirCreate("./versions")
+					
 	if (latestVersion > currentVersion) 
 	{
 		msgBoxAnswer := MsgBox("A newer version is available.`nYou currently have: " currentVersion "`nBut the newest is: " latestVersion "`nWould you like to update now?",,"YN")
+
 		if (msgBoxAnswer == "Yes")
 		{ 	
 			if winExist("ahk_exe d2app.exe")	{
 				winClose("ahk_exe d2app.exe")
 			}			
 			pbNotify("Upgrading d2app to version " latestVersion)
+	
 			;download("http://sorryneedboost.com/d2app/bin/d2app_" latestVersion ".exe",A_ScriptDir "/versions/d2app_" latestVersion ".exe")
 			runWait("cmd /C start /b /wait curl.exe https://raw.githubusercontent.com/obcache/d2app/main/bin/d2app_" latestVersion ".exe -o " A_ScriptDir  "/versions/d2app_" latestVersion ".exe")
 			sleep(3000)
@@ -86,6 +89,7 @@ pbNotify(NotifyMsg,Duration := 10,YN := "")
 	Transparent := 250
 	ui.notifyGui			:= Gui()
 	ui.notifyGui.Title 		:= "Notify"
+
 	ui.notifyGui.Opt("+AlwaysOnTop -Caption +ToolWindow")  ; +ToolWindow avoids a taskbar button and an alt-tab menu item.
 	ui.notifyGui.BackColor := "353535" ; Can be any RGB color (it will be made transparent below).
 	ui.notifyGui.SetFont("s16")  ; Set a large font size (32-point).
@@ -125,6 +129,7 @@ pbWaitOSD() {
 }
 	
 drawOutline(guiName, X, Y, W, H, Color1 := "Black", Color2 := "Black", Thickness := 1) {	
+	
 	guiName.AddProgress("x" X " y" Y " w" W " h" Thickness " Background" Color1) 
 	guiName.AddProgress("x" X " y" Y " w" Thickness " h" H " Background" Color1) 
 	guiName.AddProgress("x" X " y" Y + H - Thickness " w" W " h" Thickness " Background" Color2) 
