@@ -63,50 +63,60 @@ libVaultInit(*) {
 		
 		pbNotify('If Destiny 2 is not already set to "Windowed Fullscreen",`n please do it now and then click "Proceed"',30,"YN","fullscreenProcess","fullscreenCancel")
 		
+		
 		; bgGui := gui()
 		; bgGui.opt("alwaysOnTop -caption -border toolWindow")
 		; bgGui.backColor:="333333"
 		; winSetTransparent(190,bgGui.hwnd)
 		try 
-			thisGui.destroy()
+			vaultGui.destroy()
 		
-		thisGui := gui()
-		thisGui.backColor:=setting.transColor
-		thisGui.setFont("s10 c000000","Calibri")
-		;thisGui.opt("-border owner" winGetID("ahk_exe destiny2.exe"))	
-		thisGui.opt("-border")	
-		;winSetTransColor(setting.transColor,thisGui.hwnd)
-		;help:=thisGui.adwdText("section x5 y5 w650 h40 backgroundTrans c00FFFF",
-		titleBarBg:=thisGui.addText("x0 y0 w1254 h30 background454545")
-		titleBarBg.onEvent("click",wm_lbuttonDown_callback)
-		titleBarText:=thisGui.addText("x10 y-2 w500 h30 backgroundTrans c212121","VaultCleaner for Destiny2 (v1.2)" )
+		vaultGui := gui()
+		vaultGui := gui()
+		
+		vaultGui.backColor:=setting.transColor
+		vaultGui.setFont("s10 c000000","Calibri")
+		vaultGui.opt("-border")	
+		vaultGui.backColor:=setting.transColor
+		vaultGui.setFont("s10 c000000","Calibri")
+		;vaultGui.opt("-border owner" winGetID("ahk_exe destiny2.exe"))	
+	
+
+		;winSetTransColor(setting.transColor,vaultGui.hwnd)
+		;help:=vaultGui.addText("section x5 y5 w650 h40 backgroundTrans c00FFFF",
+		titleBarBg:=vaultGui.addText("x0 y0 w1254 h34 background454545")
+		titleBarBg.onEvent("click",WM_LBUTTONDOWN_callback)
+		titleBarText:=vaultGui.addText("x10 y-2 w500 h32 backgroundTrans c212121","VaultCleaner for Destiny2 (v1.2)" )
 		titleBarText.setFont("s20 bold cbbbbbb","calibri")
-		closeButton:=thisGui.addText("x1250 y0 w30 h30 cBBBBBB background454545","T")
+		closeButton:=vaultGui.addText("x1250 y0 w30 h32 cBBBBBB background454545","T")
 		closeButton.setFont("s24","WingDings 2")
 		closeButton.onEvent("click",closeProgram)
 		closeProgram(*) {
 			exitApp
 		}
-		footerBarBg:=thisGui.addText("x0 y" this.yOffset " w1284 h100 background454545")
-		thisGui.addText("x0 y30 w1284 h2 background959595")
-		thisGui.addText("x0 y" this.YOffset " w1284 h2 background959595")
-		; onMessage(0x47,WM_WINDOWPOSCHANGED)
-		; WM_WINDOWPOSCHANGED(*) {
-			; try {
-				; winGetPos(&tX,&tY,,,thisGui.hwnd)
-				; winMove(tx+3,ty+32,,,this.gameWin)
-			; }		
+		footerBarBg:=vaultGui.addText("x0 y" this.yOffset " w1284 h100 background454545")
+		vaultGui.addText("x0 y30 w1284 h2 background959595")
+		vaultGui.addText("x0 y" this.YOffset " w1284 h2 background959595")
+		onMessage(0x47,this_WINDOWPOSCHANGED)
+		this_WINDOWPOSCHANGED(*) {
+			try {
+				winGetPos(&tX,&tY,,,vaultGui.hwnd)
+				winSetAlwaysOnTop(1,this.gameWin)
+				winMove(tx+3,ty+35,,,this.gameWin)
+				winSetAlwaysOnTop(0,this.gameWin)
+				;winMove(tx,ty,,,vaultGui.hwnd)
+			}		
+		}
+		; this_LBUTTONDOWN_callback(this_control*) {
+			; postMessage("0xA1",2,,,this_control)
 		; }
-		; WM_LBUTTONDOWN_callback(this_control*) {
-			; postMessage("0xA1",2,,,"A")
-		; }
-		this.statusText:=thisGui.addText("x10 y" 38+this.yOffset " w640 h30 backgroundTrans c00FFFF","Please Wait....")
+		this.statusText:=vaultGui.addText("x10 y" 38+this.yOffset " w640 h30 backgroundTrans c00FFFF","Please Wait....")
 		this.statusText.setFont("s16")
-		this.mainButtonBg:=thisGui.addText("x5 y" 5+this.yOffset " w80 h30 background353535")
-		this.mainButton:=thisGui.addText("section center x7 y" 7+this.yOffset " w76 h26 background454545 c00FFFF","")
-		this.mainButtonText:=thisGui.addText("section center x7 y" 2+this.yOffset " w76 h30 backgroundTrans c353535","Start")
+		this.mainButtonBg:=vaultGui.addText("x5 y" 5+this.yOffset " w80 h30 background353535")
+		this.mainButton:=vaultGui.addText("section center x7 y" 7+this.yOffset " w76 h26 background454545 c00FFFF","")
+		this.mainButtonText:=vaultGui.addText("section center x7 y" 2+this.yOffset " w76 h30 backgroundTrans c353535","Start")
 		this.mainButtonText.setFont("s20")
-		this.mainButtonHotkey:=thisGui.addText("left ys backgroundTrans c454545 h30 w130","[ Shift ]+[ \ ]")
+		this.mainButtonHotkey:=vaultGui.addText("left ys backgroundTrans c454545 h30 w130","[ Shift ]+[ \ ]")
 		this.mainButtonHotkey.setFont("s20")
 		this.mainButton.onEvent("click",cleanVaultStart)
 		this.mainButtonText.onEvent("click",cleanVaultStart)
@@ -116,27 +126,27 @@ libVaultInit(*) {
 				? cleanVaultStart()
 				: vault_exitFunc()
 		}
-		;help2:=thisGui.addText("xs+0 w600 h60 y+0 backgroundTrans c00FFFF","")
-		thisGui.setFont("s12")
-		drawOutlineNamed("vaultStats",thisGui,998,this.yOffset+8,270,55,"c00FFFF","c00FFFF",1)
-		this.pageLabel:=thisGui.addText("right x1000 y" 10+this.yOffset " w80 h25 backgroundTrans c00FFFF","Page: ")
-		this.pageCount:=thisGui.addText("x1080 y" 10+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}",this.page))
-		;this.statusUnderline:=thisGui.addText("x1000 y" 8+this.yOffset " w270 center h1 c00FFFF background00FFFF")
-		this.statusHeaderLabel:=thisGui.addText("x1000 y" this.yOffset " w140 left h25 c00FFFF backgroundTrans","")
-		this.elapsed:=thisGui.addText("x1000 y" 25+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Elapsed: ")
-		this.elapsedTime:=thisGui.addText("x1080 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
-		this.remaining:=thisGui.addText("x1000 y" 40+this.yOffset " right w80 h25 c00FFFF backgroundTrans","Remaining: ")
-		this.remainingtime:=thisGui.addText("x1080 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+		;help2:=vaultGui.addText("xs+0 w600 h60 y+0 backgroundTrans c00FFFF","")
+		vaultGui.setFont("s12")
+		drawOutlineNamed("vaultStats",vaultGui,998,this.yOffset+8,270,55,"c00FFFF","c00FFFF",1)
+		this.pageLabel:=vaultGui.addText("right x1000 y" 10+this.yOffset " w80 h25 backgroundTrans c00FFFF","Page: ")
+		this.pageCount:=vaultGui.addText("x1080 y" 10+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}",this.page))
+		;this.statusUnderline:=vaultGui.addText("x1000 y" 8+this.yOffset " w270 center h1 c00FFFF background00FFFF")
+		this.statusHeaderLabel:=vaultGui.addText("x1000 y" this.yOffset " w140 left h25 c00FFFF backgroundTrans","")
+		this.elapsed:=vaultGui.addText("x1000 y" 25+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Elapsed: ")
+		this.elapsedTime:=vaultGui.addText("x1080 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
+		this.remaining:=vaultGui.addText("x1000 y" 40+this.yOffset " right w80 h25 c00FFFF backgroundTrans","Remaining: ")
+		this.remainingtime:=vaultGui.addText("x1080 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans","00:00:00")
 		
 		
-		;this.dismantledUnderline:=thisGui.addText("x1160 y" 18+this.yOffset " w110 center h1 c00FFFF background00FFFF")
-		this.dismantledHeaderLabel:=thisGui.addText("x1160 y" this.yOffset " w110 right h25 c00FFFF backgroundTrans","")
-		this.dismantledLegendaryLabel:=thisGui.addText("x1160 y" 10+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Legendary: ")
-		this.dismantledLegendary:=thisGui.addText("x1240 y" 10+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
-		this.dismantledExoticLabel:=thisGui.addText("x1160 y" 25+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Exotic: ")
-		this.dismantledExotics:=thisGui.addText("x1240 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
-		this.dismantledTotalLabel:=thisGui.addText("x1160 y" 40+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Total: ")
-		this.dismantledTotal:=thisGui.addText("x1240 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		;this.dismantledUnderline:=vaultGui.addText("x1160 y" 18+this.yOffset " w110 center h1 c00FFFF background00FFFF")
+		this.dismantledHeaderLabel:=vaultGui.addText("x1160 y" this.yOffset " w110 right h25 c00FFFF backgroundTrans","")
+		this.dismantledLegendaryLabel:=vaultGui.addText("x1160 y" 10+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Legendary: ")
+		this.dismantledLegendary:=vaultGui.addText("x1240 y" 10+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this.dismantledExoticLabel:=vaultGui.addText("x1160 y" 25+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Exotic: ")
+		this.dismantledExotics:=vaultGui.addText("x1240 y" 25+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
+		this.dismantledTotalLabel:=vaultGui.addText("x1160 y" 40+this.yOffset " w80 right h25 c00FFFF backgroundTrans","Total: ")
+		this.dismantledTotal:=vaultGui.addText("x1240 y" 40+this.yOffset " left w80 h25 c00FFFF backgroundTrans",format("{:03d}","000"))
 		
 
 
@@ -147,11 +157,11 @@ libVaultInit(*) {
 		this.elapsedMin:=""
 		this.elapsedSeconds:=""
 
-		this.vaultProgressLabelBg:=thisGui.addText("x0 y" 70+this.yOffset " w100 h30 background505060 c151515","")
-		this.vaultProgressLabel:=thisGui.addText("x5 y" 70+this.yOffset " w85 h30 backgroundTrans c302535","Progress")
+		this.vaultProgressLabelBg:=vaultGui.addText("x0 y" 70+this.yOffset " w100 h30 background505060 c151515","")
+		this.vaultProgressLabel:=vaultGui.addText("x5 y" 70+this.yOffset " w85 h30 backgroundTrans c302535","Progress")
 		this.vaultProgressLabel.setFont("s18","Mode-X")
-		this.vaultProgress := thisGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
-		this.completeMsg := thisGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
+		this.vaultProgress := vaultGui.addProgress("x90 y" 70+this.yOffset " w1289 h30 c440000 background151515 range1-500")
+		this.completeMsg := vaultGui.addText("x30 y67 w500 h30 backgroundTrans c00FFFF","")
 		
 		if this.gameWin {
 			winGetPos(&gameWinX,&gameWinY,&gameWinW,&gameWinH,this.gameWin)
@@ -168,7 +178,8 @@ libVaultInit(*) {
 			winActivate(this.gameWin)
 			winWait(this.gameWin)
 			sleep(2000)
-			thisGui.show("x" this.gameWinX+2 " y" this.gameWinY-28 " w1280 h" 30+720+94 " noActivate")
+			vaultGui.show("x" this.gameWinX+2 " y" this.gameWinY-28 " w1280 h" 30+720+94 " noActivate")
+		;vaultGui.show("x" this.gameWinX+2 " y" this.gameWinY-28 " w1280 h" 30+720+94 " noActivate")
 			;winSetAlwaysOnTop(true,this.gameWin)
 			;winSetTransColor("830303","ahk_exe destiny2.exe")
 
@@ -303,14 +314,22 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 			; }
 		
 	switch { 
-		case thisCol >= 6: ;10-7=3 9-7=2 8-7=1 7-7=0 6-7=- 5-3=2 4-1=3 3+1=4 2+3=5 1+5=6
+		case thisCol > 5: ;10-7=3 9-7=2 8-7=1 7-7=0 6-7=- 5-3=2 4-1=3 3+1=4 2+3=5 1+5=6
 				loop 5 {
-					this.color:=pixelGetColor(x+(setting.tileSize/2)-2,y)
+					this.color:=pixelGetColor(round(x+(setting.tileSize/2)-2),y)
 					if subStr(this.color,3,1) != subStr(this.color,5,1) {
 						result.locked:=true
 						break
 					}
+				}		
+		case thisCol > 4 && thisCol <6: ;10-7=3 9-7=2 8-7=1 7-7=0 6-7=- 5-3=2 4-1=3 3+1=4 2+3=5 1+5=6
+			loop 5 {
+				this.color:=pixelGetColor(round(x+(setting.tileSize/2)-4),y)
+				if subStr(this.color,3,1) != subStr(this.color,5,1) {
+					result.locked:=true
+					break
 				}
+			}
 		
 		; case (thisCol >= 4) && (thiscol <= 7): ;6-5=1
 			; loop 5 {
@@ -321,9 +340,9 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 				; }
 			; }
 
-		case thisCol <= 5: ;1+3=4
+		case thisCol < 5: ;1+3=4
 			loop 10 {
-				this.color:=pixelGetColor(x-(setting.tileSize/2)+1,y)
+				this.color:=pixelGetColor(round(x-(setting.tileSize/2)+1),y)
 				if subStr(this.color,3,1) != subStr(this.color,5,1) {
 					result.locked:=true
 					break
@@ -334,17 +353,17 @@ isUnlocked(thisCol,thisRow,x:=tile(thisCol,thisRow).x,y:=tile(thisCol,thisRow).y
 	sleep(150)
 	if !result.locked {
 		sendEvent("{f down}")
-		sleep(1400)
+		sleep(1500)
 		if this.restartQueued {
 			exit()
 		}
 		loop 50 {
-			if pixelSearch(&returnX,&returnY,(thisCol>=5) ? x+50 : x-150,300,100,720,"0x830303",1) {
+			if !pixelSearch(&returnX,&returnY,(thisCol>=5) ? x+50 : x-150,300,100,720,"0xFFFFFF",50) {
 				this.exotic:=true
 				sleep(3600)
 				break
 			}
-			sleep(5)
+			sleep(10)
 		}
 	
 		this.dismantledTotal.text:=format("{:03d}",round(this.dismantledTotal.text)+1)
@@ -438,7 +457,7 @@ F5:: {
 hotIf()
 
 isVault(*) {
-	if winActive(ui.thisGui) && ui.vaultCleanerOpen
+	if winActive(ui.vaultGui) && ui.vaultCleanerOpen
 		return 1
 	else
 		return 0
@@ -456,7 +475,7 @@ vault_exitFunc(*) {
 	try
 		setTimer(timer,0)
 	try
-		thisGui.hide()
+		vaultGui.hide()
 	try
 		winSetStyle("-0xC00000",this.GameWin)
 	try

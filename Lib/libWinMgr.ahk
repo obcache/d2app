@@ -16,6 +16,7 @@ WM_WINDOWPOSCHANGED(wParam, lParam, msg, Hwnd) {
 }
 
 collateGuis(hwnd := ui.mainGui.hwnd) {
+	;msgBox(vaultGui.hwnd "`n" hwnd)
 	try {
 		switch hwnd {
 			case ui.mainGui.hwnd:
@@ -29,6 +30,10 @@ collateGuis(hwnd := ui.mainGui.hwnd) {
 			case ui.pbConsoleBg.hwnd:
 				winGetPos(&winX,&winY,,,ui.pbConsoleBg.hwnd)
 				ui.pbConsole.move(winX,winY)
+			case vaultGui.hwnd:
+				winGetPos(&tX,&tY,,,vaultGui.hwnd)
+				winMove(tx+5,ty+35,,,"ahk_exe destiny2.exe")
+			
 		} 
 	}
 }
