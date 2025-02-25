@@ -224,25 +224,25 @@ preAutoExec(InstallDir,ConfigFileName) {
 createPbConsole(title) {
 	transColor := "010203"
 	ui.pbConsoleBg := gui()
-	ui.pbConsoleBg.backColor := "304030"
-	ui.pbConsoleHandle := ui.pbConsoleBg.addPicture("w700 h400 background203020","")
-	ui.pbConsoleBg.show("w700 h400 noActivate")
-	winSetTransparent(160,ui.pbConsoleBg)
+	ui.pbConsoleBg.backColor := "303030"
+	ui.pbConsoleHandle := ui.pbConsoleBg.addPicture("w700 h400 background555555","")
+	;ui.pbConsoleBg.show("w700 h400 noActivate")
+	;winSetTransparent(160,ui.pbConsoleBg)
 	ui.pbConsole := gui()
-	ui.pbConsole.opt("-caption AlwaysOnTop")
-	ui.pbConsole.backColor := transColor
-	ui.pbConsole.color := transColor
-	winSetTransColor(transColor,ui.pbConsole)
-	ui.pbConsoleTitle := ui.pbConsole.addText("x8 y4 w700 h35 section center background303530 c859585",title)
+	ui.pbConsole.opt("-caption")
+	ui.pbConsole.backColor := "454545"
+	ui.pbConsole.color := "b0b0b0"
+	;winSetTransColor(transColor,ui.pbConsole)
+	ui.pbConsoleTitle := ui.pbConsole.addText("x8 y4 w700 h35 section center background909090 c353535",title)
 	ui.pbConsoleTitle.setFont("s20","Verdana Bold")
-	drawOutlineNamed("pbConsoleTitle",ui.pbConsole,6,4,692,35,"253525","202520",2)
-	ui.pbConsoleData := ui.pbConsole.addText("xs+10 w680 h380 backgroundTrans cA5C5A5","")
+	drawOutlineNamed("pbConsoleTitle",ui.pbConsole,6,4,692,35,"999999","404040",2)
+	ui.pbConsoleData := ui.pbConsole.addText("xs+10 w680 h380 backgroundTrans cB0B0B0","")
 	ui.pbConsoleData.setFont("s16")
-	drawOutlineNamed("pbConsoleOutside",ui.pbConsole,2,2,698,398,"355535","355535",2)
-	drawOutlineNamed("pbConsoleOutside2",ui.pbConsole,3,3,696,396,"457745","457745",1)
-	drawOutlineNamed("pbConsoleOutside3",ui.pbConsole,4,4,694,394,"353535","353535",2)
+	drawOutlineNamed("pbConsoleOutside",ui.pbConsole,2,2,698,398,"454545","454545",2)
+	drawOutlineNamed("pbConsoleOutside2",ui.pbConsole,3,3,696,396,"555555","555555",1)
+	drawOutlineNamed("pbConsoleOutside3",ui.pbConsole,4,4,694,394,"454545","454545",2)
 	ui.pbConsole.show("w700 h400 noActivate")
-	ui.pbConsoleBg.opt("-caption owner" ui.pbConsole.hwnd)
+	;ui.pbConsoleBg.opt("-caption owner" ui.pbConsole.hwnd)
 }
 
 hidePbConsole(*) {
