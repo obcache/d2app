@@ -29,75 +29,45 @@ GuiSetupTab(&ui,&cfg) {
 	drawPanel(ui.mainGui,261,39,214,104,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,261,151,214,53,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
 	drawPanel(ui.mainGui,478,39,42,165,cfg.themePanel1Color,cfg.themeBorderDarkColor,cfg.themeBorderLightColor,1,1,"none",100,"Features","Calibri",cfg.themeFont1Color)
-		line(ui.mainGui,34,0,2,30,cfg.themePanel2Color)	
+	line(ui.mainGui,34,0,2,30,cfg.themePanel2Color)	
+	
 	ui.MainGui.SetFont("s09")
-	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y45 w25 h144 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
-	ui.AutoClickerSpeedSlider.ToolTip := "AutoClicker Speed"
-	ui.AutoClickerSpeedSliderLabel2 := ui.MainGui.AddText("x475 y190 w50 r1 Center BackgroundTrans","CPS")
 	drawOutlineNamed("autoClicker",ui.mainGui,486,45,27,145,cfg.themeBorderDarkColor,cfg.themeBorderDarkColor,1)
+	ui.AutoClickerSpeedSlider := ui.MainGui.AddSlider("x487 y45 w25 h144 Range1-64 Vertical Left TickInterval8 Invert ToolTipTop",cfg.AutoClickerSpeed)
+	ui.AutoClickerSpeedSliderLabel2 := ui.MainGui.AddText("x475 y190 w50 r1 Center BackgroundTrans","CPS")
+	ui.AutoClickerSpeedSlider.ToolTip := "AutoClicker Speed"
 	ui.AutoClickerSpeedSlider.OnEvent("Change",AutoClickerSpeedChanged)
+
 	
 	ui.MainGui.SetFont("s10 c" cfg.themeFont1Color)
 	drawOutlineMainGui(34,28,497,190,cfg.ThemeBright1Color,cfg.ThemeBright1Color,2)
-
-	ui.MainGui.SetFont("s10")
-	
-	
-
-	
-	ToggleAfkSnap(*)
-	{
-		ui.toggleAfkSnap.Opt((cfg.AfkSnapEnabled := !cfg.AfkSnapEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor))
-		ui.toggleAfkSnap.Redraw()
-	}
-	
-	
-	ui.toggleAfkSnap := ui.MainGui.AddPicture("x49 y18 w60 h1 section hidden vAfkSnap " (cfg.AfkSnapEnabled ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.AfkSnapEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
-	ui.toggleAfkSnap.OnEvent("Click", toggleChanged)
-	ui.toggleAfkSnap.ToolTip := "Toggles Afk Screen Snapping"
-	ui.labelAfkSnap:= ui.MainGui.AddText("x+2 ys+7 hidden background" cfg.themePanel3Color,"AFK Snapping")
-
-	cfg.toolTipsEnabled:=iniRead(cfg.file,"Toggles","ToolTipsEnabled",true)
-	ui.toggleToolTips := ui.MainGui.AddPicture("xs y+5 w50 h22 section vToolTips " ((cfg.ToolTipsEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.ToolTipsEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
+	cfg.toolTipsEnabled			:= iniRead(cfg.file,"Toggles","ToolTipsEnabled",true)
+	ui.toggleToolTips 			:= ui.MainGui.AddPicture("xs y+5 w50 h22 section vToolTips " ((cfg.ToolTipsEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.ToolTipsEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
+	ui.labelToolTips 			:= ui.MainGui.AddText("x+5 ys+2 BackgroundTrans","  ToolTips")
+	ui.toggleToolTips.ToolTip 	:= "Toggles ToolTips"
 	ui.toggleToolTips.OnEvent("Click", toggleChanged)
-	ui.toggleToolTips.ToolTip := "Toggles ToolTips"
-	ui.labelToolTips := ui.MainGui.AddText("x+5 ys+2 BackgroundTrans","  ToolTips")
-
-
+	
+	
 	ToggleAlwaysOnTop(*)
 	{
 		ui.toggleAlwaysOnTop.Opt((cfg.AlwaysOnTopEnabled := !cfg.AlwaysOnTopEnabled) ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor))
 		ui.toggleAlwaysOnTop.Redraw()
 	}
 	
-	if cfg.AlwaysOnTopEnabled {
-		if cfg.topDockEnabled
-			try
-				ui.dockBarGui.opt("alwaysOnTop")
-		ui.mainGui.opt("alwaysOnTop")
-	}
-	ui.toggleAlwaysOnTop := ui.MainGui.AddPicture("xs y+2 w50 h22 section vAlwaysOnTop " (cfg.AlwaysOnTopEnabled ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.AlwaysOnTopEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
+	ui.mainGui.opt((cfg.AlwaysOnTopEnabled) ? "alwaysOnTop" : "-alwaysOnTop")
+	ui.toggleAlwaysOnTop 			:= ui.MainGui.AddPicture("xs y+2 w50 h22 section vAlwaysOnTop " (cfg.AlwaysOnTopEnabled ? ("Background" cfg.ThemeButtonOnColor) : ("Background" cfg.ThemeButtonReadyColor)),((cfg.AlwaysOnTopEnabled) ? (cfg.toggleOn) : (cfg.toggleOff)))
+	ui.labelAlwaysOnTop				:= ui.MainGui.AddText("x+5 ys+2 backgroundTrans","  AlwaysOnTop")	
+	ui.toggleAlwaysOnTop.ToolTip 	:= "Keeps this app on top of all other windows."
 	ui.toggleAlwaysOnTop.OnEvent("Click", ToggleAlwaysOnTopChanged)
-	ui.toggleAlwaysOnTop.ToolTip := "Keeps this app on top of all other windows."
-	ui.labelAlwaysOnTop:= ui.MainGui.AddText("x+5 ys+2 backgroundTrans","  AlwaysOnTop")	
-	
-
-	
+		
 	ToggleAlwaysOnTopChanged(*) {
-		ui.toggleAlwaysOnTop.value := 
-			((cfg.AlwaysOnTopEnabled := !cfg.AlwaysOnTopEnabled) 
-				? (ui.toggleAlwaysOnTop.opt("Background" cfg.ThemeButtonOnColor),
-					cfg.toggleOn) 
-				: (ui.toggleAlwaysOnTop.opt("Background" cfg.ThemeButtonReadyColor),
-					cfg.toggleOff))
-					
+		ui.toggleAlwaysOnTop.value 	:=	((cfg.AlwaysOnTopEnabled := !cfg.AlwaysOnTopEnabled) 
+											? (ui.toggleAlwaysOnTop.opt("Background" cfg.ThemeButtonOnColor),cfg.toggleOn) 
+											: (ui.toggleAlwaysOnTop.opt("Background" cfg.ThemeButtonReadyColor),cfg.toggleOff))
 		ui.toggleAlwaysOnTop.Redraw()
 		try {
 			winSetAlwaysOnTop(cfg.AlwaysOnTopenabled,ui.mainGui)
 		}
-		; try { 
-			; winSetAlwaysOnTop(cfg.AlwaysOnTopenabled,ui.titleBarButtonGui)
-		; }
 		try { 
 			winSetAlwaysOnTop(cfg.AlwaysOnTopenabled,ui.afkGui)
 		}
