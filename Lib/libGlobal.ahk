@@ -13,7 +13,7 @@ restoreWin(*) {
 		ui.mainGui.show()
 		guiVis(ui.mainGui,true)
 		tabsChanged()
-		ui.mainGui.opt("-toolWindow")
+		;ui.mainGui.opt("-toolWindow")
 	}
 }
 
@@ -21,7 +21,7 @@ hideGui(*) {
 	winGetPos(&GuiX,&GuiY,,,ui.MainGui.hwnd)
 	cfg.guix := guiX
 	cfg.guiy := guiy
-	ui.mainGui.opt("toolWindow")
+	;ui.mainGui.opt("toolWindow")
 	guiVis(ui.mainGui,false)
 	guiVis(ui.gameSettingsGui,false)
 	guiVis(ui.gameTabGui,false)

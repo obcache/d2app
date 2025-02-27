@@ -20,11 +20,13 @@ tabsChanged(*) {
 	? (guiVis(ui.gameSettingsGui,true)
 			, guiVis(ui.gameTabGui,true)
 			, ui.gameSettingsGui.opt("-toolWindow")
-			, ui.mainGui.opt("+toolWindow"))
-		: ( guiVis(ui.gameSettingsGui,false)
+			, ui.gameTabGui.opt("-toolWindow")
+			, ui.mainGui.opt("-toolWindow"))
+	: ( guiVis(ui.gameSettingsGui,false)
 			, guiVis(ui.gameTabGui,false)
+			, ui.gameTabGui.opt("+toolWindow")
 			, ui.gameSettingsGui.opt("+toolWindow")
-			, ui.mainGui.opt("+toolWindow"))
+			, ui.mainGui.opt("-toolWindow"))
 		
 	for tab in cfg.mainTabList {
 		ui.%tab%ButtonBg.value := 

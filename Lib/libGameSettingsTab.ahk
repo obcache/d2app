@@ -703,7 +703,7 @@ GuiGameTab() {
 	ui.gameSettingsGui.BackColor := cfg.themePanel2Color
 	ui.gameSettingsGui.Color := cfg.themePanel2Color
 	ui.gameSettingsGui.MarginX := 5
-	ui.gameSettingsGui.Opt("-Caption -Border +AlwaysOnTop +ToolWindow +Owner" ui.MainGui.Hwnd)
+	ui.gameSettingsGui.Opt("-Caption -Border +AlwaysOnTop +Owner" ui.MainGui.Hwnd)
 	ui.gameSettingsGui.SetFont("s14 c" cfg.ThemeFont1Color,"Calibri")
 	ui.gameTabs := ui.gameSettingsGui.addTab3("x0 y-5 h194 0x400 bottom c" cfg.themeFont1Color " choose" cfg.activeGameTab,cfg.gameModuleList)
 
