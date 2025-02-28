@@ -225,6 +225,12 @@ cfgLoad(&cfg, &ui) {
 	cfg.d2CharacterClass		:= iniRead(cfg.file,"Game","d2CharacterClass","1")
 	cfg.d2AutoGameConfigEnabled := iniRead(cfg.file,"Game","d2AutoGameConfigEnabled",true)
 	cfg.SLBHopKey				:= iniRead(cfg.file,"Game","ShatterLineBunnyHopKey","<UNSET>")
+	cfg.d2GameMouseLeftButtonKey := iniRead(cfg.file,"Mouse","MouseLeftButton","LButton")
+	cfg.d2GameMouseRightButtonKey := iniRead(cfg.file,"Mouse","MouseRightButton","LButton")
+	cfg.d2GameMouseMiddleButtonKey := iniRead(cfg.file,"Mouse","MouseMiddleButton","LButton")
+	cfg.d2GameMouseBackButtonKey := iniRead(cfg.file,"Mouse","MouseBackButton","LButton")
+	cfg.d2GameMouseForwardButtonKey := iniRead(cfg.file,"Mouse","MouseForwardButton","LButton")
+	
 	runWait("./redist/mouseSC_x64.exe /verticalScroll:1",,"hide")
 }
 
@@ -235,6 +241,12 @@ initProgress(progressAmount:=5,*) {
 WriteConfig() {
 	Global
 	tmpGameList := ""
+	iniWrite(cfg.d2GameMouseLeftButtonKey,cfg.file,"Mouse","MouseLeftButton")
+	iniWrite(cfg.d2GameMouseRightButtonKey,cfg.file,"Mouse","MouseRightButton")
+	iniWrite(cfg.d2GameMouseMiddleButtonKey,cfg.file,"Mouse","MouseMiddleButton")
+	iniWrite(cfg.d2GameMouseBackButtonKey,cfg.file,"Mouse","MouseBackButton")
+	iniWrite(cfg.d2GameMouseForwardButtonKey,cfg.file,"Mouse","MouseForwardButton")
+	
 	iniWrite(cfg.displaySizeAuto,cfg.file,"Game","DisplaySizeAuto")
 	iniWrite(cfg.excludedProcesses,cfg.file,"Game","ExcludedProcesses")
 	IniWrite(cfg.autoDetectGame,cfg.file,"Game","AutoDetectGame")

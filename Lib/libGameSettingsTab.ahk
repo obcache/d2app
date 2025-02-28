@@ -929,23 +929,45 @@ MouseRemap(*) {
  ; XButton2::LAlt
 ; #hotIf
 
-cfg.xButton1Bind:=iniRead(cfg.file,"Game","xButton1Bind","XButton1")
-#hotIf winActive("ahk_exe destiny2.exe")
-hotkey("XButton1",xButton1Down)
-xButton1Down(*) {
-	send("{" cfg.xButton1Bind " down}")
-	keywait("XButton1")
-	send("{" cfg.xButton1Bind " up")
-}
 
-cfg.xButton2Bind:=iniRead(cfg.file,"Game","xButton2Bind","XButton2")
-hotkey("XButton2",xButton2Down)
-xButton2Down(*) {
-	send("{" cfg.xButton2Bind " down}")
-	keywait("XButton2")
-	send("{" cfg.xButton2Bind " up}")
+isGameActive(*) {
+	if winActive("ahk_exe Destiny2.exe")
+		return 1
+	else
+		return 0
 }
-#hotIf
+; hotIf(isGameActive)
+; hotkey("XButton1",XButton1Down)
+; hotkey("XButton2",XButton2Down)
+; hotkey("LButton",LButtonDown)
+; hotkey("RButton",RButtonDown)
+; hotkey("MButton",MButtonDown)
+; hotIf()
+XButton1Down(*) {
+	send("{" cfg.d2GameMouseBackButtonKey " down}")
+	keywait("XButton1")
+	send("{" cfg.d2GameMouseBackButtonKey " up")
+}
+XButton2Down(*) {
+	send("{" cfg.d2GameMouseForwardButtonKey " down}")
+	keywait("XButton2")
+	send("{" cfg.d2GameMouseForwardButtonKey " up")
+}
+LButtonDown(*) {
+	send("{" cfg.d2GameMouseLeftButtonKey " down}")
+	keywait("LButton")
+	send("{" cfg.d2GameMouseLeftButtonKey " up")
+}
+RButtonDown(*) {
+	send("{" cfg.d2GameMouseRightButtonKey " down}")
+	keywait("RButton")
+	send("{" cfg.d2GameMouseRightButtonKey " up")
+}
+MButtonDown(*) {
+	send("{" cfg.d2GameMouseMiddleButtonKey " down}")
+	keywait("MButton")
+	send("{" cfg.d2GameMouseMiddleButtonKey " up")
+}
 
 ui.d2Log								:= ui.gameSettingsGui.addText("x405 y10 w68 h80 hidden background" cfg.themePanel3color " c" cfg.themeFont3color," Destiny 2`n Log Started`n Waiting for Input")
 ui.d2Log.setFont("s7","ariel")
@@ -966,7 +988,7 @@ ui.d2AppLoadoutKeyData.onEvent("click",d2AppLoadoutKeyClicked)
 ui.d2AppToggleSprintKey.onEvent("click",d2AppToggleSprintKeyClicked)
 ui.d2AppToggleSprintKeyData.onEvent("click",d2AppToggleSprintKeyClicked)
 ui.d2LaunchDIMbutton.onEvent("click",d2launchDIMbuttonClicked)
-ui.d2LaunchVaultCleanerButton.onEvent("click",d2LaunchVaultCleanerButtonClicked)
+
 ui.d2LaunchD2checkListButton.onEvent("click",d2launchD2checklistButtonClicked)
 ui.d2LaunchBlueberriesButton.onEvent("click",d2launchBlueBerriesButtonClicked)
 ui.d2LaunchDestinyTrackerButton.onEvent("click",d2LaunchDestinyTrackerButtonClicked)
@@ -985,6 +1007,12 @@ d2LaunchDIMButtonClicked(*) {
 }
 
 d2LaunchVaultCleanerButtonClicked(*) {
+	ui.d2LaunchVaultCleanerButton.value := "./img/button_vault_down.png"
+	setTimer () => ui.d2LaunchVaultCleanerButton.value := "./img/button_vault_up.png",-400
+	vaultCleaner()	
+}
+
+d2LaunchNewVaultCleanerButtonClicked(*) {
 	ui.d2LaunchVaultCleanerButton.value := "./img/button_vault_down.png"
 	setTimer () => ui.d2LaunchVaultCleanerButton.value := "./img/button_vault_up.png",-400
 	vaultCleaner()	
@@ -1603,7 +1631,9 @@ this2.y:=1
 	}
 	ui.gameSettingsGui.setFont("s12")
 	drawOutlineNamed("vaultStats",ui.gameSettingsGui,9,78,480,66,cfg.themeBright2Color,cfg.themeBorderDarkColor,2)
-	this2.statBg:=ui.gameSettingsGui.addText("x11 y80 w476 h62 background" cfg.themePanel2Color)
+	this2.statBg:=ui.gameSettingsGui.addText("x11 y80 w476 h62 background" cfg.themeDark2Color)
+	ui.gameSettingsGui.addText("x245 y80 w242 h62 background" cfg.themePanel4Color)
+	drawOutlineNamed("vaultStats2",ui.gameSettingsGui,245,78,244,66,cfg.themeBright2Color,cfg.themeBorderDarkColor,2)
 	this2.pageLabel:=ui.gameSettingsGui.addText("right x370 y80 w80 h25 backgroundTrans c00FFFF","Page: ")
 	this2.pageCount:=ui.gameSettingsGui.addText("x420 y81 right w56 h25 c00FFFF backgroundTrans",format("{:03d}",this2.page))
 	this2.statusHeaderLabel:=ui.gameSettingsGui.addText("x420 y81 w140 left h25 c00FFFF backgroundTrans","")
@@ -1623,22 +1653,63 @@ this2.y:=1
 	this2.vaultProgressLabel.setFont("s10","Helvetica")
 	this2.vaultProgress := ui.gameSettingsGui.addProgress("x77 y50 w408 h20 c" cfg.themeButtonReadyColor " background151515 range1-500")
 	this2.completeMsg := ui.gameSettingsGui.addText("x33 y61 w500 h30 backgroundTrans c00FFFF","")
+	drawOutlineNamed("vaultCleanerButton",ui.gameSettingsGui,13,82,230,58,cfg.themeBorderLightColor,cfg.themeBorderDarkColor,2)
+	this2.d2LaunchVaultCleanerButton := ui.gameSettingsGui.addPicture("x17 y87 w50  h50 backgroundTrans","./img/button_vault_up.png")
+	this2.d2LaunchVaultCleanerButton.onEvent("click",d2LaunchNewVaultCleanerButtonClicked)
+	this.d2LaunchVaultCleanerText:=ui.gameSettingsGui.addText("x73 y92 w180 h50 backgroundTrans c" cfg.themeFont4Color,'Click button to enter`nVault Cleaning mode.')
+	this.d2LaunchVaultCleanerText.setFont("s12 c353535 bold","Arial")
+	
+	
 	ui.gameTabs.useTab("Mouse")
 	cfg.rmbBind:=iniRead(cfg.file,"Game","RButtonBind","RButton")
 	cfg.lmbBind:=iniRead(cfg.file,"Game","LButtonBind","LButton")
 	cfg.mmbBind:=iniRead(cfg.file,"Game","MButtonBind","MButton")
 	cfg.fbBind:=iniRead(cfg.file,"Game","XButton2Bind","XButton2")
 	cfg.bbBind:=iniRead(cfg.file,"Game","XButton1Bind","XButton1")
-	ui.gameSettingsGui.addPicture("section x15 y5 w65 h-1 backgroundTrans","./img/mouse_lmb.png")
-	ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_rmb.png")
-	ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_mmb.png")
-	ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_bb.png")
-	ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 backgroundTrans","./img/mouse_fb.png")
-	ui.gameSettingsGui.addText("section xs-13 w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.lmbBind)
-	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.rmbBind)
-	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.mmbBind)
-	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.fbBind)
-	ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2color " c" cfg.themeFont2Color,cfg.bbBind)
+	ui.mouse_lmb:=ui.gameSettingsGui.addPicture("section x15 y5 w65 h-1 vMouseLeftButton backgroundTrans","./img/mouse_lmb.png")
+	ui.mouse_rmb:=ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 vMouseRightButton backgroundTrans","./img/mouse_rmb.png")
+	ui.mouse_mmb:=ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 vMouseMiddleButton backgroundTrans","./img/mouse_mmb.png")
+	ui.mouse_bb:=ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 vMouseBackButton backgroundTrans","./img/mouse_bb.png")
+	ui.mouse_fb:=ui.gameSettingsGui.addPicture("x+35 ys w65 h-1 vMouseForwardButton backgroundTrans","./img/mouse_fb.png")
+	ui.mouse_lmb.onEvent("click",assignMouse)
+	ui.mouse_rmb.onEvent("click",assignMouse)
+	ui.mouse_mmb.onEvent("click",assignMouse)
+	ui.mouse_bb.onEvent("click",assignMouse)
+	ui.mouse_fb.onEvent("click",assignMouse)
+	
+	assignMouse(this,id,*) {
+		tmpMouseLeftButton:=""
+		tmpMouseRightButton:=""
+		tmpMouseMiddleButton:=""
+		tmpMouseBackButton:=""
+		tmpMouseForwardButton:=""
+	
+		keyBindDialogBox(this.name,"Center")
+		Sleep(100)
+		ih := InputHook("L1 T6",inputHookAllowedKeys,"+V")
+		ih.start()
+		ih.wait()
+		if (ih.endKey == "" && ih.input =="") {
+			keyBindDialogBoxClose()
+			notifyOSD('No Key Detected.`nPlease Try Again.',2000,"Center")
+		} else {
+			if (ih.input)
+			{
+				tmp.%this.name% := ih.input
+			} else {
+				tmp.%this.name% := ih.endKey
+			}
+		}
+		keyBindDialogBoxClose()
+		cfg.d2Game%this.name%Key := tmp.%this.name%
+		ui.%this.name%Text.text := subStr(strUpper(cfg.d2Game%this.name%Key),1,8)
+	}
+	
+	ui.MouseLeftButtonText:=ui.gameSettingsGui.addText("section xs-13 w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.d2GameMouseLeftButtonKey)
+	ui.MouseRightButtonText:=ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.d2GameMouseRightButtonKey)
+	ui.MouseMiddleButtonText:=ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.d2GameMouseMiddleButtonKey)
+	ui.MouseBackButtonText:=ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2Color " c" cfg.themeFont2Color,cfg.d2GameMouseBackButtonKey)
+	ui.MouseForwardButtonText:=ui.gameSettingsGui.addText("x+5 ys w95 center background" cfg.themePanel2color " c" cfg.themeFont2Color,cfg.d2GameMouseForwardButtonKey)
 
 
 ;line(ui.mainGui,529,0,2,30,cfg.themeDark2Color)

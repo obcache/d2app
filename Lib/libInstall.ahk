@@ -13,6 +13,7 @@ preAutoExec(InstallDir,ConfigFileName) {
 	data			:= object()
 	cfg				:= object()
 	ui 				:= object()
+	tmp				:= object()
 	afk				:= object()
 	this			:= object()
 	setting 		:= object()
